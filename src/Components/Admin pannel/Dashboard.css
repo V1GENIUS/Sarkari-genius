@@ -1,0 +1,39 @@
+.dashboard{
+    display: flex;
+    /* flex-direction: column; */
+}
+.dashboard_head{
+    text-align: center;
+
+}
+
+.job-create{
+    background-color: yellowgreen;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+.job-create:hover{
+background-color: chartreuse;
+}
+.orderBox{
+   justify-content: center;
+    display: flex;
+    grid-column: 3;
+}
+
+.box{
+    height: 70px;
+    width:150px;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: greenyellow;
+    background-color: rgb(242, 246, 250);
+    margin:30px;
+    padding-top: 18px;
+    
+    text-align: center;
+}

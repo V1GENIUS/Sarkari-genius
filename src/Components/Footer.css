@@ -1,0 +1,61 @@
+.footer{
+    height: 500px;
+    background-color: rgb(23, 24, 58);
+    display: flex;
+}
+
+.quick_links{
+    color: aliceblue;
+    margin-left: 100px;
+    padding-top: 50px;
+}
+.footer__list{
+display: flex;
+flex-direction: column;
+color: white;
+margin-top: 20px;
+}
+
+.foot__item{
+    margin-top: 12px;
+}
+
+.foot__link{
+    color: greenyellow;
+    text-decoration: underline;
+    padding-bottom: 10px;
+    padding: 10px;
+}
+
+.foot__link:hover{
+    color: rgb(105, 151, 15);
+}
+
+
+.overview{
+    color: aliceblue;
+    margin-left: 100px;
+    padding-top: 50px;
+
+}
+
+.overview_item{
+    margin-top: 12px;
+}
+
+.over__link{
+    color: greenyellow;
+    text-decoration: underline;
+    padding-bottom: 10px;
+    padding: 10px;
+}
+.overview__list{
+    display: flex;
+flex-direction: column;
+color: white;
+margin-top: 20px;
+}
+
+.over__link:hover{
+    color: rgb(105, 151, 15);
+}

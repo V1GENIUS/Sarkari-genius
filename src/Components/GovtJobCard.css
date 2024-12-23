@@ -1,0 +1,41 @@
+.GovtJobCard{
+    width: 800px;
+    height: 350px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: aliceblue;
+    
+}
+
+.GovtJobHeading{
+    padding: 20px;
+
+}
+.GovtJobImage{
+    margin-inline-start: 20px;
+}
+.GovtJobImage img{
+    border-radius: 10px;
+
+}
+.GovtJobName{
+    padding: 15px;
+}
+
+.GovtJobName button{
+    margin-top: 30px;
+    margin-left: 10px;
+    height: 50px;
+    width: 150px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--first-color);
+    color: rgb(246, 246, 246);
+}
+
+.GovtJobName button:hover{
+    color: black;
+}
+
+

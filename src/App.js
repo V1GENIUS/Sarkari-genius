@@ -1,24 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Homepage from './Pages/Homepage';
+import ITJobs from './Pages/ITJobs';
+import GovtJobs from './Pages/GovtJobs';
+import Register from './Components/Register';
+import Login from './Components/Login';
+import Dashboard from './Components/Admin pannel/Dashboard';
+import Sidebar from './Components/Admin pannel/Sidebar';
+import Revenue from './Components/Admin pannel/Revenue';
+import Orders from './Components/Admin pannel/Orders';
+import AboutUs from './Pages/AboutUs';
+import GovtJobDetails from './Pages/GovtJobDetails';
+import AdmitCard from './Pages/AdmitCard';
+import ViewJobs from './Components/Admin pannel/JobLinks/ViewJobs.jsx';
+import CreateJob from './Components/Admin pannel/CreateJob';
+import CreateJobLink from './Components/Admin pannel/JobLinks/CreateJobLink.jsx';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+   <Router>
+     
+     <main className="main-content">
+
+       <Routes>
+         <Route path="/" element={<Homepage />} />
+         <Route path="/it-jobs" element={<ITJobs />} />
+         <Route path="/admit-card" element={<AdmitCard />} />
+         
+         <Route path="/govt-jobs" element={<GovtJobs />} />
+         <Route path="/job-detail" element={<GovtJobDetails />} />
+         <Route path="/about" element={<AboutUs />} />
+         <Route path="/view-job-link" element={<ViewJobs />} />
+
+{/* ///////////////////////////////////////////////// */}
+         <Route path="/register" element={<Register />} />
+         <Route path="/login" element={<Login />} />
+
+         <Route path="/dashboard" element={<Dashboard />} />
+         <Route path="/Sidebar" element={<Sidebar />} />
+         <Route path="/revenue" element={<Revenue />} />
+         <Route path="/orders" element={<Orders />} />
+         <Route path="/job-create" element={<CreateJob />} />
+         <Route path="/create-job-link" element={<CreateJobLink />} />
+
+        
+       </Routes>
+     </main>
+   </Router>
+    </>
   );
 }
 

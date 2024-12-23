@@ -1,0 +1,75 @@
+/* Sidebar container */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sidebar.closed {
+    transform: translateX(-100%); /* Sidebar hidden */
+  }
+  
+  .sidebar.open {
+    transform: translateX(0); /* Sidebar visible */
+  }
+  
+  .admin_profile {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .profile_image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .profile_image h3 {
+    margin-top: 10px;
+  }
+  
+  .nav_items {
+    margin-top: 20px;
+  }
+  
+  .nav_text {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav_text:hover {
+    background-color: #555;
+  }
+  
+  /* Menu Icon */
+  .menu-icon {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 1.5rem;
+    color: #333;
+    z-index: 1000;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 767px) {
+    .menu-icon {
+      display: block; /* Show menu icon on smaller screens */
+    }
+  
+    .sidebar {
+      transform: translateX(-100%); /* Sidebar hidden by default on mobile */
+    }
+  }
+  
