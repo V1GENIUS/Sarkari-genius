@@ -4,9 +4,9 @@
   width: 100%;
   top: 0;
   left: 0;
-  /* background-color: rgba(0, 0, 0, 0.6); Transparent background */
+  background-color: #fff; 
   z-index: 1000;
-  color: #fff;
+  color: #000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -34,8 +34,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
   transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  margin-left: 10%;
 }
 
 .nav__menu.show-menu {
@@ -45,7 +46,7 @@
 .nav__list {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  /* gap: 1.5rem; */
 }
 
 .nav__link {
@@ -53,14 +54,12 @@
   text-decoration: none;
   font-weight: bold;
   padding: 0.5rem 1rem;
-  margin-left: 20px;
   border-radius: 10px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .nav__link:hover {
   background-color: rgba(94, 207, 28, 0.2);
-  
   color: #0fb400;
 }
 
@@ -88,7 +87,7 @@
 .hamburger {
   width: 25px;
   height: 3px;
-  background-color: #fff;
+  background-color: #000;
   position: relative;
   transition: all 0.3s;
 }
@@ -98,7 +97,7 @@
   content: '';
   width: 25px;
   height: 3px;
-  background-color: #fff;
+  background-color: #000;
   position: absolute;
   left: 0;
   transition: all 0.3s;
@@ -126,11 +125,38 @@
   top: 0;
 }
 
-/* Responsive Styles */
+
+/* Hide toggle button on small screens */
+@media screen and (max-width: 480px) {
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__menu {
+    flex-direction: column;
+    background-color: transparent; /* Optional: Keep the background clean */
+    position: static; /* Ensure it’s not absolute */
+    transform: none; /* Remove any transformation */
+    display: flex; /* Always display the menu */
+    /* gap: 1rem; Optional: Adjust spacing */
+  }
+
+  .nav__list {
+    flex-direction: column; /* Stack items vertically for better visibility */
+    /* gap: 1rem; Adjust gap as needed */
+  }
+
+  .nav__link {
+    font-size: 0.5rem; /* Adjust font size if needed */
+    text-align: center;
+  }
+}
+/* 
+
 @media screen and (max-width: 768px) {
   .nav__menu {
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.9); /* Darker transparent for mobile */
+    background-color: #fff;
     position: absolute;
     top: 100%;
     left: 0;
@@ -138,6 +164,7 @@
     padding: 1rem;
     transform: translateY(-100%);
     display: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .nav__menu.show-menu {
@@ -168,4 +195,4 @@
     font-size: 0.9rem;
     padding: 0.5rem 1rem;
   }
-}
+} */

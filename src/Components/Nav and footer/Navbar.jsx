@@ -40,10 +40,10 @@ function Navbar() {
                 className="nav__link"
                 onClick={closeMenuOnMobile}
               >
-                Latest Jobs
+                Jobs
               </NavLink>
             </li>
-            <li className="nav__item">
+            {/* <li className="nav__item">
               <NavLink
                 to="/view-job-link"
                 className="nav__link"
@@ -51,7 +51,7 @@ function Navbar() {
               >
                 View Job Link
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav__item">
               <NavLink
                 to="/about"
@@ -61,7 +61,7 @@ function Navbar() {
                 Answer Key
               </NavLink>
             </li>
-            <li className="nav__item">
+            {/* <li className="nav__item">
               <NavLink
                 to="/about"
                 className="form_fill"
@@ -69,7 +69,7 @@ function Navbar() {
               >
                 Form Filling Service
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav__item">
               <NavLink
                 to="/dashboard"
