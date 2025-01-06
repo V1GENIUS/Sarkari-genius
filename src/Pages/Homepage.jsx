@@ -1,29 +1,35 @@
 import React,{ useEffect, useState }  from 'react'
-import Navbar from '../Components/Navbar'
-import Footer from '../Components/Footer'
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../Components/Nav and footer/Navbar'
+import Footer from '../Components/Nav and footer/Footer'
 import './Homepage.css'
 import HomeImage from '../Images/HomeImage.svg'
 
 
 function Homepage() {
   const [jobs, setJobs] = useState([]);
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const fetchJobs = async () => {
-  //     try {
-  //       const response = await fetch('http://localhost:7000/api/jobs');
-  //       const data = await response.json();
-  //       setJobs(data.slice(0, 12)); // Limit to 12 jobs
-  //     } catch (error) {
-  //       console.error('Error fetching jobs:', error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await fetch('http://localhost:7000/api/jobs');
+        const data = await response.json();
+        setJobs(data.slice(0, 14));
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      }
+    };
 
-  //   fetchJobs();
-  // }, []);
+    fetchJobs();
+  }, []);
+
+  
  
 
-
+  const handleHeadClick = (job) => {
+    navigate(`/job-detail/${job._id}`, { state: { job } });
+  };
   return (
   <>
   <div>
@@ -37,12 +43,12 @@ function Homepage() {
         <div className="head_btn">
   {jobs.map((job) => (
     <button
-      key={job._id}
+      key={job.id} job={job}
       className="head_btn_1"
       style={{ backgroundColor: getRandomColor() }}
-      onClick={() => window.open(job.jobLink, '_blank')}
+      onClick={() => handleHeadClick(job)}
     >
-      <span>{job.jobName}</span>
+      <span><b>{job.postName}</b></span>
     </button>
   ))}
 </div>
@@ -67,7 +73,7 @@ function Homepage() {
       <div style={{display:'flex'}}>
          <div className='find_job'>
       <h1>Find Govt Job Easily </h1>
-      <div><li>Genius Job is your Source for Government Job listing &nbsp;&nbsp;&nbsp;&nbsp; across central and state departments.  
+      <div><li>Genius Job is your Source for Government Job listing across central and state departments.  
       </li>
       <li>out platforms keeps you updates with latest opening,</li>
       <li>so you can find the right role quickly and easily
@@ -83,8 +89,8 @@ function Homepage() {
 
 <div>
 <li>Need help with application ? </li>
-      <li>Our work from home Assistance Service providers &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expert Guidance for form filling</li>
-      <li>Understanding eligibility, and meeting deadlines &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; All from  comfort at your home</li>
+      <li>Our work from home Assistance Service providersexpert Guidance for form filling</li>
+      <li>Understanding eligibility, and meeting deadlines  All from  comfort at your home</li>
       </div>
      
       </div>
@@ -108,14 +114,20 @@ function Homepage() {
         <div className='home_result'>
           <h3>Result</h3>
           <div className='result_link'>
-            <li>pm internship scheme latest job 2202 to the india link</li>
+          {jobs.map((job) => (
+            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
+            </li>
+          ))}
           </div>
 
         </div>
         <div className='home_result'>
           <h3>Admit Card</h3>
           <div className='result_link'>
-            <li>pm internship scheme latest job 2202 to the india link</li>
+          {jobs.map((job) => (
+            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
+            </li>
+          ))}
           </div>
 
         </div>
@@ -124,7 +136,8 @@ function Homepage() {
           <div className="latest_job">
         
           {jobs.map((job) => (
-            <li key={job._id}>{job.jobName}</li>
+            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
+            </li>
           ))}
         
       </div>

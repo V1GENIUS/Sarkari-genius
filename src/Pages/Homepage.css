@@ -1,4 +1,4 @@
-.homeSection_1{
+/* .homeSection_1{
     height: 600px;
     margin-top: 100px;
     
@@ -44,24 +44,7 @@
     line-height: 1;
 }
 
-/* .head_btn{
-    text-align: center;
-    margin-top: 30px;
-    width: 700px;
-    
-}
 
-
-.head_btn_1{
-    text-decoration: none;
-   background-color: rgb(142, 92, 249);
-    border: none;
-    margin-left: 5px;
-    
-    font-size: 25px;
-    width: 210px;
-    height: 70px;
-} */
 
 .HomeImage{
     height: 400px;
@@ -132,7 +115,7 @@
     opacity: 0.9;
   }
   
-  /* Responsive Design */
+  
   @media screen and (max-width: 768px) {
     .head_btn {
       grid-template-columns: repeat(2, 1fr); 
@@ -146,12 +129,12 @@
   }
   
 
-/* //////////////////////////////////// */
+/* //////////////////////////////////// 
 .homeSection_2{
     
     
     max-height: fit-content;
-    /* background-color: antiquewhite; */
+
     border-radius: 20px;
 
 }
@@ -234,7 +217,7 @@
 }
 
 
-/* ///////////////////////////////////////////// */
+
 
 .homeSection_3{
     display: flex;
@@ -285,4 +268,287 @@ color: blue;
 
 .latest_job :hover{
     color: blue;
-}
+} */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+  }
+  
+ 
+  .homeSection_1 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 1200px;
+    gap: 20px;
+  }
+  
+  .First_content {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .First_content div h2 {
+    color: red;
+    font-size: 1.8rem;
+    
+    margin-top: 50px;
+  }
+  
+  .head_btn {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .head_btn_1 {
+    padding: 10px 15px;
+    font-size: 1rem;
+    text-align: center;
+    word-wrap: break-word;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .head_btn_1:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .HomeImage {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .HomeImage img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    transition: transform 0.5s;
+  }
+  
+  .HomeImage img:hover {
+    transform: scale(1.1);
+  }
+  
+ 
+  .homeSection_2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 1200px;
+  }
+  
+  .find_job, .form_filling, .quick_search {
+    flex: 1;
+    min-width: 300px;
+    background-color: aliceblue;
+    border: 2px dotted yellowgreen;
+    border-radius: 15px;
+    padding: 20px;
+    transition: transform 0.3s;
+  }
+  
+  .find_job:hover, .form_filling:hover, .quick_search:hover {
+    transform: scale(1.05);
+  }
+  
+  .find_job li, .form_filling li, .quick_search li {
+    margin: 10px 0;
+  }
+  
+  
+  .homeSection_3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 1200px;
+  }
+  
+  .home_result {
+    flex: 1;
+    min-width: 300px;
+    background-color: yellowgreen;
+    text-align: left;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .result_link, .latest_job {
+    margin-top: 10px;
+    background-color: aliceblue;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    text-decoration: underline;
+   
+    
+  }
+  
+  .latest_job li:hover,  .result_link  li:hover{
+    color: blue;
+  }
+
+  
+  .result_link:hover, .latest_job:hover {
+    background-color: #f0f8ff;
+    transform: scale(1.02);
+  }
+  
+ 
+  @media screen and (max-width: 768px) {
+    .homeSection_1, .homeSection_2, .homeSection_3 {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .HomeImage img {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+  
+    .find_job, .form_filling, .quick_search {
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .First_content div h2 {
+      font-size: 1.5rem;
+    }
+  
+    .head_btn_1 {
+      font-size: 0.9rem;
+      padding: 8px 10px;
+    }
+  
+    .find_job, .form_filling, .quick_search {
+      padding: 15px;
+    }
+  }
+   
+
+
+  /* Homepage CSS */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  .homepage-container {
+    padding: 20px;
+  }
+  
+  .hero {
+    background: linear-gradient(to right, rgb(37, 255, 17), rgb(0, 125, 255));
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .features {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  
+  .feature-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    transition: transform 0.3s;
+  }
+  
+  .feature-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .feature-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .feature-card p {
+    font-size: 1rem;
+  }
+  
+  @media screen and (max-width: 768px) {
+    /* Adjust layout for smaller screens */
+    .hero h1 {
+      font-size: 2rem;
+    }
+  
+    .hero p {
+      font-size: 1rem;
+    }
+  
+    .features {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .feature-card {
+      width: 80%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    /* Adjust layout for very small screens (phones in portrait mode) */
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+  
+    .hero p {
+      font-size: 0.9rem;
+    }
+  
+    .features {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .feature-card {
+      width: 90%;
+    }
+  }
+  
