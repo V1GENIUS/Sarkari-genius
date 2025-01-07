@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useNavigate  } from 'react-router-dom';
 import Profile from './adminProfile.jpg';
 import { FaBars } from 'react-icons/fa'; // Menu icon
 
 function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true); // Sidebar always open on large screens
+  const [isOpen, setIsOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
 
   // Detect screen size to determine if it's mobile
   useEffect(() => {
     const handleResize = () => {
       const isSmallScreen = window.innerWidth < 768;
       setIsMobile(isSmallScreen);
-      setIsOpen(!isSmallScreen); // Sidebar is open by default on larger screens
+      setIsOpen(!isSmallScreen); 
+      
     };
 
     handleResize(); // Check on initial render
@@ -24,6 +26,15 @@ function Sidebar() {
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+   // Logout function
+   const handleLogout = () => {
+    // Clear token from local storage
+    localStorage.removeItem("token");
+
+    // Redirect to login page
+    navigate("/login");
   };
 
   return (
@@ -48,6 +59,9 @@ function Sidebar() {
           <NavLink to="/orders" className="nav_text">Total Order</NavLink>
           <NavLink to="/revenue" className="nav_text">Revenue</NavLink>
           <NavLink to="#Analytics" className="nav_text">Analytics</NavLink>
+          <button className="nav_text logout_button" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       </div>
     </>

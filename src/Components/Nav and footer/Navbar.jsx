@@ -54,7 +54,7 @@ function Navbar() {
             </li> */}
             <li className="nav__item">
               <NavLink
-                to="/about"
+                to="/govt-jobs"
                 className="nav__link"
                 onClick={closeMenuOnMobile}
               >
@@ -70,7 +70,7 @@ function Navbar() {
                 Form Filling Service
               </NavLink>
             </li> */}
-            <li className="nav__item">
+            {/* <li className="nav__item">
               <NavLink
                 to="/dashboard"
                 className="nav__link"
@@ -78,7 +78,7 @@ function Navbar() {
               >
                 Dashboard
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav__item">
               <NavLink to="/login" className="nav__links nav__cta">
                 Login

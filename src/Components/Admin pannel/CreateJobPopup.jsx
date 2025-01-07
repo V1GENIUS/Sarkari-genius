@@ -112,7 +112,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               value={jobDetails.postName}
               onChange={(e) => handleChange(e, 'postName')}
               placeholder="Enter post name"
-               
+              required
             />
           </div>
           <div className="form-group">
@@ -122,7 +122,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               value={jobDetails.organization}
               onChange={(e) => handleChange(e, 'organization')}
               placeholder="Enter organization name"
-               
+              required
             />
           </div>
           <div className="form-group">
@@ -132,7 +132,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               value={jobDetails.vacancy}
               onChange={(e) => handleChange(e, 'vacancy')}
               placeholder="Enter total vacancy"
-               
+              required
             />
           </div>
           <div className="form-group">
@@ -142,7 +142,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               value={jobDetails.salary}
               onChange={(e) => handleChange(e, 'salary')}
               placeholder="Enter salary"
-               
+              required
             />
           </div>
 
@@ -156,7 +156,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
                   placeholder="Notification Date"
                   value={date.notificationDate || ""}
                   onChange={(e) => handleChange(e, "importantDates", index, "notificationDate")}
-                   
+                  required
                 />
                 <label>Start Date</label>
                 <input
@@ -165,7 +165,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
                   placeholder="Start Date"
                   value={date.startDate || ""}
                   onChange={(e) => handleChange(e, "importantDates", index, "startDate")}
-                   
+                  required
                 />
                 <label>Last Date</label>
                 <input
@@ -174,7 +174,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
                   placeholder="Last Date"
                   value={date.lastDate || ""}
                   onChange={(e) => handleChange(e, "importantDates", index, "lastDate")}
-                   
+                  required
                 />
                 <button type="button" onClick={() => removeRow("importantDates", index)} className="remove-button">
                   Remove
@@ -195,7 +195,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
                 placeholder="Category"
                 value={fee.category}
                 onChange={(e) => handleChange(e, 'fees', index)}
-                 
+                required
               />
               <input
                 name="amount"
@@ -203,7 +203,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
                 placeholder="Amount"
                 value={fee.amount}
                 onChange={(e) => handleChange(e, 'fees', index)}
-                 
+                required
               />
               <button type="button" onClick={() => removeRow('fees', index)} className="remove-button">
                 Remove
@@ -222,7 +222,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               placeholder="Min Age"
               value={jobDetails.ageLimit.min}
               onChange={(e) => handleChange(e, 'ageLimit')}
-               
+              required
             />
             <input
               type="number"
@@ -230,7 +230,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               placeholder="Max Age"
               value={jobDetails.ageLimit.max}
               onChange={(e) => handleChange(e, 'ageLimit')}
-               
+              required
             />
             <input
               type="text"
@@ -247,6 +247,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               type="text"
               name="location"
               value={jobDetails.jobLocation.location}
+              required
               onChange={(e) =>
                 setJobDetails((prev) => ({
                   ...prev,
@@ -263,6 +264,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               name="process"
               value={jobDetails.selectionProcess}
               onChange={(e) =>handleChange(e, 'selectionProcess')
+                
               }
             />
           </div>
@@ -274,7 +276,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               value={jobDetails.documentDetails}
               onChange={(e) => handleChange(e, 'documentDetails')}
               placeholder="Enter document details"
-              
+              required
             />
           </div>
         
@@ -286,7 +288,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               value={jobDetails.applyLink}
               onChange={(e) => handleChange(e, 'applyLink')}
               placeholder="Enter apply link Link"
-             
+              required
             />
           </div>
           <div className="form-group">
@@ -296,7 +298,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               value={jobDetails.officialPdfLink}
               onChange={(e) => handleChange(e, 'officialPdfLink')}
               placeholder="Enter official pdf Link"
-               
+              required
             />
           </div>
           <div className="form-group">
@@ -306,7 +308,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               value={jobDetails.websiteLink}
               onChange={(e) => handleChange(e, 'websiteLink')}
               placeholder="Enter website Link"
-               
+              required
             />
           </div>
         

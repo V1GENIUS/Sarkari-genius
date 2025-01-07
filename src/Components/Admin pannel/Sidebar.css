@@ -61,6 +61,22 @@
     cursor: pointer;
     display: none; /* Hidden by default */
   }
+
+  .logout_button {
+    background: none;
+    border: none;
+    color: #fff; /* Match other nav text colors */
+    cursor: pointer;
+    text-align: left;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  .logout_button:hover {
+    background-color: #444; /* Add a hover effect */
+  }
+  
   
   /* Responsive Design */
   @media (max-width: 767px) {

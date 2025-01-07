@@ -81,21 +81,10 @@ function Homepage() {
       
 
 
-      </div>
+         </div>
 
-      <div className='form_filling'>
-      <h1>Form filling Assistance</h1>
-     
-
-<div>
-<li>Need help with application ? </li>
-      <li>Our work from home Assistance Service providersexpert Guidance for form filling</li>
-      <li>Understanding eligibility, and meeting deadlines  All from  comfort at your home</li>
-      </div>
-     
-      </div>
-      </div>
-      <div className='quick_search'>
+        
+         <div className='quick_search'>
       <h1>Quick & simple Search</h1>
       <div>
       <li>Easily browse. filter. and apply for jobs in just few clicks.</li>
@@ -106,11 +95,35 @@ function Homepage() {
     
       </div> 
       </div>
+      <div className='form_filling'>
+      <h1>Form filling Assistance</h1>
+     
+
+      <div>
+<li>Need help with application ? </li>
+      <li>Our work from home Assistance Service providersexpert Guidance for form filling</li>
+      <li>Understanding eligibility, and meeting deadlines  All from  comfort at your home</li>
+      </div>
+     
+         </div>
+      </div>
 
 
       {/* ////////////////////////////////////////////////////////////// */}
 
       <div className='homeSection_3'>
+      <div className='home_result'>
+          <h3>Latest Jobs</h3>
+          <div className="latest_job">
+        
+          {jobs.map((job) => (
+            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
+            </li>
+          ))}
+        
+      </div>
+
+        </div>
         <div className='home_result'>
           <h3>Result</h3>
           <div className='result_link'>
@@ -131,18 +144,7 @@ function Homepage() {
           </div>
 
         </div>
-        <div className='home_result'>
-          <h3>Latest Jobs</h3>
-          <div className="latest_job">
-        
-          {jobs.map((job) => (
-            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
-            </li>
-          ))}
-        
-      </div>
-
-        </div>
+       
 
       </div>
 

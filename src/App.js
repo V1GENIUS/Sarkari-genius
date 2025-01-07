@@ -12,10 +12,10 @@ import Orders from './Components/Admin pannel/Orders';
 import AboutUs from './Pages/AboutUs';
 import GovtJobDetails from './Pages/GovtJobDetails';
 import AdmitCard from './Pages/AdmitCard';
-import ViewJobs from './Components/Admin pannel/JobLinks/ViewJobs.jsx';
-import CreateJob from './Components/Admin pannel/CreateJobPopup';
-import CreateJobLink from './Components/Admin pannel/JobLinks/CreateJobLink.jsx';
+
 import CreateJobPopup from './Components/Admin pannel/CreateJobPopup.jsx';
+import ProtectedRoute from './Components/ProtectedRoute';
+
 
 
 function App() {
@@ -33,20 +33,53 @@ function App() {
          <Route path="/govt-jobs" element={<GovtJobs />} />
          <Route path="/job-detail/:id" element={<GovtJobDetails />} />
          <Route path="/about" element={<AboutUs />} />
-         <Route path="/view-job-link" element={<ViewJobs />} />
-
+        
 {/* ///////////////////////////////////////////////// */}
          <Route path="/register" element={<Register />} />
          <Route path="/login" element={<Login />} />
 
-         <Route path="/dashboard" element={<Dashboard />} />
-         <Route path="/Sidebar" element={<Sidebar />} />
-         <Route path="/revenue" element={<Revenue />} />
-         <Route path="/orders" element={<Orders />} />
-         <Route path="/job-create" element={<CreateJobPopup />} />
-         <Route path="/create-job-link" element={<CreateJobLink />} />
-
         
+          {/* Protected Routes */}
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/sidebar" 
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <Sidebar />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/revenue" 
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <Revenue />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/orders" 
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <Orders />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/job-create" 
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <CreateJobPopup />
+              </ProtectedRoute>
+            } 
+          />
        </Routes>
      </main>
    </Router>

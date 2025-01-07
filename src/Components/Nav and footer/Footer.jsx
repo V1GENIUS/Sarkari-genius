@@ -14,11 +14,11 @@ function Footer() {
                 Home
               </NavLink>
             </li>
-            <li className="foot__item">
+            {/* <li className="foot__item">
               <NavLink to="/it-jobs" className="foot__link">
                 IT Jobs
               </NavLink>
-            </li>
+            </li> */}
             <li className="foot__item">
               <NavLink to="/govt-jobs" className="foot__link">
                 Govt Jobs
@@ -31,7 +31,7 @@ function Footer() {
           <h2>Overview</h2>
           <ul className="overview__list">
             <li className="overview_item">
-              <NavLink to="/about" className="over__link">
+              <NavLink to="#about" className="over__link">
                 About Us
               </NavLink>
             </li>
@@ -76,7 +76,7 @@ function Footer() {
         </div>
       </div>
       <div className='footer-bottom'>
-        <p>&copy; 2024 Sarkari Genius. All Rights Reserved.</p>
+        <p>&copy; 2025 Sarkari Genius. All Rights Reserved.</p>
       </div>
     </>
   );
