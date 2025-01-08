@@ -21,7 +21,7 @@ function Register() {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch("http://localhost:7000/api/user/register", {
+      const response = await fetch("https://sarkari-genius.vercel.app/api/user/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

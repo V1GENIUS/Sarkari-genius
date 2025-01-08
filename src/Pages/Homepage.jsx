@@ -13,7 +13,7 @@ function Homepage() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch('http://localhost:7000/api/jobs');
+        const response = await fetch('https://sarkari-genius.vercel.app/api/jobs');
         const data = await response.json();
         setJobs(data.slice(0, 14));
       } catch (error) {

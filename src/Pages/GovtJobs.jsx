@@ -10,7 +10,7 @@ function GovtJobs() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:7000/api/jobs') 
+    fetch('https://sarkari-genius.vercel.app/api/jobs') 
       .then((response) => response.json())
       .then((data) => setJobs(data))
       .catch((error) => console.error('Error fetching jobs:', error));

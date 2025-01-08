@@ -14,7 +14,7 @@ function GovtJobDetails() {
   useEffect(() => {
   
     axios
-      .get(`http://localhost:7000/api/jobs/${id}`)
+      .get(`https://sarkari-genius.vercel.app/api/jobs/${id}`)
       .then((response) => {
         setJobDetails(response.data); 
         setLoading(false);
