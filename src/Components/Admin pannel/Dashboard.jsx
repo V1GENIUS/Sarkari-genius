@@ -14,10 +14,10 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [editJob, setEditJob] = useState(null); 
   useEffect(() => {
-    axios.post('https://sarkari-genius.vercel.app/api/visitor')
+    axios.post('https://sarkari-genius.onrender.com/api/visitor')
       .then(response => {
-       
-        console.log(response.data.message); 
+      
+        console.log(response.data.message);
       })
       .catch(err => {
         setError('Error updating visitor count');
@@ -28,7 +28,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get("https://sarkari-genius.vercel.app/api/jobs");
+        const response = await axios.get("https://sarkari-genius.onrender.com/api/jobs");
         setJobData(response.data);
         setLoading(false);
       } catch (err) {
@@ -42,7 +42,7 @@ function Dashboard() {
 
   const handleDeleteJob = async (jobId) => {
     try {
-      await axios.delete(`https://sarkari-genius.vercel.app/api/jobs/${jobId}`);
+      await axios.delete(`https://sarkari-genius.onrender.com/api/jobs/${jobId}`);
       setJobData(jobData.filter(job => job._id !== jobId)); 
     } catch (err) {
       setError("Error deleting job");
@@ -56,7 +56,7 @@ function Dashboard() {
 
   const handleUpdateJob = async (updatedJob) => {
     try {
-      const response = await axios.put(`https://sarkari-genius.vercel.app/api/jobs/${updatedJob._id}`, updatedJob);
+      const response = await axios.put(`https://sarkari-genius.onrender.com/api/jobs/${updatedJob._id}`, updatedJob);
       setJobData(jobData.map(job => (job._id === updatedJob._id ? response.data.job : job)));
       setPopupVisible(false);
     } catch (err) {

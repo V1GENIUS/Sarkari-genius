@@ -14,7 +14,7 @@ function GovtJobDetails() {
   useEffect(() => {
   
     axios
-      .get(`https://sarkari-genius.vercel.app/api/jobs/${id}`)
+      .get(`https://sarkari-genius.onrender.com/api/jobs/${id}`)
       .then((response) => {
         setJobDetails(response.data); 
         setLoading(false);
@@ -45,31 +45,30 @@ function GovtJobDetails() {
   const generateWhatsAppMessage = () => {
     if (!jobDetails) return "";
     return `
-*Job Details*
-Organization: ${jobDetails.organization }
-Post Name: ${jobDetails.postName }
-Vacancies: ${jobDetails.vacancy }
-Start Date: ${
+*Organization* : ${jobDetails.organization }
+*Post Name* : ${jobDetails.postName }
+*Vacancies* : ${jobDetails.vacancy }
+*Start Date* : ${
       jobDetails.importantDates?.length > 0
         ? jobDetails.importantDates.map((date) => formatDate(date.startDate)).join(", ")
         : "N/A"
     }
-Last Date: ${
+*Last Date* : ${
       jobDetails.importantDates?.length > 0
         ? jobDetails.importantDates.map((date) => formatDate(date.lastDate)).join(", ")
         : "N/A"
     }
-Salary: ${jobDetails.salary || "N/A"}
-Age Limit: ${
+*Salary* : ${jobDetails.salary || "N/A"}
+*Age Limit* : ${
       jobDetails.ageLimit
         ? `${jobDetails.ageLimit.min}-${jobDetails.ageLimit.max} years`
         : "N/A"
     }
-Selection Process: ${jobDetails.selection?.process || "N/A"}
-Job Location: ${jobDetails.jobLocation?.location || "N/A"}
-Qualification: ${jobDetails.status || "N/A"}
-Apply Online: ${jobDetails.websiteLink || "N/A"}
-Official Notification: ${jobDetails.websiteLink || "N/A"}
+*Selection Process* : ${jobDetails.selection?.process || "N/A"}
+*Job Location* : ${jobDetails.jobLocation?.location || "N/A"}
+*Qualification* : ${jobDetails.status || "N/A"}
+*Apply Online* : ${jobDetails.applyLink || "N/A"}
+*Official Notification* : ${jobDetails.officialPdfLink || "N/A"}
     `;
   };
 
@@ -199,7 +198,7 @@ Official Notification: ${jobDetails.websiteLink || "N/A"}
               <td>Qualification</td>
               <td>{jobDetails?.status }</td>
             </tr>
-            <tr>
+            {/* <tr>
                   <td>Document Details</td>
                   <td>
                     <ul>
@@ -214,44 +213,16 @@ Official Notification: ${jobDetails.websiteLink || "N/A"}
                       )}
                     </ul>
                   </td>
-            </tr>
+            </tr> */}
 
-            {/* <table>
-  <thead>
-    <tr>
-      <th>Link Name</th>
-      <th>URL</th>
-    </tr>
-  </thead>
-  <tbody>
-    {jobDetails?.usefulLinks?.links && jobDetails.usefulLinks.links.length > 0 ? (
-      jobDetails.usefulLinks.links.map((link, index) => (
-        <tr key={index}>
-          <td>{link.name || 'N/A'}</td>
-          <td>
-            {link.url ? (
-              <a href={link.url} target="_blank" rel="noopener noreferrer">
-                {link.text || 'Visit'}
-              </a>
-            ) : (
-              'N/A'
-            )}
-          </td>
-        </tr>
-      ))
-    ) : (
-      <tr>
-        <td colSpan="2">No links available</td>
-      </tr>
-    )}
-  </tbody>
-</table> */}
+            
+
             <tr>
               <td>Apply Online</td>
               <td>
-                {jobDetails?.websiteLink ? (
+                {jobDetails?.applyLink ? (
                   <a 
-                    href={jobDetails.websiteLink} 
+                    href={jobDetails.applyLink} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="table-link"
@@ -266,9 +237,9 @@ Official Notification: ${jobDetails.websiteLink || "N/A"}
             <tr>
               <td>official Notification Details</td>
               <td>
-                {jobDetails?.websiteLink ? (
+                {jobDetails?.officialPdfLink ? (
                   <a 
-                    href={jobDetails.websiteLink} 
+                    href={jobDetails.officialPdfLink} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="table-link"

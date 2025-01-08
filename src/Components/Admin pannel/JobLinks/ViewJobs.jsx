@@ -15,7 +15,7 @@ function ViewJobs() {
       setLoading(true);
       setError('');
       try {
-        const response = await fetch('https://sarkari-genius.vercel.app/api/jobs');
+        const response = await fetch('https://sarkari-genius.onrender.com/api/jobs');
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data = await response.json();
         setJobs(data);
@@ -35,7 +35,7 @@ function ViewJobs() {
     setError('');
     try {
       console.log('Updating job:', id, updatedData);
-      const response = await fetch(`https://sarkari-genius.vercel.app/api/jobs/${id}`, {
+      const response = await fetch(`https://sarkari-genius.onrender.com/api/jobs/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedData),
@@ -59,7 +59,7 @@ function ViewJobs() {
     setError('');
     try {
       console.log('Deleting job:', id);
-      const response = await fetch(`https://sarkari-genius.vercel.app/api/jobs/${id}`, {
+      const response = await fetch(`https://sarkari-genius.onrender.com/api/jobs/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);

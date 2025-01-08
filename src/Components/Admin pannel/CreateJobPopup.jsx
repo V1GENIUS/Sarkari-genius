@@ -72,12 +72,12 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
     e.preventDefault();
     try {
       if (isEditMode) {
-        await axios.put(`https://sarkari-genius.vercel.app/api/jobs/${jobId}`, jobDetails, {
+        await axios.put(`https://sarkari-genius.onrender.com/api/jobs/${jobId}`, jobDetails, {
           headers: { 'Content-Type': 'application/json' },
         });
         setMessage({ type: 'success', text: 'Job successfully updated!' });
       } else {
-        await axios.post('https://sarkari-genius.vercel.app/api/jobs/create', jobDetails, {
+        await axios.post('https://sarkari-genius.onrender.com/api/jobs/create', jobDetails, {
           headers: { 'Content-Type': 'application/json' },
         });
         setMessage({ type: 'success', text: 'Job successfully created!' });
