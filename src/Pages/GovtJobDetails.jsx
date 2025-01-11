@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useTransition } from "react";
 import "./GovtJobDetails.css";
 import Navbar from "../Components/Nav and footer/Navbar";
 import Footer from "../Components/Nav and footer/Footer";
@@ -10,20 +10,52 @@ function GovtJobDetails() {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const { id } = useParams();
+  const [isPending, startTransition] = useTransition();
+
+  // useEffect(() => {
+  
+  //   axios
+  //     .get(`https://sarkari-genius.onrender.com/api/jobs/${id}`)
+  //     .then((response) => {
+  //       setJobDetails(response.data); 
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Error fetching job details:", err);
+  //       setError("Failed to load job details");
+  //       setLoading(false);
+  //     });
+  // }, [id]);
 
   useEffect(() => {
-  
-    axios
-      .get(`https://sarkari-genius.onrender.com/api/jobs/${id}`)
-      .then((response) => {
-        setJobDetails(response.data); 
+    const fetchJobDetails = async () => {
+      try {
+        const controller = new AbortController(); // For request cancellation
+        const timeoutId = setTimeout(() => controller.abort(), 1000); // 1-second timeout
+
+        const response = await axios.get(`https://sarkari-genius.onrender.com/api/jobs/${id}`, {
+          signal: controller.signal,
+        });
+
+        startTransition(() => {
+          setJobDetails(response.data);
+          setLoading(false);
+        });
+
+        clearTimeout(timeoutId);
+      } catch (err) {
+        if (err.name === "AbortError") {
+          console.error("Request timed out");
+          setError("Request timed out. Please try again.");
+        } else {
+          console.error("Error fetching job details:", err);
+          setError("Failed to load job details");
+        }
         setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching job details:", err);
-        setError("Failed to load job details");
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchJobDetails();
   }, [id]);
 
 

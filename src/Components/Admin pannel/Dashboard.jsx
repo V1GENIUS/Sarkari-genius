@@ -136,7 +136,7 @@ function Dashboard() {
                     <td>
                       {job.importantDates.map((dates, i) => (
                         <div key={i}>
-                          Notification: {formatDate(dates.notificationDate)} <br />
+                         
                           Start: {formatDate(dates.startDate)} <br />
                           Last: {formatDate(dates.lastDate)}
                         </div>
@@ -146,15 +146,13 @@ function Dashboard() {
                     <td>
                       {job.fees.map((fee, i) => (
                         <div key={i}>
-                          {fee.category}: ₹{fee.amount}
+                          {fee.category}: <br/> ₹{fee.amount}
                         </div>
                       ))}
                     </td>
                     <td>
                       {job.ageLimit.min} - {job.ageLimit.max} years{" "}
-                      {job.ageLimit.relaxation && (
-                        <span>({job.ageLimit.relaxation})</span>
-                      )}
+                     
                     </td>
                   
                     <td>

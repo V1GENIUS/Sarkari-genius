@@ -87,7 +87,8 @@
   
   .find_job, .form_filling, .quick_search {
     flex: 1;
-    min-width: 300px;
+    min-width: 100px;
+    font-size: 1rem;
     background-color: aliceblue;
     border: 2px dotted yellowgreen;
     border-radius: 15px;
