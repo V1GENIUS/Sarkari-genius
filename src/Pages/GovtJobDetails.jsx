@@ -1,63 +1,34 @@
-import React, { useEffect, useState ,useTransition } from "react";
+import React, { useEffect, useState } from "react";
 import "./GovtJobDetails.css";
 import Navbar from "../Components/Nav and footer/Navbar";
 import Footer from "../Components/Nav and footer/Footer";
 import axios from "axios"; 
 import { useParams } from "react-router-dom"; 
+import APIGovtJobs from '../Components/Api/ApiGovtJobs.js'
 
 function GovtJobDetails() {
   const [jobDetails, setJobDetails] = useState(null); 
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const { id } = useParams();
-  const [isPending, startTransition] = useTransition();
 
-  // useEffect(() => {
-  
-  //   axios
-  //     .get(`https://sarkari-genius.onrender.com/api/jobs/${id}`)
-  //     .then((response) => {
-  //       setJobDetails(response.data); 
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error fetching job details:", err);
-  //       setError("Failed to load job details");
-  //       setLoading(false);
-  //     });
-  // }, [id]);
 
   useEffect(() => {
-    const fetchJobDetails = async () => {
-      try {
-        const controller = new AbortController(); // For request cancellation
-        const timeoutId = setTimeout(() => controller.abort(), 1000); // 1-second timeout
-
-        const response = await axios.get(`https://sarkari-genius.onrender.com/api/jobs/${id}`, {
-          signal: controller.signal,
-        });
-
-        startTransition(() => {
-          setJobDetails(response.data);
-          setLoading(false);
-        });
-
-        clearTimeout(timeoutId);
-      } catch (err) {
-        if (err.name === "AbortError") {
-          console.error("Request timed out");
-          setError("Request timed out. Please try again.");
-        } else {
-          console.error("Error fetching job details:", err);
-          setError("Failed to load job details");
-        }
+  
+    axios
+      .get(APIGovtJobs.getJobDetails(id))
+      .then((response) => {
+        setJobDetails(response.data); 
         setLoading(false);
-      }
-    };
-
-    fetchJobDetails();
+      })
+      .catch((err) => {
+        console.error("Error fetching job details:", err);
+        setError("Failed to load job details");
+        setLoading(false);
+      });
   }, [id]);
 
+ 
 
   const formatDate = (dateString) => {
     if (!dateString) return "Invalid Date"; 
@@ -125,11 +96,11 @@ function GovtJobDetails() {
       <Navbar />
       <div className="job_details">
         <div className="job_page">
-          <h1 className="job_title">{jobDetails?.postName}</h1>
+          <div className="job_title">{jobDetails?.postName}</div>
          
-          <h3 className="organization">{jobDetails?.organization }</h3>
+          <div className="organization">{jobDetails?.organization }</div>
 
-          <h3 className="post_name">POST NAME: {jobDetails?.postName || ""}</h3>
+          <div className="post_name">POST NAME: {jobDetails?.postName || ""}</div>
 
 
 <div className="job-details-container">

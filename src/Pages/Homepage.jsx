@@ -4,28 +4,28 @@ import Navbar from '../Components/Nav and footer/Navbar'
 import Footer from '../Components/Nav and footer/Footer'
 import './Homepage.css'
 import HomeImage from '../Images/HomeImage.svg'
-
+import { useParams } from "react-router-dom";
+import APIGovtJobs from "../Components/Api/ApiGovtJobs.js";
 
 function Homepage() {
   const [jobs, setJobs] = useState([]);
   const navigate = useNavigate();
-
+  const { id } = useParams();
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch('https://sarkari-genius.onrender.com/api/jobs');
+        const response = await fetch(APIGovtJobs.getAllJobs);
         const data = await response.json();
         setJobs(data.slice(0, 14));
       } catch (error) {
         console.error('Error fetching jobs:', error);
       }
     };
-
+   
     fetchJobs();
-  }, []);
+  }, [id]);
 
-  
- 
+
 
   const handleHeadClick = (job) => {
     navigate(`/job-detail/${job._id}`, { state: { job } });
@@ -69,7 +69,7 @@ function Homepage() {
 
 {/* ////////////////////////////////////////////////////////// */}
 
-    <div className='homeSection_2'>
+    {/* <div className='homeSection_2'>
       <div style={{display:'flex'}}>
          <div className='find_job'>
       <h1>Find Govt Job Easily </h1>
@@ -106,7 +106,7 @@ function Homepage() {
       </div>
      
          </div>
-      </div>
+      </div> */}
 
 
       {/* ////////////////////////////////////////////////////////////// */}

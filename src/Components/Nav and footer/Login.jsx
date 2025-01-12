@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterLogin.css";
+import APILoginRegister from "../Api/ApiLoginRegister";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("https://sarkari-genius.onrender.com/api/user/login", {
+      const response = await fetch(APILoginRegister.login, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

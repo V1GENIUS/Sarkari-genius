@@ -4,13 +4,14 @@ import './GovtJobs.css';
 import Navbar from '../Components/Nav and footer/Navbar';
 import Footer from '../Components/Nav and footer/Footer';
 import GovtJobCard from '../Components/GovtJobCard';
+import APIGovtJobs from "../Components/Api/ApiGovtJobs.js";
 
 function GovtJobs() {
   const [jobs, setJobs] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('https://sarkari-genius.onrender.com/api/jobs') 
+    fetch(APIGovtJobs.getAllJobs) 
       .then((response) => response.json())
       .then((data) => setJobs(data))
       .catch((error) => console.error('Error fetching jobs:', error));

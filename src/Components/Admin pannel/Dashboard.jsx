@@ -5,6 +5,7 @@ import './Dashboard.css';
 import Sidebar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
 import CreateJobPopup from './CreateJobPopup';
+import APIGovtJobs from "../Api/ApiGovtJobs";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -13,8 +14,10 @@ function Dashboard() {
   const [jobData, setJobData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editJob, setEditJob] = useState(null); 
+
+  
   useEffect(() => {
-    axios.post('https://sarkari-genius.onrender.com/api/visitor')
+    axios.post('http://localhost:7000/api/visitor')
       .then(response => {
       
         console.log(response.data.message);
@@ -28,7 +31,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get("https://sarkari-genius.onrender.com/api/jobs");
+        const response = await axios.get(APIGovtJobs.getAllJobs);
         setJobData(response.data);
         setLoading(false);
       } catch (err) {
@@ -42,7 +45,8 @@ function Dashboard() {
 
   const handleDeleteJob = async (jobId) => {
     try {
-      await axios.delete(`https://sarkari-genius.onrender.com/api/jobs/${jobId}`);
+     
+      await axios.delete(APIGovtJobs.deleteJob(jobId));
       setJobData(jobData.filter(job => job._id !== jobId)); 
     } catch (err) {
       setError("Error deleting job");
@@ -56,7 +60,7 @@ function Dashboard() {
 
   const handleUpdateJob = async (updatedJob) => {
     try {
-      const response = await axios.put(`https://sarkari-genius.onrender.com/api/jobs/${updatedJob._id}`, updatedJob);
+      const response = await axios.put(`http://localhost:7000/api/jobs/${updatedJob._id}`, updatedJob);
       setJobData(jobData.map(job => (job._id === updatedJob._id ? response.data.job : job)));
       setPopupVisible(false);
     } catch (err) {
