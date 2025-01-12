@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children, isAdmin }) => {
   }
 
   if (isAdmin && userRole !== "admin") {
-    return <Navigate to="/" replace />; // Redirect non-admin users to the home page
+    return <Navigate to="/" replace />; 
   }
 
   return children;

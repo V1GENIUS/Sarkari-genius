@@ -152,10 +152,10 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .footer {
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: center;
         text-align: center;
-        padding: 30px 20px;
+        /* padding: 30px 20px; */
     }
 
     .quick_links, .overview {
@@ -170,9 +170,9 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 375px) {
     .foot__link, .over__link {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .social-icons a {

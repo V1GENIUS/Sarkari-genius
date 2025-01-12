@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 import { NavLink,useNavigate  } from 'react-router-dom';
-import Profile from './adminProfile.jpg';
+// import Profile from '.';
 import { FaBars } from 'react-icons/fa'; // Menu icon
 
 function Sidebar() {
@@ -49,7 +49,7 @@ function Sidebar() {
         <div className="admin_profile">
           <h1 className="side_head">Genius</h1>
           <div className="profile_image">
-            <img src={Profile} alt="Profile" />
+            {/* <img src={Profile} alt="Profile" /> */}
             <h3>Vivek Rathore</h3>
           </div>
         </div>

@@ -17,7 +17,7 @@ body {
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+   
   }
   
   .job_title {
@@ -60,13 +60,7 @@ body {
     background-color: #f9f9f9;
   }
   
-  /* .job-title {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-  } */
+ 
   
   .details-table {
     width: 100%;
@@ -77,7 +71,6 @@ body {
   .details-table td {
     padding: 10px;
     border: 1px solid #ddd;
-    font-size: 20px;
     color: #555;
     font-style:italic;
   }
@@ -122,44 +115,54 @@ body {
   
 
   @media screen and (max-width: 768px) {
+    .job_details{
+      padding: 5px;
+    }
     .job-details-container {
       padding: 10px;
     }
 
     .details-table td {
       font-size: 14px;
+      padding: 1px;
     }
 
     .post_name{
       font-size: 1rem;
+      
     }
 
     .job_title {
       font-size: 1.5rem;
     }
     .organization {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
     }
   }
 
-  @media screen and (max-width: 310px) {
+  @media screen and (max-width: 375px) {
+    .job_details{
+      padding: 0px;
+    }
     .job-details-container {
       padding: 10px;
     }
 
     .details-table td {
-      font-size: 12px;
+      font-size: 9px;
+      padding: 0px;
+      color: #2c2c2c;
     }
 
     
 
     .job_title {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
     .post_name{
-      font-size: 0.5rem;
+      font-size: 0.6rem;
     }
     .organization {
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
   }

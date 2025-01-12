@@ -16,17 +16,17 @@ function Dashboard() {
   const [editJob, setEditJob] = useState(null); 
 
   
-  useEffect(() => {
-    axios.post('http://localhost:7000/api/visitor')
-      .then(response => {
+  // useEffect(() => {
+  //   axios.post('http://localhost:7000/api/visitor')
+  //     .then(response => {
       
-        console.log(response.data.message);
-      })
-      .catch(err => {
-        setError('Error updating visitor count');
-        console.error(err);
-      });
-  }, []);
+  //       console.log(response.data.message);
+  //     })
+  //     .catch(err => {
+  //       setError('Error updating visitor count');
+  //       console.error(err);
+  //     });
+  // }, []);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -60,7 +60,7 @@ function Dashboard() {
 
   const handleUpdateJob = async (updatedJob) => {
     try {
-      const response = await axios.put(`http://localhost:7000/api/jobs/${updatedJob._id}`, updatedJob);
+      const response = await axios.put(APIGovtJobs.updateJob(), updatedJob);
       setJobData(jobData.map(job => (job._id === updatedJob._id ? response.data.job : job)));
       setPopupVisible(false);
     } catch (err) {

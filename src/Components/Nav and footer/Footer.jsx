@@ -42,7 +42,9 @@ function Footer() {
             </li>
           </ul>
         </div>
+        
 
+        <div className='footer'>
         <div className='footer-section'>
           <h2>Follow Us</h2>
           <div className="social-icons">
@@ -74,6 +76,10 @@ function Footer() {
             </button>
           </form>
         </div>
+
+        </div>
+
+       
       </div>
       <div className='footer-bottom'>
         <p>&copy; 2025 Sarkari Genius. All Rights Reserved.</p>
