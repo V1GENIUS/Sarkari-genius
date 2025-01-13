@@ -25,7 +25,7 @@
   }
   
   /* Additional styles for responsiveness */
-  @media (max-width: 576px) {
+  @media (max-width: 375px) {
     .govtSection_1 h1 {
       font-size: 1.5rem;
     }

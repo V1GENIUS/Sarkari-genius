@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 import { NavLink,useNavigate  } from 'react-router-dom';
-// import Profile from '.';
 import { FaBars } from 'react-icons/fa'; // Menu icon
 
 function Sidebar() {

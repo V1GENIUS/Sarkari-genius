@@ -27,29 +27,53 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
   });
 
   const [message, setMessage] = useState({ type: '', text: '' });
-
+  // const = useState(initialJobDetails);
+  
   
   useEffect(() => {
     if (isEditMode && jobData) {
       setJobDetails(jobData);
     }
   }, [jobData, isEditMode]);
+
+  // useEffect(() => {
+  //   if (isEditMode && jobData) {
+  //     setJobDetails(jobData);
+  //   } else {
+  //     setJobDetails(setJobDetails);
+  //   }
+  // }, [jobData, isEditMode]);
+  // const handleChange = (e, field, index) => {
+  //   const { name, value, type, checked } = e.target;
+  //   const updatedDetails = { ...jobDetails };
+
+  //   if (['fees', 'importantDates', ].includes(field)) {
+  //     updatedDetails[field][index][name] = type === 'checkbox' ? checked : value;
+  //   } else if (field === 'ageLimit') {
+  //     updatedDetails.ageLimit[name] = value;
+  //   } else {
+  //     updatedDetails[field] = value;
+  //   }
+
+  //   setJobDetails(updatedDetails);
+  // };
+
   const handleChange = (e, field, index) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     const updatedDetails = { ...jobDetails };
 
-    if (['fees', 'importantDates', ].includes(field)) {
-      updatedDetails[field][index][name] = type === 'checkbox' ? checked : value;
+    if (['fees', 'importantDates'].includes(field)) {
+      updatedDetails[field][index][name] = value;
     } else if (field === 'ageLimit') {
       updatedDetails.ageLimit[name] = value;
+    } else if (field === 'Qualification') {
+      updatedDetails.Qualification[name] = value;
     } else {
       updatedDetails[field] = value;
     }
 
     setJobDetails(updatedDetails);
   };
-
-
 
   const addRow = (field) => {
     const updatedDetails = { ...jobDetails };
@@ -64,10 +88,24 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
     setJobDetails(updatedDetails);
   };
 
+  // const addRow = (field) => {
+  //   setJobDetails((prev) => ({
+  //     ...prev,
+  //     [field]: [...prev[field], { category: '', amount: '' }]
+  //   }));
+  // };
+
+  // const removeRow = (field, index) => {
+  //   const updatedDetails = { ...jobDetails };
+  //   updatedDetails[field].splice(index, 1);
+  //   setJobDetails(updatedDetails);
+  // };
+
   const removeRow = (field, index) => {
-    const updatedDetails = { ...jobDetails };
-    updatedDetails[field].splice(index, 1);
-    setJobDetails(updatedDetails);
+    setJobDetails((prev) => ({
+      ...prev,
+      [field]: prev[field].filter((_, i) => i !== index)
+    }));
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,9 +141,9 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
         <button className="close-button" onClick={onClose}>
           &times;
         </button>
-        <form onSubmit={handleSubmit} className="popup-form">
+         <form onSubmit={handleSubmit} className="popup-form">
         <h1>{isEditMode ? 'Edit Job Post' : 'Create Job Post'}</h1>
-         
+      
 
           <div className="form-group">
             <label>Post Name</label>
@@ -281,6 +319,43 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               required
             />
           </div>
+
+
+       
+
+<h2>Qualification</h2>
+<div className="form-group">
+  <label>Eligibility</label>
+  <input
+    name="eligibility"
+    type="text"
+    placeholder="Enter eligibility criteria"
+    value={jobDetails.Qualification.eligibility}
+    onChange={(e) =>
+      setJobDetails((prev) => ({
+        ...prev,
+        Qualification: { ...prev.Qualification, eligibility: e.target.value },
+      }))
+    }
+    required
+  />
+</div>
+<div className="form-group">
+  <label>Note</label>
+  <input
+    name="Note"
+    type="text"
+    placeholder="Additional notes"
+    value={jobDetails.Qualification.Note}
+    onChange={(e) =>
+      setJobDetails((prev) => ({
+        ...prev,
+        Qualification: { ...prev.Qualification, Note: e.target.value },
+      }))
+    }
+  />
+</div>
+
         
 
           <div className="form-group">
@@ -316,11 +391,98 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
         
           <button type="submit" className="submit-button">
             {isEditMode ? 'Update Job Post' : 'Submit Job Post'}
+          
           </button>
           {message.text && <div className={`message ${message.type}`}>{message.text}</div>}
 
           {message.text && <div className={`message ${message.type}`}>{message.text}</div>}
-        </form>
+        </form> 
+
+        {/* <form onSubmit={handleSubmit} className="popup-form">
+          <h1>{isEditMode ? 'Edit Job Post' : 'Create Job Post'}</h1>
+          <div className="form-group">
+            <label>Post Name</label>
+            <input
+              type="text"
+              value={jobDetails.postName}
+              onChange={(e) => handleChange(e, 'postName')}
+              placeholder="Enter post name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Organization</label>
+            <input
+              type="text"
+              value={jobDetails.organization}
+              onChange={(e) => handleChange(e, 'organization')}
+              placeholder="Enter organization name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Total Vacancy</label>
+            <input
+              type="number"
+              value={jobDetails.vacancy}
+              onChange={(e) => handleChange(e, 'vacancy')}
+              placeholder="Enter total vacancy"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Salary</label>
+            <input
+              type="text"
+              value={jobDetails.salary}
+              onChange={(e) => handleChange(e, 'salary')}
+              placeholder="Enter salary"
+              required
+            />
+          </div>
+
+          <h2>Important Dates</h2>
+          {jobDetails.importantDates.map((date, index) => (
+            <div key={index} className="form-row">
+              <label>Notification Date</label>
+              <input
+                name="notificationDate"
+                type="date"
+                value={date.notificationDate || ''}
+                onChange={(e) => handleChange(e, 'importantDates', index)}
+                required
+              />
+              <label>Start Date</label>
+              <input
+                name="startDate"
+                type="date"
+                value={date.startDate || ''}
+                onChange={(e) => handleChange(e, 'importantDates', index)}
+                required
+              />
+              <label>Last Date</label>
+              <input
+                name="lastDate"
+                type="date"
+                value={date.lastDate || ''}
+                onChange={(e) => handleChange(e, 'importantDates', index)}
+                required
+              />
+              <button type="button" onClick={() => removeRow('importantDates', index)}>
+                Remove
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={() => addRow('importantDates')}>
+            Add Important Date
+          </button>
+
+         
+          <button type="submit" className="submit-button">
+            {isEditMode ? 'Update Job Post' : 'Submit Job Post'}
+          </button>
+          {message.text && <div className={`message ${message.type}`}>{message.text}</div>}
+        </form> */}
       </div>
     </div>
   );

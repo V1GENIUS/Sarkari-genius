@@ -187,14 +187,16 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .dashboard {
-    flex-direction: column;
+    /* flex-direction: column; */
     padding: 10px;
   }
 
   .sidebar {
-    width: 100%;
+    /* width: 100%; */
     margin-bottom: 20px;
+    /* position: absolute; */
   }
+  
 
   .job-details-table th,
   .job-details-table td {
@@ -216,6 +218,33 @@
   .job-details-table td {
     font-size: 0.7rem;
     padding: 8px;
+  }
+  .sidebar {
+    position: absolute;
+   }
+
+  .job-create {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .popup-container {
+    padding: 20px;
+  }
+}
+@media (max-width: 320px) {
+  .job-details-container {
+    padding: 15px;
+  }
+
+  .job-details-table th,
+  .job-details-table td {
+    font-size: 0.7rem;
+    padding: 8px;
+  }
+
+  .sidebar {
+   position: absolute;
   }
 
   .job-create {

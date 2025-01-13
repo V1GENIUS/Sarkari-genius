@@ -68,6 +68,7 @@
   @media (max-width: 768px) {
     .GovtJobCard {
       padding: 15px;
+      
     }
   
     .GovtJobHeading h1 {
@@ -84,6 +85,28 @@
   
     .GovtJobName button {
       font-size: 0.8rem;
+    }
+  }
+  @media (max-width: 320px) {
+    .GovtJobCard {
+      /* padding: 15px; */
+      width: 250px;
+    }
+  
+    .GovtJobHeading h1 {
+      font-size: 1.0rem;
+    }
+  
+    .GovtJobHeading h6 {
+      font-size: 0.5rem;
+    }
+  
+    .GovtJobName h3 {
+      font-size: 0.8rem;
+    }
+  
+    .GovtJobName button {
+      font-size: 0.7rem;
     }
   }
   

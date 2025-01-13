@@ -191,7 +191,7 @@ function GovtJobDetails() {
             </tr>
             <tr>
                   <td>Selection Process</td>
-                  <td>{jobDetails?.selection?.process || "N/A"}</td>
+                  <td>{jobDetails?.selectionProcess}</td>
             </tr>
             <tr>
                   <td>Job Location</td>
@@ -199,26 +199,8 @@ function GovtJobDetails() {
             </tr>
             <tr>
               <td>Qualification</td>
-              <td>{jobDetails?.status }</td>
+              <td>{jobDetails?.Qualification?.eligibility }</td>
             </tr>
-            {/* <tr>
-                  <td>Document Details</td>
-                  <td>
-                    <ul>
-                      {jobDetails?.documentDetails?.length > 0 ? (
-                        jobDetails.documentDetails.map((doc, index) => (
-                          <li key={index}>
-                            {doc.name}
-                          </li>
-                        ))
-                      ) : (
-                        <li>No Documents Available</li>
-                      )}
-                    </ul>
-                  </td>
-            </tr> */}
-
-            
 
             <tr>
               <td>Apply Online</td>

@@ -53,16 +53,32 @@ function Dashboard() {
     }
   };
 
+  // const handleEditJob = (job) => {
+  //   setEditJob(job); 
+  //   setPopupVisible(true); 
+  // };
+
   const handleEditJob = (job) => {
-    setEditJob(job); 
-    setPopupVisible(true); 
+    setEditJob(job);
+    setPopupVisible(true);
   };
+
+  // const handleUpdateJob = async (updatedJob) => {
+  //   try {
+  //     const response = await axios.put(APIGovtJobs.updateJob(), updatedJob);
+  //     setJobData(jobData.map(job => (job._id === updatedJob._id ? response.data.job : job)));
+  //     setPopupVisible(false);
+  //   } catch (err) {
+  //     setError("Error updating job");
+  //   }
+  // };
 
   const handleUpdateJob = async (updatedJob) => {
     try {
       const response = await axios.put(APIGovtJobs.updateJob(), updatedJob);
       setJobData(jobData.map(job => (job._id === updatedJob._id ? response.data.job : job)));
       setPopupVisible(false);
+      setEditJob(null);
     } catch (err) {
       setError("Error updating job");
     }
@@ -116,6 +132,8 @@ function Dashboard() {
             </div>
           </div>
 
+         
+
           <div className='orderBox'>
         
           </div>
@@ -134,7 +152,7 @@ function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {jobData.map((job, index) => (
+                {/* {jobData.map((job, index) => (
                   <tr key={index}>
                     <td>{job.postName}</td>
                     <td>
@@ -159,6 +177,35 @@ function Dashboard() {
                      
                     </td>
                   
+                    <td>
+                      <button onClick={() => handleEditJob(job)}>Edit</button>
+                      <button onClick={() => handleDeleteJob(job._id)}>Delete</button>
+                    </td>
+                  </tr>
+                ))} */}
+
+{jobData.map((job, index) => (
+                  <tr key={index}>
+                    <td>{job.postName}</td>
+                    <td>
+                      {job.importantDates.map((dates, i) => (
+                        <div key={i}>
+                          Start: {formatDate(dates.startDate)} <br />
+                          Last: {formatDate(dates.lastDate)}
+                        </div>
+                      ))}
+                    </td>
+                    <td>{job.organization}</td>
+                    <td>
+                      {job.fees.map((fee, i) => (
+                        <div key={i}>
+                          {fee.category}: <br /> ₹{fee.amount}
+                        </div>
+                      ))}
+                    </td>
+                    <td>
+                      {job.ageLimit.min} - {job.ageLimit.max} years
+                    </td>
                     <td>
                       <button onClick={() => handleEditJob(job)}>Edit</button>
                       <button onClick={() => handleDeleteJob(job._id)}>Delete</button>
