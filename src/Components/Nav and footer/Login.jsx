@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterLogin.css";
 import APILoginRegister from "../Api/ApiLoginRegister";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -27,11 +30,9 @@ function Login() {
       });
       const result = await response.json();
       if (response.ok) {
-        // Save token to localStorage
         localStorage.setItem("token", result.token);
         localStorage.setItem("role", result.user.role); // Store the role (admin or user)
 
-        // Redirect based on user role
         if (result.user.role === "admin") {
           navigate("/dashboard"); // Admin Dashboard
         } else {
@@ -43,6 +44,48 @@ function Login() {
     } catch (err) {
       setError("Something went wrong. Please try again.");
     }
+  };
+
+ 
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      // Decode the Google token to extract user information
+      const decoded = jwtDecode(credentialResponse.credential);
+      const googleUserData = {
+        email: decoded.email,
+        name: decoded.name,
+        googleId: decoded.sub,
+      };
+  
+      // Send the Google token to your backend
+      const response = await fetch(APILoginRegister.googleLogin, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: credentialResponse.credential }),
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("role", result.user.role);
+  
+        // Redirect based on role
+        if (result.user.role === "admin") {
+          navigate("/dashboard"); // Admin Dashboard
+        } else {
+          navigate("/"); // Home Page for regular users
+        }
+      } else {
+        setError(result.message || "Google login failed.");
+      }
+    } catch (err) {
+      setError("Something went wrong with Google login. Please try again.");
+    }
+  };
+
+  const handleGoogleError = () => {
+    setError("Google Login Failed. Please try again.");
   };
 
   return (
@@ -76,7 +119,10 @@ function Login() {
               Register
             </button>
           </h5>
-          <button className="login_google">Login With Google</button>
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+          />
         </div>
       </div>
     </div>

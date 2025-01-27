@@ -168,6 +168,12 @@
   color: #555;
 }
 
+/* .form-btn{
+width: 40px;
+height: 20px;
+
+text-decoration: none;
+} */
 .submit-button {
   display: block;
   margin: 20px auto;
@@ -200,7 +206,7 @@
 
   .job-details-table th,
   .job-details-table td {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .job-create {
@@ -217,7 +223,7 @@
   .job-details-table th,
   .job-details-table td {
     font-size: 0.7rem;
-    padding: 8px;
+    /* padding: 8px; */
   }
   .sidebar {
     position: absolute;
@@ -239,8 +245,8 @@
 
   .job-details-table th,
   .job-details-table td {
-    font-size: 0.7rem;
-    padding: 8px;
+    font-size: 0.5rem;
+    /* padding: 8px; */
   }
 
   .sidebar {

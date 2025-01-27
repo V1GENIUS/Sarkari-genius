@@ -1,11 +1,11 @@
 .footer {
-    background: linear-gradient(45deg, rgb(23, 24, 58), rgb(30, 30, 80));
+    background: linear-gradient(45deg, rgb(30, 32, 66), rgb(49, 49, 168));
     color: aliceblue;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 50px 40px;
+    padding: 30px 20px;
     gap: 30px;
     box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.3);
 }
@@ -95,7 +95,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .newsletter-form h2 {
@@ -118,7 +118,7 @@
 
 .newsletter-button {
     padding: 12px 25px;
-    background: rgb(105, 151, 15);
+    background: rgb(148, 190, 64);
     border: none;
     color: white;
     font-size: 16px;
@@ -133,7 +133,7 @@
 }
 
 .newsletter-button:hover {
-    background: rgb(173, 255, 47);
+    background: rgb(114, 187, 6);
     transform: translateY(-3px);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -145,7 +145,7 @@
     background: rgb(15, 15, 50);
     color: aliceblue;
     font-size: 14px;
-    margin-top: 30px;
+   
     border-top: 1px solid rgb(30, 30, 80);
 }
 

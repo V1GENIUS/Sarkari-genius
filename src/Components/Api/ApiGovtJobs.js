@@ -1,8 +1,7 @@
 
+// const BASE_URL = "https://sarkari-genius.onrender.com";
+const BASE_URL = "http://localhost:7000";
 
-
-const BASE_URL = "https://sarkari-genius.onrender.com";
-// const BASE_URL = "http://localhost:7000";
 
 const APIGovtJobs = {
   getJobDetails: (id) => `${BASE_URL}/api/jobs/${id}`,
@@ -12,8 +11,4 @@ const APIGovtJobs = {
   getAllJobs: `${BASE_URL}/api/jobs` ,
 };
 
-
-
-
 export default APIGovtJobs;
-

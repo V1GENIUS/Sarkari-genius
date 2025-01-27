@@ -5,13 +5,22 @@ import Footer from "../Components/Nav and footer/Footer";
 import axios from "axios"; 
 import { useParams } from "react-router-dom"; 
 import APIGovtJobs from '../Components/Api/ApiGovtJobs.js'
+import LoadingSpinner from "../Components/LoadingSpinner.jsx";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function GovtJobDetails() {
   const [jobDetails, setJobDetails] = useState(null); 
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const { id } = useParams();
-
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+    mobile: "",
+    jobDetails: "",
+    agree: false,
+  });
 
   useEffect(() => {
   
@@ -28,7 +37,45 @@ function GovtJobDetails() {
       });
   }, [id]);
 
- 
+
+  useEffect(() => {
+    const logVisitorAnalytics = async () => {
+      try {
+        const jobId = id; // Assuming `id` is the Job ID from `useParams`
+        const userAgent = navigator.userAgent;
+        const ip = await fetch("https://api.ipify.org?format=json")
+          .then((res) => res.json())
+          .then((data) => data.ip);
+  
+        await axios.post("http://localhost:7000/api/analytics/log", {
+          ip,
+          userAgent,
+          jobId,
+          visitedAt: new Date(),
+        });
+      } catch (err) {
+        console.error("Failed to log analytics:", err);
+      }
+    };
+  
+    logVisitorAnalytics();
+  }, [id]);
+  
+  
+
+  const handleChangeInquiry = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleInquirySubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data Submitted:", formData);
+    setShowForm(false); // Close the modal after submission
+  };
 
   const formatDate = (dateString) => {
     if (!dateString) return "Invalid Date"; 
@@ -45,35 +92,67 @@ function GovtJobDetails() {
 
 
 
+//   const generateWhatsAppMessage = () => {
+//     if (!jobDetails) return "";
+//     return `
+// *Organization* : ${jobDetails.organization }
+// *Post Name* : ${jobDetails.postName }
+// *Vacancies* : ${jobDetails.vacancy }
+// *Start Date* : ${
+//       jobDetails.importantDates?.length > 0
+//         ? jobDetails.importantDates.map((date) => formatDate(date.startDate)).join(", ")
+//         : "N/A"
+//     }
+// *Last Date* : ${
+//       jobDetails.importantDates?.length > 0
+//         ? jobDetails.importantDates.map((date) => formatDate(date.lastDate)).join(", ")
+//         : "N/A"
+//     }
+// *Salary* : ${jobDetails.salary || "N/A"}
+// *Age Limit* : ${
+//       jobDetails.ageLimit
+//         ? `${jobDetails.ageLimit.min}-${jobDetails.ageLimit.max} years`
+//         : "N/A"
+//     }
+// *Selection Process* : ${jobDetails.selection?.process || "N/A"}
+// *Job Location* : ${jobDetails.jobLocation?.location || "N/A"}
+// *Qualification* : ${jobDetails.status || "N/A"}
+// *Apply Online* : ${jobDetails.applyLink || "N/A"}
+// *Official Notification* : ${jobDetails.officialPdfLink || "N/A"}
+//     `;
+//   };
+
   const generateWhatsAppMessage = () => {
     if (!jobDetails) return "";
+    const jobLink = `${window.location.origin}/jobs/${id}`; // Generates the current job details page URL
     return `
-*Organization* : ${jobDetails.organization }
-*Post Name* : ${jobDetails.postName }
-*Vacancies* : ${jobDetails.vacancy }
-*Start Date* : ${
+  *Organization* : ${jobDetails.organization }
+  *Post Name* : ${jobDetails.postName }
+  *Vacancies* : ${jobDetails.vacancy }
+  *Start Date* : ${
       jobDetails.importantDates?.length > 0
         ? jobDetails.importantDates.map((date) => formatDate(date.startDate)).join(", ")
         : "N/A"
     }
-*Last Date* : ${
+  *Last Date* : ${
       jobDetails.importantDates?.length > 0
         ? jobDetails.importantDates.map((date) => formatDate(date.lastDate)).join(", ")
         : "N/A"
     }
-*Salary* : ${jobDetails.salary || "N/A"}
-*Age Limit* : ${
+  *Salary* : ${jobDetails.salary || "N/A"}
+  *Age Limit* : ${
       jobDetails.ageLimit
         ? `${jobDetails.ageLimit.min}-${jobDetails.ageLimit.max} years`
         : "N/A"
     }
-*Selection Process* : ${jobDetails.selection?.process || "N/A"}
-*Job Location* : ${jobDetails.jobLocation?.location || "N/A"}
-*Qualification* : ${jobDetails.status || "N/A"}
-*Apply Online* : ${jobDetails.applyLink || "N/A"}
-*Official Notification* : ${jobDetails.officialPdfLink || "N/A"}
+  *Selection Process* : ${jobDetails?.selectionProcess || "N/A"}
+  *Job Location* : ${jobDetails.jobLocation?.location || "N/A"}
+  *Qualification* : ${jobDetails.status || "N/A"}
+  *Apply Online* : ${jobDetails.applyLink || "N/A"}
+  *Job Details Link* : ${jobLink}
     `;
   };
+  
 
   const handleShareOnWhatsApp = () => {
     const message = encodeURIComponent(generateWhatsAppMessage());
@@ -83,7 +162,7 @@ function GovtJobDetails() {
 
 
   if (loading) {
-    return <div>Loading...</div>; 
+    return<LoadingSpinner loading={loading} />; 
   }
 
   if (error) {
@@ -96,6 +175,7 @@ function GovtJobDetails() {
       <Navbar />
       <div className="job_details">
         <div className="job_page">
+          <SpeedInsights/>
           <div className="job_title">{jobDetails?.postName}</div>
          
           <div className="organization">{jobDetails?.organization }</div>
@@ -204,20 +284,100 @@ function GovtJobDetails() {
 
             <tr>
               <td>Apply Online</td>
-              <td>
-                {jobDetails?.applyLink ? (
-                  <a 
-                    href={jobDetails.applyLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="table-link"
-                  >
-                    Click Here
-                  </a>
-                ) : (
-                  "No Link Available"
-                )}
-              </td>
+              <td> <button className="apply-button" onClick={() => setShowForm(true)}>Open Form</button></td>
+
+              {showForm && (
+              <div className="modal-overlay">
+                <div className="modal-content">
+                  <h2>Fill Out the Request For Form Filling</h2>
+                  <form onSubmit={ handleInquirySubmit}>
+                    <div>
+                      <label>
+                        Name:
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChangeInquiry}
+                          required
+                        />
+                      </label>
+                    </div>
+                  
+                    <div>
+                      <label>
+                        Mobile Number:
+                        <input
+                          type="tel"
+                          name="mobile"
+                          value={formData.mobile}
+                          onChange={handleChangeInquiry}
+                          required
+                        />
+                      </label>
+                    </div>
+
+                    
+                    <div>
+                      <label>
+                        Job Details:
+                        <input
+                          type="text"
+                          name="jobDetails"
+                          value={formData.jobDetails}
+                          onChange={handleChangeInquiry}
+                          required
+                        />
+                      </label>
+                    </div>
+                    <h2>Are you located in Indore?</h2>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="location"
+                  value="Yes"
+                  // checked={response === "Yes"}
+                  // onChange={handleChange}
+                />
+                Yes
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="location"
+                  value="No"
+                  // checked={response === "No"}u
+                  // onChange={handleChange}
+                />
+                No
+              </label>
+            </div>
+
+                    <div>
+                      <label>
+                        <input
+                          type="checkbox"
+                          name="agree"
+                          checked={formData.agree}
+                          onChange={handleChangeInquiry}
+                        />
+                        I agree to the terms and conditions
+                      </label>
+                    </div>
+                    <div>
+                      <button type="submit">Submit</button>
+                      <button type="button" onClick={() => setShowForm(false)}>
+                        Cancel
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
+                  
             </tr>
             <tr>
               <td>official Notification Details</td>
@@ -237,7 +397,8 @@ function GovtJobDetails() {
               </td>
             </tr>
             <tr>
-              <td>Apply Online</td>
+              <td>Official Website</td>
+            
               <td>
                 {jobDetails?.websiteLink ? (
                   <a 

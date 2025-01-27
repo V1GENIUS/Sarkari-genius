@@ -14,7 +14,9 @@ import GovtJobDetails from './Pages/GovtJobDetails';
 import AdmitCard from './Pages/AdmitCard';
 
 import CreateJobPopup from './Components/Admin pannel/CreateJobPopup.jsx';
+import CreateCard from './Components/Admin pannel/CreateCard';
 import ProtectedRoute from './Components/ProtectedRoute';
+import Analytics from './Components/Admin pannel/AnalyticsPage.jsx';
 
 
 
@@ -41,42 +43,51 @@ function App() {
         
           {/* Protected Routes */}
           <Route 
-            path="/dashboard" 
-            element={
+            path="/dashboard"  element={
               <ProtectedRoute isAdmin={true}>
                 <Dashboard />
               </ProtectedRoute>
             } 
           />
           <Route 
-            path="/sidebar" 
-            element={
+            path="/sidebar"  element={
               <ProtectedRoute isAdmin={true}>
                 <Sidebar />
               </ProtectedRoute>
             } 
           />
           <Route 
-            path="/revenue" 
-            element={
+            path="/analytics"  element={
+              <ProtectedRoute isAdmin={true}>
+                <Analytics />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/revenue"  element={
               <ProtectedRoute isAdmin={true}>
                 <Revenue />
               </ProtectedRoute>
             } 
           />
           <Route 
-            path="/orders" 
-            element={
-              <ProtectedRoute isAdmin={true}>
+            path="/orders" element={ 
+            <ProtectedRoute isAdmin={true}>
                 <Orders />
               </ProtectedRoute>
             } 
           />
           <Route 
-            path="/job-create" 
-            element={
+            path="/job-create"  element={
               <ProtectedRoute isAdmin={true}>
                 <CreateJobPopup />
+              </ProtectedRoute>
+            } 
+          />
+           <Route 
+            path="/card-create"  element={
+              <ProtectedRoute isAdmin={true}>
+                 <CreateCard/>
               </ProtectedRoute>
             } 
           />

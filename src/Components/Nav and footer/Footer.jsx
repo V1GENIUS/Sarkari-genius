@@ -31,7 +31,7 @@ function Footer() {
           <h2>Overview</h2>
           <ul className="overview__list">
             <li className="overview_item">
-              <NavLink to="#about" className="over__link">
+              <NavLink to="/about" className="over__link">
                 About Us
               </NavLink>
             </li>

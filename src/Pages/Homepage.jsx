@@ -15,8 +15,10 @@ function Homepage() {
     const fetchJobs = async () => {
       try {
         const response = await fetch(APIGovtJobs.getAllJobs);
+       
         const data = await response.json();
         setJobs(data.slice(0, 14));
+     
       } catch (error) {
         console.error('Error fetching jobs:', error);
       }
@@ -121,26 +123,56 @@ function Homepage() {
             </li>
           ))}
         
-      </div>
+          </div>
 
         </div>
         <div className='home_result'>
           <h3>Result</h3>
           <div className='result_link'>
-          {jobs.map((job) => (
+          {/* {jobs.map((job) => (
             <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
             </li>
-          ))}
+          ))} */}
           </div>
 
         </div>
         <div className='home_result'>
           <h3>Admit Card</h3>
           <div className='result_link'>
-          {jobs.map((job) => (
+          {/* {jobs.map((job) => (
             <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
             </li>
-          ))}
+          ))} */}
+          </div>
+
+        </div>
+        <div className='home_result'>
+          <h3>Cards</h3>
+          <div className='result_link'>
+          {/* {jobs.map((job) => (
+            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
+            </li>
+          ))} */}
+          </div>
+
+        </div>
+        <div className='home_result'>
+          <h3>Government Schemes</h3>
+          <div className='result_link'>
+          {/* {jobs.map((job) => (
+            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
+            </li>
+          ))} */}
+          </div>
+
+        </div>
+        <div className='home_result'>
+          <h3>All Ekyc's</h3>
+          <div className='result_link'>
+          {/* {jobs.map((job) => (
+            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
+            </li>
+          ))} */}
           </div>
 
         </div>
