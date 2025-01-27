@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import APIGovtJobs from "../Api/ApiGovtJobs";
 
 function AnalyticsPage() {
   const [analytics, setAnalytics] = useState([]);
@@ -8,7 +9,7 @@ function AnalyticsPage() {
   useEffect(() => {
     const fetchAnalyticsData = async () => {
       try {
-        const response = await axios.get("http://localhost:7000/api/analytics/data");
+        const response = await axios.get(APIGovtJobs.Analytics);
         setAnalytics(response.data);
         setLoading(false);
       } catch (error) {

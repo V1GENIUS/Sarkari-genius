@@ -47,7 +47,7 @@ function GovtJobDetails() {
           .then((res) => res.json())
           .then((data) => data.ip);
   
-        await axios.post("http://localhost:7000/api/analytics/log", {
+        await axios.post(APIGovtJobs.AnalyticsLog,{
           ip,
           userAgent,
           jobId,
