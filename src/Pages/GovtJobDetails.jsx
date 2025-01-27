@@ -124,7 +124,7 @@ function GovtJobDetails() {
 
   const generateWhatsAppMessage = () => {
     if (!jobDetails) return "";
-    const jobLink = `${window.location.origin}/api/jobs/${id}`; // Generates the current job details page URL
+    const jobLink = `${window.location.origin}/job-detail/${id}`; // Generates the current job details page URL
     return `
   *Organization* : ${jobDetails.organization }
   *Post Name* : ${jobDetails.postName }
