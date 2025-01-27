@@ -147,7 +147,7 @@ function GovtJobDetails() {
     }
   *Selection Process* : ${jobDetails?.selectionProcess || "N/A"}
   *Job Location* : ${jobDetails.jobLocation?.location || "N/A"}
-  *Qualification* : ${jobDetails.status || "N/A"}
+  *Qualification* : ${jobDetails?.Qualification?.eligibility || "N/A"}
   *Apply Online* : ${jobDetails.applyLink || "N/A"}
   *Job Details Link* : ${jobLink}
     `;
