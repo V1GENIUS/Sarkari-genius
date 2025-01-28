@@ -92,36 +92,6 @@ function GovtJobDetails() {
 
 
 
-//   const generateWhatsAppMessage = () => {
-//     if (!jobDetails) return "";
-//     return `
-// *Organization* : ${jobDetails.organization }
-// *Post Name* : ${jobDetails.postName }
-// *Vacancies* : ${jobDetails.vacancy }
-// *Start Date* : ${
-//       jobDetails.importantDates?.length > 0
-//         ? jobDetails.importantDates.map((date) => formatDate(date.startDate)).join(", ")
-//         : "N/A"
-//     }
-// *Last Date* : ${
-//       jobDetails.importantDates?.length > 0
-//         ? jobDetails.importantDates.map((date) => formatDate(date.lastDate)).join(", ")
-//         : "N/A"
-//     }
-// *Salary* : ${jobDetails.salary || "N/A"}
-// *Age Limit* : ${
-//       jobDetails.ageLimit
-//         ? `${jobDetails.ageLimit.min}-${jobDetails.ageLimit.max} years`
-//         : "N/A"
-//     }
-// *Selection Process* : ${jobDetails.selection?.process || "N/A"}
-// *Job Location* : ${jobDetails.jobLocation?.location || "N/A"}
-// *Qualification* : ${jobDetails.status || "N/A"}
-// *Apply Online* : ${jobDetails.applyLink || "N/A"}
-// *Official Notification* : ${jobDetails.officialPdfLink || "N/A"}
-//     `;
-//   };
-
   const generateWhatsAppMessage = () => {
     if (!jobDetails) return "";
     const jobLink = `${window.location.origin}/job-detail/${id}`; // Generates the current job details page URL
