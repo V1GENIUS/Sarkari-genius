@@ -20,7 +20,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
     selectionProcess:'',
     Qualification:[{eligibility:'',Note:''}],
     jobLocation: { location: '' },
-    documentDetails:'',
+    documentDetails: [''],
     
     officialPdfLink: '',
     websiteLink:''
@@ -37,68 +37,81 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
   }, [jobData, isEditMode]);
  
 
+  // const handleChange = (e, field, index) => {
+  //   const { name, value } = e.target;
+  //   setJobDetails((prevDetails) => {
+  //     const updatedDetails = { ...prevDetails };
+
+  //     if (field === 'fees' || field === 'importantDates' || field === 'Qualification' || field === ' documentDetails') {
+  //       updatedDetails[field][index][name] = value;
+  //     } else if (field === 'ageLimit') {
+  //       updatedDetails.ageLimit[name] = value;
+  //     } else {
+  //       updatedDetails[field] = value;
+  //     }
+
+  //     return updatedDetails;
+  //   });
+  // };
+
   const handleChange = (e, field, index) => {
     const { name, value } = e.target;
+  
     setJobDetails((prevDetails) => {
       const updatedDetails = { ...prevDetails };
-
-      if (field === 'fees' || field === 'importantDates' || field === 'Qualification') {
+  
+      if (field === 'fees' || field === 'importantDates') {
         updatedDetails[field][index][name] = value;
       } else if (field === 'ageLimit') {
         updatedDetails.ageLimit[name] = value;
+      } else if (field === 'documentDetails') {
+        updatedDetails.documentDetails[index] = value; // Fix for document details array
       } else {
         updatedDetails[field] = value;
       }
-
+  
       return updatedDetails;
     });
   };
+  
+
+  // const addRow = (field) => {
+  //   const updatedDetails = { ...jobDetails };
+  //   const newRow = {
+  //     fees: { category: '', amount: '' },
+  //     selection: { process: '' },
+  //     jobLocation: { location: '' },
+  //     importantDates: { notificationDate: '', startDate: '', lastDate: '' },
+  //   };
+
+  //   updatedDetails[field].push(newRow[field]);
+  //   setJobDetails(updatedDetails);
+  // };
 
   const addRow = (field) => {
-    const updatedDetails = { ...jobDetails };
-    const newRow = {
-      fees: { category: '', amount: '' },
-      selection: { process: '' },
-      jobLocation: { location: '' },
-      importantDates: { notificationDate: '', startDate: '', lastDate: '' },
-    };
-
-    updatedDetails[field].push(newRow[field]);
-    setJobDetails(updatedDetails);
-  };
-
-
-  const removeRow = (field, index) => {
-    setJobDetails((prev) => ({
-      ...prev,
-      [field]: prev[field].filter((_, i) => i !== index)
+    setJobDetails((prevDetails) => ({
+      ...prevDetails,
+      [field]: [...prevDetails[field], ''], 
     }));
   };
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     if (isEditMode) {
-  //       await axios.put(APIGovtJobs.getJobDetails, jobDetails, {
-  //         headers: { 'Content-Type': 'application/json' },
-  //       });
-  //       setMessage({ type: 'success', text: 'Job successfully updated!' });
-  //     } else {
-      
-  //       await axios.post(APIGovtJobs.createJob, jobDetails, {
-  //         headers: { 'Content-Type': 'application/json' },
-  //       });
-  //       setMessage({ type: 'success', text: 'Job successfully created!' });
-  //     }
+  
 
-  //     setTimeout(() => onClose(), 1000);
-  //   } catch (error) {
-  //     console.error('Error:', error.response ? error.response.data : error.message);
-  //     setMessage({
-  //       type: 'error',
-  //       text: error.response ? error.response.data.message : 'Error processing job details.',
-  //     });
-  //   }
+
+  // const removeRow = (field, index) => {
+  //   setJobDetails((prev) => ({
+  //     ...prev,
+  //     [field]: prev[field].filter((_, i) => i !== index)
+  //   }));
   // };
+
+  const removeRow = (field, index) => {
+    setJobDetails((prevDetails) => ({
+      ...prevDetails,
+      [field]: prevDetails[field].filter((_, i) => i !== index),
+    }));
+  };
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -292,8 +305,55 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
             />
           </div>
 
-          <div className="form-group">
-            <label>needed document</label>
+    
+
+      <div className="form-row">
+      <h2>Needed Documents</h2>
+{jobDetails.documentDetails.map((doc, index) => (
+  <div key={index} className="document-row">
+    <input
+      type="text"
+      placeholder="Enter document name"
+      value={doc}
+      required
+      onChange={(e) => handleChange(e, 'documentDetails', index)}
+    />
+    <button
+      type="button"
+      onClick={() => removeRow('documentDetails', index)}
+      className="remove-button"
+    >
+      Remove
+    </button>
+  </div>
+))}
+<button type="button" onClick={() => addRow('documentDetails')} className="add-button">
+  Add Document
+</button>
+
+      </div>
+    
+
+
+
+          {/* <div className="form-row">
+            <label>Needed document</label>
+            <input
+              type="text"
+              name="doc"
+              value={jobDetails.documentDetails.doc}
+              required
+              onChange={(e) =>
+                setJobDetails((prev) => ({
+                  ...prev,
+                  jobLocation: { ...prev.documentDetails, doc: e.target.value },
+                }))
+              }
+            />
+          </div> */}
+
+          {/* <div className="form-group">
+            <label></label>
             <input
               type="text"
               value={jobDetails.documentDetails}
@@ -302,7 +362,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               required
             />
           </div>
-
+ */}
 
        
 

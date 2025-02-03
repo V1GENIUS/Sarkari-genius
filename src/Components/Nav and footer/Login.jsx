@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterLogin.css";
 import APILoginRegister from "../Api/ApiLoginRegister";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -13,6 +12,20 @@ function Login() {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // Redirect if the user is already logged in
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    if (token) {
+      if (role === "admin") {
+        navigate("/dashboard"); // Redirect to admin dashboard
+      } else {
+        navigate("/"); // Redirect to home page for normal users
+      }
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     setFormData({
@@ -31,12 +44,12 @@ function Login() {
       const result = await response.json();
       if (response.ok) {
         localStorage.setItem("token", result.token);
-        localStorage.setItem("role", result.user.role); // Store the role (admin or user)
+        localStorage.setItem("role", result.user.role);
 
         if (result.user.role === "admin") {
-          navigate("/dashboard"); // Admin Dashboard
+          navigate("/dashboard");
         } else {
-          navigate("/"); // Home Page for regular users
+          navigate("/");
         }
       } else {
         setError(result.message || "Login failed.");
@@ -46,35 +59,30 @@ function Login() {
     }
   };
 
- 
-
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      // Decode the Google token to extract user information
       const decoded = jwtDecode(credentialResponse.credential);
       const googleUserData = {
         email: decoded.email,
         name: decoded.name,
         googleId: decoded.sub,
       };
-  
-      // Send the Google token to your backend
+
       const response = await fetch(APILoginRegister.googleLogin, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: credentialResponse.credential }),
       });
-  
+
       const result = await response.json();
       if (response.ok) {
         localStorage.setItem("token", result.token);
         localStorage.setItem("role", result.user.role);
-  
-        // Redirect based on role
+
         if (result.user.role === "admin") {
-          navigate("/dashboard"); // Admin Dashboard
+          navigate("/dashboard");
         } else {
-          navigate("/"); // Home Page for regular users
+          navigate("/");
         }
       } else {
         setError(result.message || "Google login failed.");
@@ -115,14 +123,14 @@ function Login() {
           {error && <p className="error-message">{error}</p>}
           <h5 style={{ marginTop: "10px" }}>
             Don't have an account?{" "}
-            <button onClick={() => navigate("/register")} className="registers_btn">
+            <button
+              onClick={() => navigate("/register")}
+              className="registers_btn"
+            >
               Register
             </button>
           </h5>
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={handleGoogleError}
-          />
+          <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleError} />
         </div>
       </div>
     </div>

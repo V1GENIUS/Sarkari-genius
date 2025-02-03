@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import APIGovtJobs from '../Components/Api/ApiGovtJobs.js'
 import LoadingSpinner from "../Components/LoadingSpinner.jsx";
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import  Whatsappicon from '../Images/whatsapp.png';
 
 function GovtJobDetails() {
   const [jobDetails, setJobDetails] = useState(null); 
@@ -41,7 +42,7 @@ function GovtJobDetails() {
   useEffect(() => {
     const logVisitorAnalytics = async () => {
       try {
-        const jobId = id; // Assuming `id` is the Job ID from `useParams`
+        const jobId = id; 
         const userAgent = navigator.userAgent;
         const ip = await fetch("https://api.ipify.org?format=json")
           .then((res) => res.json())
@@ -74,7 +75,7 @@ function GovtJobDetails() {
   const handleInquirySubmit = (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
-    setShowForm(false); // Close the modal after submission
+    setShowForm(false); 
   };
 
   const formatDate = (dateString) => {
@@ -94,7 +95,7 @@ function GovtJobDetails() {
 
   const generateWhatsAppMessage = () => {
     if (!jobDetails) return "";
-    const jobLink = `${window.location.origin}/job-detail/${id}`; // Generates the current job details page URL
+    const jobLink = `${window.location.origin}/job-detail/${id}`; 
     return `
   *Organization* : ${jobDetails.organization }
   *Post Name* : ${jobDetails.postName }
@@ -146,6 +147,33 @@ function GovtJobDetails() {
       <div className="job_details">
         <div className="job_page">
           <SpeedInsights/>
+          <div className="group-card whatsapp-card">
+            <a
+              className="seoquake-nofollow"
+              href="https://chat.whatsapp.com/HzeBiz5nuqY6XJnSh89C1e"
+              rel="nofollow noopener noreferrer"
+              target="_blank"
+            >
+            <span style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+              <span style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>
+                WhatsApp Channel
+              </span>
+      
+              <div className="join-now-container" style={{ display: 'flex', justifyContent: 'end', alignItems: 'center', marginTop: 'auto' }}>
+                <span className="join-now-text" style={{ marginRight: '10px' }}>Join Now</span>
+                <img 
+                  src={Whatsappicon} 
+                  alt="WhatsApp Icon" 
+                  style={{ width: '24px', height: '24px' }} 
+                />
+              </div>
+            </span>
+            </a>
+          </div>
+
+        
+
+    {/* </div> */}
           <div className="job_title">{jobDetails?.postName}</div>
          
           <div className="organization">{jobDetails?.organization }</div>
@@ -251,7 +279,17 @@ function GovtJobDetails() {
               <td>Qualification</td>
               <td>{jobDetails?.Qualification?.eligibility }</td>
             </tr>
-
+            <tr>
+  <td>Documents</td>
+  <td>
+    
+      {jobDetails?.documentDetails?.map((doc, index) => (
+        <li key={index}>{doc}</li>
+      ))}
+    
+  </td>
+</tr>
+{/* 
             <tr>
               <td>Apply Online</td>
               <td> <button className="apply-button" onClick={() => setShowForm(true)}>Open Form</button></td>
@@ -348,6 +386,13 @@ function GovtJobDetails() {
               </div>
             )}
                   
+            </tr> */}
+            <tr>
+            <td>Apply Online</td>
+            <td>  <a className="apply-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdpNooX5zIUvk2YdFglC79ufFaOUkIwXfqZmdSqX1ZRt6K4qw/alreadyresponded" target="_blank" rel="noopener noreferrer">
+      Open  Form
+    </a></td>
+
             </tr>
             <tr>
               <td>official Notification Details</td>

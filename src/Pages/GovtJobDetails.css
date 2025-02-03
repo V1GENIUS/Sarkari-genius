@@ -1,236 +1,318 @@
+/* Global Styles */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Container for job details */
+.job_details {
+  justify-content: center;
+  margin: 50px auto;
+  padding: 20px;
+  margin-top: 100px;
+  max-width: 1200px;
+}
+
+/* Apply box-sizing for all elements */
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+/* WhatsApp card animation */
+.whatsapp-card {
+  animation: whatsapp-border-animation 1s infinite;
+}
+
+/* Group card styles */
+.group-card {
+  margin-bottom: 20px;
+  position: relative;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background: #f0f8ff;
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  width: 100%;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* WhatsApp icon styling */
+.seoquake-nofollow .fab.fa-whatsapp {
+  font-size: 24px;
+  width: 100%;
+  color: #25d366;
+}
+
+/* Text styling for the WhatsApp channel */
+.seoquake-nofollow .join-now-text {
+  font-weight: bold;
+  margin-left: 10px;
+  font-size: 0.9rem;
+}
+
+/* Style for the WhatsApp icon */
+.join-now-container img {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+}
+
+/* Animation for the border */
+@keyframes whatsapp-border-animation {
+  0% {
+    border-color: transparent;
   }
-  
+  50% {
+    border-color: #25d366;
+  }
+  100% {
+    border-color: transparent;
+  }
+}
+
+/* Job page styles */
+.job_page {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Job title styles */
+.job_title {
+  color: #0073e6;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Post name styles */
+.post_name {
+  color: #207705;
+  font-size: 20px;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Organization name styling */
+.organization {
+  color: #ff0000;
+  font-size: 30px;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Section header styling */
+.section_header {
+  font-size: 30px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+/* Job details container */
+.job-details-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+/* Table styling */
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.details-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  color: #555;
+  font-style: italic;
+}
+
+.details-table td:first-child {
+  font-weight: bold;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.details-table td:last-child {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Table link styling */
+.table-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.table-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* WhatsApp share button styles */
+.whatsapp-share-button {
+  background-color: #25d366;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.whatsapp-share-button:hover {
+  background-color: #22b358;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content input[type="tel"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-content button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+/* Apply button styling */
+.apply-button {
+  justify-content: center;
+  background-color: transparent;
+  border: transparent;
+  color: rgb(254, 0, 152);
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+
+/* Tablet View */
+@media screen and (max-width: 768px) {
   .job_details {
-    justify-content: center;
-    margin: 50px auto;
-    padding: 20px;
-    margin-top: 100px;
-    max-width: 1200px;
-  }
-  
-  .job_page {
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   
-  }
-  
-  .job_title {
-    color: #0073e6;
-    font-size: 28px;
-    text-align: center;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .post_name{
-      color: #207705;
-      font-size: 20px;
-      margin: 5px 0;
-      text-align: center;
-      font-weight: bold;
-  }
-
-  .organization {
-    color: #ff0000;
-    font-size: 30px;
-    margin: 5px 0;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  .section_header {
-    font-size: 30px;
-    margin: 20px 0;
-    border-radius: 5px;
+    padding: 5px;
   }
 
   .job-details-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-  }
-  
- 
-  
-  .details-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    padding: 10px;
   }
 
   .details-table td {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .post_name {
+    font-size: 1rem;
+  }
+
+  .job_title {
+    font-size: 1.5rem;
+  }
+
+  .organization {
+    font-size: 1.1rem;
+  }
+}
+
+/* Mobile View */
+@media screen and (max-width: 375px) {
+  .job_details {
+    padding: 0px;
+  }
+
+  .job-details-container {
     padding: 10px;
-    border: 1px solid #ddd;
-    color: #555;
-    font-style:italic;
   }
 
-  .details-table td:first-child {
-    font-weight: bold;
-    background-color: #f1f1f1;
-    text-align: center;
+  .details-table td {
+    font-size: 9px;
+    padding: 3px;
+    color: #2c2c2c;
   }
 
-  .details-table td:last-child {
-    text-align: center;
-    font-weight: bold;
+  .job_title {
+    font-size: 0.9rem;
   }
 
-  .table-link {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
+  .post_name {
+    font-size: 0.8rem;
   }
-  
-  .table-link:hover {
-    color: #0056b3;
-    text-decoration: underline;
-  }
-  
-  .whatsapp-share-button {
-    background-color: #25d366;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .whatsapp-share-button:hover {
-    background-color: #22b358;
-  }
-  
 
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .organization {
+    font-size: 0.9rem;
   }
-  
+
+  /* Adjust modal content width for mobile */
   .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 400px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .modal-content h2 {
-    margin-bottom: 20px;
-  }
-  
-  .modal-content label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .modal-content input[type="text"],
-  .modal-content input[type="number"],
-  .modal-content input[type="tel"] {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .modal-content button {
-    padding: 10px 15px;
-    margin: 5px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .modal-content button:hover {
-    background-color: #0056b3;
+    padding: 10px;
   }
 
-
-  .apply-button{
-    justify-content: center;
-    background-color: transparent;
-    border: transparent;
-    /* text-decoration: none; */
-    color: rgb(254, 0, 152);
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    text-decoration: underline;
-    
-
+  /* Adjust apply button on mobile */
+  .apply-button {
+    font-size: 13px;
   }
-  @media screen and (max-width: 768px) {
-    .job_details{
-      padding: 5px;
-    }
-    .job-details-container {
-      padding: 10px;
-    }
-
-    .details-table td {
-      font-size: 14px;
-      padding: 1px;
-    }
-
-    .post_name{
-      font-size: 1rem;
-      
-    }
-
-    .job_title {
-      font-size: 1.5rem;
-    }
-    .organization {
-      font-size: 1.1rem;
-    }
-  }
-
-  @media screen and (max-width: 375px) {
-    .job_details{
-      padding: 0px;
-    }
-    .job-details-container {
-      padding: 10px;
-    }
-
-    .details-table td {
-      font-size: 9px;
-      padding: 0px;
-      color: #2c2c2c;
-    }
-
-    
-
-    .job_title {
-      font-size: 0.9rem;
-    }
-    .post_name{
-      font-size: 0.6rem;
-    }
-    .organization {
-      font-size: 0.9rem;
-    }
-  }
+}

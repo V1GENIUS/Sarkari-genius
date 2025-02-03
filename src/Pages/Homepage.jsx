@@ -191,8 +191,6 @@ function Homepage() {
   )
 }
 
-
-// Utility function to generate random colors
 function getRandomColor() {
   const colors = [
     'rgb(123, 255, 0)',
