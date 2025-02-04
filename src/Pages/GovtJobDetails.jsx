@@ -15,14 +15,14 @@ function GovtJobDetails() {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const { id } = useParams();
-  const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    mobile: "",
-    jobDetails: "",
-    agree: false,
-  });
+  // const [showForm, setShowForm] = useState(false);
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   age: "",
+  //   mobile: "",
+  //   jobDetails: "",
+  //   agree: false,
+  // });
 
   useEffect(() => {
   
@@ -65,19 +65,19 @@ function GovtJobDetails() {
   
   
 
-  const handleChangeInquiry = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+  // const handleChangeInquiry = (e) => {
+  //   const { name, value, type, checked } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: type === "checkbox" ? checked : value,
+  //   });
+  // };
 
-  const handleInquirySubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    setShowForm(false); 
-  };
+  // const handleInquirySubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Form Data Submitted:", formData);
+  //   setShowForm(false); 
+  // };
 
   const formatDate = (dateString) => {
     if (!dateString) return "Invalid Date"; 

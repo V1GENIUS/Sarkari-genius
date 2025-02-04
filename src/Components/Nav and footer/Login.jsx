@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./RegisterLogin.css";
 import APILoginRegister from "../Api/ApiLoginRegister";
 import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+// import { jwtDecode } from "jwt-decode";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -61,12 +61,12 @@ function Login() {
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const decoded = jwtDecode(credentialResponse.credential);
-      const googleUserData = {
-        email: decoded.email,
-        name: decoded.name,
-        googleId: decoded.sub,
-      };
+      // const decoded = jwtDecode(credentialResponse.credential);
+      // const googleUserData = {
+      //   email: decoded.email,
+      //   name: decoded.name,
+      //   googleId: decoded.sub,
+      // };
 
       const response = await fetch(APILoginRegister.googleLogin, {
         method: "POST",
