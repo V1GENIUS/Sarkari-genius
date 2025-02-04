@@ -278,16 +278,24 @@ function GovtJobDetails() {
                   <td>{jobDetails?.jobLocation?.location || "N/A"}</td>
             </tr>
             <tr>
-              <td>Qualification</td>
-              <td>{jobDetails?.Qualification?.map((docs, index) => (
-                  <li key={index}>{docs}</li>
-                ))} </td>
-            </tr>
+  <td>Qualification</td>
+  <td>
+    {Array.isArray(jobDetails?.Qualification) ? (
+      jobDetails.Qualification.map((docs, index) => (
+        <li key={index}>{docs}</li>
+      ))
+    ) : (
+      <li>{jobDetails?.Qualification || 'N/A'}</li>  // Fallback if it's not an array
+    )}
+  </td>
+</tr>
+
             <tr>
             <td>Documents</td>
             <td>
               
-                {jobDetails?.documentDetails?.map((doc, index) => (
+                {jobDetails?.documentDetails?.map((doc, index) =>
+                 (
                   <li key={index}>{doc}</li>
                 ))}
               
