@@ -1,5 +1,5 @@
-// const BASE_URL = "https://sarkari-genius.onrender.com";
-const BASE_URL = "http://localhost:7000";
+const BASE_URL = "https://sarkari-genius.onrender.com";
+// const BASE_URL = "http://localhost:7000";
 
 const APIGovtCards = {
   getCardDetails: (id) => `${BASE_URL}/api/cards/${id}`,
