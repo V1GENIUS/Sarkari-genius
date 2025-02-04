@@ -279,8 +279,8 @@ function GovtJobDetails() {
             </tr>
             <tr>
               <td>Qualification</td>
-              <td>{jobDetails?.Qualification?.map((doc, index) => (
-                  <li key={index}>{doc}</li>
+              <td>{jobDetails?.Qualification?.map((docs, index) => (
+                  <li key={index}>{docs}</li>
                 ))} </td>
             </tr>
             <tr>
