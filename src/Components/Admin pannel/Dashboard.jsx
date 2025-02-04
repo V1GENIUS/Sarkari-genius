@@ -41,7 +41,7 @@ const [isCardPopupVisible, setCardPopupVisible] = useState(false);
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        // const response = await axios.get('http://localhost:7000/api/cards');
+      
         const response = await axios.get(APIGovtCards.getAllCards);
         console.log(response.data);
         setCardData(response.data);
@@ -96,7 +96,6 @@ const [isCardPopupVisible, setCardPopupVisible] = useState(false);
       setError("Error updating job");
     }
   };
-
 
   const handleEditCard = (card) => {
     setEditCard(card);
@@ -188,7 +187,7 @@ const [isCardPopupVisible, setCardPopupVisible] = useState(false);
               <tbody>
             
 
-{jobData.map((job, index) => (
+                {jobData.map((job, index) => (
                   <tr key={index}>
                     <td>{job.postName}</td>
                     <td>
@@ -235,7 +234,7 @@ const [isCardPopupVisible, setCardPopupVisible] = useState(false);
               <tbody>
             
 
-{cardData.map((card, index) => (
+              {cardData.map((card, index) => (
                   <tr key={index}>
                     <td>{card.cardName}</td>
                     <td>

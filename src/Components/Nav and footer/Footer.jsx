@@ -1,12 +1,16 @@
 import React from 'react';
 import './Footer.css';
 import { NavLink } from 'react-router-dom';
+import whatsapp from '../Images/whatsapp.png';
+import facebook from '../Images/whatsapp.png';
+import twitter from '../Images/whatsapp.png';
+import linkedin from '../Images/whatsapp.png';
 
 function Footer() {
   return (
     <>
-      <div className='footer'>
-        <div className='footer-section'>
+      <div className="footer">
+        <div className="footer-section">
           <h2>Quick Links</h2>
           <ul className="footer__list">
             <li className="foot__item">
@@ -14,11 +18,6 @@ function Footer() {
                 Home
               </NavLink>
             </li>
-            {/* <li className="foot__item">
-              <NavLink to="/it-jobs" className="foot__link">
-                IT Jobs
-              </NavLink>
-            </li> */}
             <li className="foot__item">
               <NavLink to="/govt-jobs" className="foot__link">
                 Govt Jobs
@@ -27,7 +26,7 @@ function Footer() {
           </ul>
         </div>
 
-        <div className='footer-section'>
+        <div className="footer-section">
           <h2>Overview</h2>
           <ul className="overview__list">
             <li className="overview_item">
@@ -42,46 +41,37 @@ function Footer() {
             </li>
           </ul>
         </div>
-        
 
-        <div className='footer'>
-        <div className='footer-section'>
+        <div className="footer-section">
           <h2>Follow Us</h2>
           <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-facebook-f"></i>
+            <a href="https://wa.me/yourwhatsapplink" target="_blank" rel="noopener noreferrer">
+              <img src={whatsapp} alt="WhatsApp" className="social-icon" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-twitter"></i>
+            <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+              <img src={facebook} alt="Facebook" className="social-icon" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-linkedin-in"></i>
+            <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+              <img src={twitter} alt="Twitter" className="social-icon" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-instagram"></i>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+              <img src={linkedin} alt="LinkedIn" className="social-icon" />
             </a>
           </div>
         </div>
 
-        <div className='footer-section'>
+        <div className="footer-section">
           <h2>Subscribe</h2>
           <form className="newsletter-form">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="newsletter-input"
-            />
+            <input type="email" placeholder="Enter your email" className="newsletter-input" />
             <button type="submit" className="newsletter-button">
               Subscribe
             </button>
           </form>
         </div>
-
-        </div>
-
-       
       </div>
-      <div className='footer-bottom'>
+
+      <div className="footer-bottom">
         <p>&copy; 2025 Sarkari Genius. All Rights Reserved.</p>
       </div>
     </>

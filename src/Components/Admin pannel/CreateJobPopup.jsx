@@ -18,7 +18,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
       relaxation: '',
     },
     selectionProcess:'',
-    Qualification:[{eligibility:'',Note:''}],
+    Qualification: [''],
     jobLocation: { location: '' },
     documentDetails: [''],
     
@@ -65,7 +65,10 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
       } else if (field === 'ageLimit') {
         updatedDetails.ageLimit[name] = value;
       } else if (field === 'documentDetails') {
-        updatedDetails.documentDetails[index] = value; // Fix for document details array
+        updatedDetails.documentDetails[index] = value;
+        
+      }else if (field === 'Qualification') {
+        updatedDetails.Qualification[index] = value;
       } else {
         updatedDetails[field] = value;
       }
@@ -75,25 +78,25 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
   };
   
 
-  // const addRow = (field) => {
-  //   const updatedDetails = { ...jobDetails };
-  //   const newRow = {
-  //     fees: { category: '', amount: '' },
-  //     selection: { process: '' },
-  //     jobLocation: { location: '' },
-  //     importantDates: { notificationDate: '', startDate: '', lastDate: '' },
-  //   };
-
-  //   updatedDetails[field].push(newRow[field]);
-  //   setJobDetails(updatedDetails);
-  // };
-
   const addRow = (field) => {
-    setJobDetails((prevDetails) => ({
-      ...prevDetails,
-      [field]: [...prevDetails[field], ''], 
-    }));
+    const updatedDetails = { ...jobDetails };
+    const newRow = {
+      fees: { category: '', amount: '' },
+      selection: { process: '' },
+      jobLocation: { location: '' },
+      importantDates: { notificationDate: '', startDate: '', lastDate: '' },
+    };
+
+    updatedDetails[field].push(newRow[field]);
+    setJobDetails(updatedDetails);
   };
+
+  // const addRow = (field) => {
+  //   setJobDetails((prevDetails) => ({
+  //     ...prevDetails,
+  //     [field]: [...prevDetails[field], ''], 
+  //   }));
+  // };
   
 
 
@@ -307,32 +310,32 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
 
     
 
-      <div className="form-row">
-      <h2>Needed Documents</h2>
-{jobDetails.documentDetails.map((doc, index) => (
-  <div key={index} className="document-row">
-    <input
-      type="text"
-      placeholder="Enter document name"
-      value={doc}
-      required
-      onChange={(e) => handleChange(e, 'documentDetails', index)}
-    />
-    <button
-      type="button"
-      onClick={() => removeRow('documentDetails', index)}
-      className="remove-button"
-    >
-      Remove
-    </button>
-  </div>
-))}
-<button type="button" onClick={() => addRow('documentDetails')} className="add-button">
-  Add Document
-</button>
+              <div className="form-row">
+              <h2>Needed Documents</h2>
+        {jobDetails.documentDetails.map((doc, index) => (
+          <div key={index} className="document-row">
+            <input
+              type="text"
+              placeholder="Enter document name"
+              value={doc}
+              required
+              onChange={(e) => handleChange(e, 'documentDetails', index)}
+            />
+            <button
+              type="button"
+              onClick={() => removeRow('documentDetails', index)}
+              className="remove-button"
+            >
+              Remove
+            </button>
+          </div>
+        ))}
+        <button type="button" onClick={() => addRow('documentDetails')} className="add-button">
+          Add Document
+        </button>
 
-      </div>
-    
+              </div>
+            
 
 
 
@@ -364,9 +367,64 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
           </div>
  */}
 
-       
+          {/* <div className="form-row">
+                <h2>Qualification</h2>
+          {jobDetails.Qualification.map((doc, index) => (
+            <div key={index} className="document-row">
+              <input
+                type="text"
+                placeholder="Enter Qualification"
+                value={doc}
+                required
+                onChange={(e) => handleChange(e, 'Qualification', index)}
+              />
+              <button
+                type="button"
+                onClick={() => removeRow('Qualification', index)}
+                className="remove-button"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button type="button" onClick={() => addRow('Qualification')} className="add-button">
+            Add Qualification
+          </button>
 
-          <h2>Qualification</h2>
+                </div>
+               */}
+                <div className="form-row">
+  <h2>Qualification</h2>
+  {jobDetails.Qualification.map((qualification, index) => (
+    <div key={index} className="input-row">
+      <input
+        type="text"
+        placeholder="Enter Qualification"
+        value={qualification}
+        required
+        onChange={(e) => handleChange(e, 'Qualification', index)}
+        className="input-field"
+      />
+      <button
+        type="button"
+        onClick={() => removeRow('Qualification', index)}
+        className="remove-button"
+      >
+        Remove
+      </button>
+    </div>
+  ))}
+  <button
+    type="button"
+    onClick={() => addRow('Qualification')}
+    className="add-button"
+  >
+    + Add Qualification
+  </button>
+</div>
+
+
+          {/* <h2>Qualification</h2>
           <div className="form-group">
             <label>Eligibility</label>
             <input
@@ -382,8 +440,8 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
               }
               required
             />
-          </div>
-          <div className="form-group">
+          </div> */}
+          {/* <div className="form-group">
             <label>Note</label>
             <input
               name="Note"
@@ -397,7 +455,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
                 }))
               }
             />
-          </div>
+          </div> */}
           <div className="form-group">
             <label>official notification link</label>
             <input

@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 import APIGovtJobs from '../Components/Api/ApiGovtJobs.js'
 import LoadingSpinner from "../Components/LoadingSpinner.jsx";
 import { SpeedInsights } from "@vercel/speed-insights/react"
-import  Whatsappicon from '../Images/whatsapp.png';
+import { Analytics } from "@vercel/analytics/react"
+import  Whatsappicon from '../Components/Images/whatsapp.png';
 
 function GovtJobDetails() {
   const [jobDetails, setJobDetails] = useState(null); 
@@ -147,6 +148,7 @@ function GovtJobDetails() {
       <div className="job_details">
         <div className="job_page">
           <SpeedInsights/>
+          <Analytics/>
           <div className="group-card whatsapp-card">
             <a
               className="seoquake-nofollow"
@@ -277,18 +279,20 @@ function GovtJobDetails() {
             </tr>
             <tr>
               <td>Qualification</td>
-              <td>{jobDetails?.Qualification?.eligibility }</td>
+              <td>{jobDetails?.Qualification?.map((doc, index) => (
+                  <li key={index}>{doc}</li>
+                ))} </td>
             </tr>
             <tr>
-  <td>Documents</td>
-  <td>
-    
-      {jobDetails?.documentDetails?.map((doc, index) => (
-        <li key={index}>{doc}</li>
-      ))}
-    
-  </td>
-</tr>
+            <td>Documents</td>
+            <td>
+              
+                {jobDetails?.documentDetails?.map((doc, index) => (
+                  <li key={index}>{doc}</li>
+                ))}
+              
+            </td>
+          </tr>
 {/* 
             <tr>
               <td>Apply Online</td>

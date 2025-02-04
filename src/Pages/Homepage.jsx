@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../Components/Nav and footer/Navbar'
 import Footer from '../Components/Nav and footer/Footer'
 import './Homepage.css'
-import HomeImage from '../Images/HomeImage.svg'
+import HomeImage from '../Components/Images/HomeImage.svg'
 import { useParams } from "react-router-dom";
 import APIGovtJobs from "../Components/Api/ApiGovtJobs.js";
+import { Analytics } from "@vercel/analytics/react"
 
 function Homepage() {
   const [jobs, setJobs] = useState([]);
@@ -36,7 +37,9 @@ function Homepage() {
   <>
   <div>
     <Navbar/>
+    <Analytics/>
     <div className='homeSection_1'>
+
       <div className='First_content'>
         <div>
         <h2>Welcome to No.1 Education portal Sarkari Genius</h2>

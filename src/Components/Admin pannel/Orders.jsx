@@ -12,7 +12,6 @@ function Orders() {
           </div>
           <div style={{display:'flex'}}>
             <div className='earn_box'>
-              
 
               <div className='earn_items'>
                 <div>
@@ -45,21 +44,11 @@ function Orders() {
 
               </div>
               <div className='earning_summary'>
-            
             </div>
-
             </div>
             <div className='earn_circle'>
-
             </div>
-
           </div>
-          
-
-         
-
-          
-
         </div>
     </div>
     </>

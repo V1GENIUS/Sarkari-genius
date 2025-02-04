@@ -1,112 +1,144 @@
+/* Base Styles */
 .GovtJobCard {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 15px;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.GovtJobCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.GovtJobHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.GovtJobHeading h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.GovtJobHeading h6 {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0;
+}
+
+.GovtJobName {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.GovtJobName h3 {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.GovtJobName button {
+  background-color: #00ff40;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.GovtJobName button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+
+/* Tablets and Small Screens */
+@media (max-width: 768px) {
+  .GovtJobCard {
+    padding: 15px;
+    min-width: 280px;
   }
-  
-  .GovtJobCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-  }
-  
-  .GovtJobHeading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
+
   .GovtJobHeading h1 {
-    font-size: 1.5rem;
-    color: #333;
-    margin: 0;
-  }
-  
-  .GovtJobHeading h6 {
-    font-size: 0.9rem;
-    color: #777;
-    margin: 0;
-  }
-  
-  .GovtJobName {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 10px;
-  }
-  
-  .GovtJobName h3 {
     font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 10px;
   }
-  
+
+  .GovtJobHeading h6 {
+    font-size: 0.8rem;
+  }
+
+  .GovtJobName h3 {
+    font-size: 1rem;
+  }
+
   .GovtJobName button {
-    background-color: #00ff40;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+}
+
+/* Mobile Phones (Portrait) */
+@media (max-width: 480px) {
+  .GovtJobCard {
+    padding: 10px;
+    min-width: 240px;
+    width: 100%;
+  }
+
+  .GovtJobHeading h1 {
+    font-size: 1rem;
+  }
+
+  .GovtJobHeading h6 {
+    font-size: 0.75rem;
+  }
+
+  .GovtJobName h3 {
     font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
   }
-  
-  .GovtJobName button:hover {
-    background-color: #0056b3;
+
+  .GovtJobName button {
+    font-size: 0.8rem;
+    padding: 7px 10px;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .GovtJobCard {
-      padding: 15px;
-      
-    }
-  
-    .GovtJobHeading h1 {
-      font-size: 1.2rem;
-    }
-  
-    .GovtJobHeading h6 {
-      font-size: 0.8rem;
-    }
-  
-    .GovtJobName h3 {
-      font-size: 1rem;
-    }
-  
-    .GovtJobName button {
-      font-size: 0.8rem;
-    }
+}
+
+/* Extra Small Devices (Very Small Phones) */
+@media (max-width: 320px) {
+  .GovtJobCard {
+    padding: 8px;
+    width: 100%;
   }
-  @media (max-width: 320px) {
-    .GovtJobCard {
-      /* padding: 15px; */
-      width: 250px;
-    }
-  
-    .GovtJobHeading h1 {
-      font-size: 1.0rem;
-    }
-  
-    .GovtJobHeading h6 {
-      font-size: 0.5rem;
-    }
-  
-    .GovtJobName h3 {
-      font-size: 0.8rem;
-    }
-  
-    .GovtJobName button {
-      font-size: 0.7rem;
-    }
+
+  .GovtJobHeading h1 {
+    font-size: 0.8rem;
   }
-  
+
+  .GovtJobHeading h6 {
+    font-size: 0.6rem;
+  }
+
+  .GovtJobName h3 {
+    font-size: 0.7rem;
+  }
+
+  .GovtJobName button {
+    font-size: 0.7rem;
+    padding: 6px 8px;
+  }
+}
