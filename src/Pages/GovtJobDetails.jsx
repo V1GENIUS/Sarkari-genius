@@ -56,7 +56,8 @@ function GovtJobDetails() {
     if (!jobDetails) return "";
     const jobLink = `${window.location.origin}/job-detail/${id}`; 
     return `
-     ${jobDetails.postName } भर्ती एव आवेदन!
+    ${jobDetails.postName } भर्ती एव आवेदन!
+    --------------------------------
   *Organization* : ${jobDetails.organization }
   *Post Name* : ${jobDetails.postName }
   *Vacancies* : ${jobDetails.vacancy }
@@ -81,7 +82,11 @@ function GovtJobDetails() {
  *Qualification* : ${Array.isArray(jobDetails?.Qualification) 
   ? jobDetails.Qualification.join(", ") 
   : jobDetails?.Qualification || 'N/A'}
+
   *Job Details Link* : ${jobLink}
+  -------------------------------
+  *Join Now* : http://bit.ly/4gFoloY 
+  _______________________________
     `;
   };
   
