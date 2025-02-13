@@ -9,15 +9,19 @@ import APIGovtJobs from "../Api/ApiGovtJobs";
 import APIGovtCards from '../Api/ApiGovtCard';
 import LoadingSpinner from '../LoadingSpinner';
 import CreateCard from './CreateCard';
+import { Link } from 'react-router-dom';
+import EditJob from './EditJob';
 
 function Dashboard() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isJobPopupVisible, setJobPopupVisible] = useState(false); 
+  const [isJobEditVisible, setJobEditVisible] = useState(false); 
 const [isCardPopupVisible, setCardPopupVisible] = useState(false); 
   const [jobData, setJobData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editJob, setEditJob] = useState(null); 
+
 
 
   const [cardData, setCardData] = useState([]);
@@ -69,15 +73,12 @@ const [isCardPopupVisible, setCardPopupVisible] = useState(false);
   const handleViewClick = (job) => {
     navigate(`/job-detail/${job._id}`);
   };
-  const handleEditJob = (job) => {
-    setEditJob(job);
-    setJobPopupVisible(true);
-  };
+
 
 
   const handleUpdateJob = async (updatedJob) => {
     try {
-      const response = await axios.put(APIGovtJobs.updateJob(), updatedJob);
+      const response = await axios.put(`${APIGovtJobs.updateJob}/${updatedJob}`);
       setJobData(jobData.map(job => (job._id === updatedJob._id ? response.data.job : job)));
       setJobPopupVisible(false);
       setEditJob(null);
@@ -86,15 +87,9 @@ const [isCardPopupVisible, setCardPopupVisible] = useState(false);
     }
   };
 
-  const handleUpdateCard = async (updatedCard) => {
-    try {
-      const response = await axios.put(APIGovtCards.updateCard(), updatedCard);
-      setCardData(cardData.map(card => (card._id === updatedCard._id ? response.data.card : card)));
-      setCardPopupVisible(false);
-      setEditJob(null);
-    } catch (err) {
-      setError("Error updating job");
-    }
+  const handleEditJob = (job) => {
+    setEditJob(job);
+    setJobPopupVisible(true);
   };
 
   const handleEditCard = (card) => {
@@ -150,10 +145,10 @@ const [isCardPopupVisible, setCardPopupVisible] = useState(false);
             <div>
               <button className='job-create' onClick={() => setJobPopupVisible(true)}>+ Create Job</button>
               <CreateJobPopup
-                isVisible={isJobPopupVisible} 
-                onClose={() => setJobPopupVisible(false)} 
-                job={editJob}
-                onSave={handleUpdateJob}
+              isVisible={isJobPopupVisible} 
+              onClose={() => setJobPopupVisible(false)} 
+               job={editJob}
+                 onSave={handleUpdateJob}
               />
             </div>
             <div>
@@ -162,13 +157,24 @@ const [isCardPopupVisible, setCardPopupVisible] = useState(false);
                 isVisible={isCardPopupVisible} 
                 onClose={() => setCardPopupVisible(false)}
                 job={editCard}
-                onSave={handleUpdateCard}
+                // onSave={handleUpdateCard}
               />
             </div>
             <div>
               <button className='job-create' onClick={CreateJobLink}>Create Job Link</button>
             </div>
       </div>
+
+      {isJobEditVisible && (
+           <EditJob 
+           job={editJob}  
+           isVisible={isJobEditVisible} 
+           onClose={() => setJobEditVisible(false)} 
+         />
+          )}
+          
+          
+        
 
       
           <div className="job-details-container">
@@ -211,7 +217,12 @@ const [isCardPopupVisible, setCardPopupVisible] = useState(false);
                     </td>
                     <td>
                     <button className='form-btn' onClick={() => handleViewClick(job)}>View</button>
-                      <button className='form-btn' onClick={() => handleEditJob(job._id)}>Edit</button>
+                  
+            
+
+                  
+                    <button className='form-btn' onClick={() => handleEditJob(job)}>Edit</button>
+                  
                       <button className='form-btn' onClick={() => handleDeleteJob(job._id)}>Delete</button>
                     </td>
                   </tr>

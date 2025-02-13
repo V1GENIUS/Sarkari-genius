@@ -17,6 +17,7 @@ import CreateJobPopup from './Components/Admin pannel/CreateJobPopup.jsx';
 import CreateCard from './Components/Admin pannel/CreateCard';
 import ProtectedRoute from './Components/ProtectedRoute';
 import Analytics from './Components/Admin pannel/AnalyticsPage.jsx';
+import EditJob from './Components/Admin pannel/EditJob.jsx';
 
 
 
@@ -60,6 +61,13 @@ function App() {
             path="/analytics"  element={
               <ProtectedRoute isAdmin={true}>
                 <Analytics />
+              </ProtectedRoute>
+            } 
+          />
+            <Route 
+            path="/edit-job/:id"  element={
+              <ProtectedRoute isAdmin={true}>
+                <EditJob />
               </ProtectedRoute>
             } 
           />

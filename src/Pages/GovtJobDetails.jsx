@@ -15,14 +15,7 @@ function GovtJobDetails() {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const { id } = useParams();
-  // const [showForm, setShowForm] = useState(false);
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   age: "",
-  //   mobile: "",
-  //   jobDetails: "",
-  //   agree: false,
-  // });
+ 
 
   useEffect(() => {
   
@@ -40,44 +33,9 @@ function GovtJobDetails() {
   }, [id]);
 
 
-  useEffect(() => {
-    const logVisitorAnalytics = async () => {
-      try {
-        const jobId = id; 
-        const userAgent = navigator.userAgent;
-        const ip = await fetch("https://api.ipify.org?format=json")
-          .then((res) => res.json())
-          .then((data) => data.ip);
-  
-        await axios.post(APIGovtJobs.AnalyticsLog,{
-          ip,
-          userAgent,
-          jobId,
-          visitedAt: new Date(),
-        });
-      } catch (err) {
-        console.error("Failed to log analytics:", err);
-      }
-    };
-  
-    logVisitorAnalytics();
-  }, [id]);
   
   
 
-  // const handleChangeInquiry = (e) => {
-  //   const { name, value, type, checked } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: type === "checkbox" ? checked : value,
-  //   });
-  // };
-
-  // const handleInquirySubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Form Data Submitted:", formData);
-  //   setShowForm(false); 
-  // };
 
   const formatDate = (dateString) => {
     if (!dateString) return "Invalid Date"; 
@@ -98,6 +56,7 @@ function GovtJobDetails() {
     if (!jobDetails) return "";
     const jobLink = `${window.location.origin}/job-detail/${id}`; 
     return `
+     ${jobDetails.vacancy } भर्ती एव आवेदन!
   *Organization* : ${jobDetails.organization }
   *Post Name* : ${jobDetails.postName }
   *Vacancies* : ${jobDetails.vacancy }
@@ -119,8 +78,9 @@ function GovtJobDetails() {
     }
   *Selection Process* : ${jobDetails?.selectionProcess || "N/A"}
   *Job Location* : ${jobDetails.jobLocation?.location || "N/A"}
-  *Qualification* : ${jobDetails?.Qualification?.eligibility || "N/A"}
-
+ *Qualification* : ${Array.isArray(jobDetails?.Qualification) 
+  ? jobDetails.Qualification.join(", ") 
+  : jobDetails?.Qualification || 'N/A'}
   *Job Details Link* : ${jobLink}
     `;
   };

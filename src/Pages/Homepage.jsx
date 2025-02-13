@@ -44,19 +44,24 @@ function Homepage() {
         <div>
         <h2>Welcome to No.1 Education portal Sarkari Genius</h2>
     
-
         <div className="head_btn">
-  {jobs.map((job) => (
-    <button
-      key={job.id} job={job}
-      className="head_btn_1"
-      style={{ backgroundColor: getRandomColor() }}
-      onClick={() => handleHeadClick(job)}
-    >
-      <span><b>{job.postName}</b></span>
-    </button>
-  ))}
-</div>
+        {jobs
+          .slice() 
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .map((job) => (
+            <button
+              key={job.id}
+              job={job}
+              className="head_btn_1"
+              style={{ backgroundColor: getRandomColor() }}
+              onClick={() => handleHeadClick(job)}
+            >
+              <span><b>{job.postName}</b></span>
+            </button>
+          ))}
+      </div>
+
+       
 
 
 
@@ -72,47 +77,6 @@ function Homepage() {
     </div>
 
 
-{/* ////////////////////////////////////////////////////////// */}
-
-    {/* <div className='homeSection_2'>
-      <div style={{display:'flex'}}>
-         <div className='find_job'>
-      <h1>Find Govt Job Easily </h1>
-      <div><li>Genius Job is your Source for Government Job listing across central and state departments.  
-      </li>
-      <li>out platforms keeps you updates with latest opening,</li>
-      <li>so you can find the right role quickly and easily
-      </li></div>
-      
-
-
-         </div>
-
-        
-         <div className='quick_search'>
-      <h1>Quick & simple Search</h1>
-      <div>
-      <li>Easily browse. filter. and apply for jobs in just few clicks.</li>
-      <li>Our user friendly features</li>
-      <li>One click application, real time job searching and smooth</li>
-
-      </div>
-    
-      </div> 
-      </div>
-      <div className='form_filling'>
-      <h1>Form filling Assistance</h1>
-     
-
-      <div>
-<li>Need help with application ? </li>
-      <li>Our work from home Assistance Service providersexpert Guidance for form filling</li>
-      <li>Understanding eligibility, and meeting deadlines  All from  comfort at your home</li>
-      </div>
-     
-         </div>
-      </div> */}
-
 
       {/* ////////////////////////////////////////////////////////////// */}
 
@@ -120,13 +84,16 @@ function Homepage() {
       <div className='home_result'>
           <h3>Latest Jobs</h3>
           <div className="latest_job">
-        
-          {jobs.map((job) => (
-            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
-            </li>
-          ))}
-        
+            {jobs
+              .slice() 
+              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
+              .map((job) => (
+                <li key={job._id} onClick={() => handleHeadClick(job)}>
+                  {job.postName}
+                </li>
+              ))}
           </div>
+
 
         </div>
         <div className='home_result'>
