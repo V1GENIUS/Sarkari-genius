@@ -37,22 +37,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
   }, [jobData, isEditMode]);
  
 
-  // const handleChange = (e, field, index) => {
-  //   const { name, value } = e.target;
-  //   setJobDetails((prevDetails) => {
-  //     const updatedDetails = { ...prevDetails };
 
-  //     if (field === 'fees' || field === 'importantDates' || field === 'Qualification' || field === ' documentDetails') {
-  //       updatedDetails[field][index][name] = value;
-  //     } else if (field === 'ageLimit') {
-  //       updatedDetails.ageLimit[name] = value;
-  //     } else {
-  //       updatedDetails[field] = value;
-  //     }
-
-  //     return updatedDetails;
-  //   });
-  // };
 
   const handleChange = (e, field, index) => {
     const { name, value } = e.target;
@@ -91,21 +76,7 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
     setJobDetails(updatedDetails);
   };
 
-  // const addRow = (field) => {
-  //   setJobDetails((prevDetails) => ({
-  //     ...prevDetails,
-  //     [field]: [...prevDetails[field], ''], 
-  //   }));
-  // };
   
-
-
-  // const removeRow = (field, index) => {
-  //   setJobDetails((prev) => ({
-  //     ...prev,
-  //     [field]: prev[field].filter((_, i) => i !== index)
-  //   }));
-  // };
 
   const removeRow = (field, index) => {
     setJobDetails((prevDetails) => ({
@@ -335,127 +306,39 @@ function CreateJobPopup({ jobData,isVisible, onClose,isEditMode ,jobId }) {
         </button>
 
               </div>
-            
-
-
-
-          {/* <div className="form-row">
-            <label>Needed document</label>
-            <input
-              type="text"
-              name="doc"
-              value={jobDetails.documentDetails.doc}
-              required
-              onChange={(e) =>
-                setJobDetails((prev) => ({
-                  ...prev,
-                  jobLocation: { ...prev.documentDetails, doc: e.target.value },
-                }))
-              }
-            />
-          </div> */}
-
-          {/* <div className="form-group">
-            <label></label>
-            <input
-              type="text"
-              value={jobDetails.documentDetails}
-              onChange={(e) => handleChange(e, 'documentDetails')}
-              placeholder="Enter document details"
-              required
-            />
-          </div>
- */}
-
-          {/* <div className="form-row">
-                <h2>Qualification</h2>
-          {jobDetails.Qualification.map((doc, index) => (
-            <div key={index} className="document-row">
-              <input
-                type="text"
-                placeholder="Enter Qualification"
-                value={doc}
-                required
-                onChange={(e) => handleChange(e, 'Qualification', index)}
-              />
-              <button
-                type="button"
-                onClick={() => removeRow('Qualification', index)}
-                className="remove-button"
-              >
-                Remove
-              </button>
-            </div>
-          ))}
-          <button type="button" onClick={() => addRow('Qualification')} className="add-button">
-            Add Qualification
-          </button>
-
-                </div>
-               */}
+  
                 <div className="form-row">
-  <h2>Qualification</h2>
-  {jobDetails.Qualification.map((qualification, index) => (
-    <div key={index} className="input-row">
-      <input
-        type="text"
-        placeholder="Enter Qualification"
-        value={qualification}
-        required
-        onChange={(e) => handleChange(e, 'Qualification', index)}
-        className="input-field"
-      />
-      <button
-        type="button"
-        onClick={() => removeRow('Qualification', index)}
-        className="remove-button"
-      >
-        Remove
-      </button>
-    </div>
-  ))}
-  <button
-    type="button"
-    onClick={() => addRow('Qualification')}
-    className="add-button"
-  >
-    + Add Qualification
-  </button>
-</div>
+            <h2>Qualification</h2>
+            {jobDetails.Qualification.map((qualification, index) => (
+              <div key={index} className="input-row">
+                <input
+                  type="text"
+                  placeholder="Enter Qualification"
+                  value={qualification}
+                  required
+                  onChange={(e) => handleChange(e, 'Qualification', index)}
+                  className="input-field"
+                />
+                <button
+                  type="button"
+                  onClick={() => removeRow('Qualification', index)}
+                  className="remove-button"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => addRow('Qualification')}
+              className="add-button"
+            >
+              + Add Qualification
+            </button>
+          </div>
 
 
-          {/* <h2>Qualification</h2>
-          <div className="form-group">
-            <label>Eligibility</label>
-            <input
-              name="eligibility"
-              type="text"
-              placeholder="Enter eligibility criteria"
-              value={jobDetails.Qualification.eligibility}
-              onChange={(e) =>
-                setJobDetails((prev) => ({
-                  ...prev,
-                  Qualification: { ...prev.Qualification, eligibility: e.target.value },
-                }))
-              }
-              required
-            />
-          </div> */}
-          {/* <div className="form-group">
-            <label>Note</label>
-            <input
-              name="Note"
-              type="text"
-              placeholder="Additional notes"
-              value={jobDetails.Qualification.Note}
-              onChange={(e) =>
-                setJobDetails((prev) => ({
-                  ...prev,
-                  Qualification: { ...prev.Qualification, Note: e.target.value },
-                }))
-              }
-            />
-          </div> */}
+      
           <div className="form-group">
             <label>official notification link</label>
             <input

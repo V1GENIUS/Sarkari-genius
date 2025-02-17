@@ -56,8 +56,8 @@ function GovtJobDetails() {
     if (!jobDetails) return "";
     const jobLink = `${window.location.origin}/job-detail/${id}`; 
     return `
-    ${jobDetails.postName } भर्ती एव आवेदन!
-    --------------------------------
+  *${jobDetails.postName } भर्ती एव आवेदन!*
+  --------------------------------
   *Organization* : ${jobDetails.organization }
   *Post Name* : ${jobDetails.postName }
   *Vacancies* : ${jobDetails.vacancy }

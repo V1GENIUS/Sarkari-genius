@@ -7,7 +7,7 @@ const BASE_URL = "https://sarkari-genius.onrender.com";
 const APIGovtJobs = {
   getJobDetails: (id) => `${BASE_URL}/api/jobs/${id}`,
   createJob: `${BASE_URL}/api/jobs/create`,
-  updateJob: (id) => `${BASE_URL}/api/jobs/jobs${id}`,
+  updateJob: (id) => `${BASE_URL}/api/jobs/jobs/${id}`,
   deleteJob: (id) => `${BASE_URL}/api/jobs/${id}`,
   getAllJobs: `${BASE_URL}/api/jobs` ,
  
