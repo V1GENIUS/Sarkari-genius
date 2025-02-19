@@ -169,11 +169,11 @@ function getRandomColor() {
     'rgb(227, 90, 255)',
     'rgb(0, 255, 119)',
     'rgb(255, 183, 0)',
-    'rgb(255, 45, 97)',
+    'rgba(253, 26, 26, 0.89)',
     'rgb(255, 8, 206)',
     'rgb(38, 147, 225)',
     'rgb(229, 255, 0)',
-    'rgb(135, 115, 0)',
+    'rgba(255, 217, 0, 0.67)',
   ];
   return colors[Math.floor(Math.random() * colors.length)];
 }
