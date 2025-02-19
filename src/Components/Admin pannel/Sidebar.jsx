@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
-import { NavLink,useNavigate  } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa'; // Menu icon
 
 function Sidebar() {
@@ -14,25 +14,21 @@ function Sidebar() {
       const isSmallScreen = window.innerWidth < 768;
       setIsMobile(isSmallScreen);
       setIsOpen(!isSmallScreen); 
-      
     };
 
     handleResize(); // Check on initial render
-    window.addEventListener('resize', handleResize); // Update on resize
+    window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize); // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
-   // Logout function
-   const handleLogout = () => {
-    // Clear token from local storage
+  // Logout function
+  const handleLogout = () => {
     localStorage.removeItem("token");
-
-    // Redirect to login page
     navigate("/login");
   };
 
@@ -53,7 +49,7 @@ function Sidebar() {
           </div>
         </div>
 
-        <div className="nav_items">
+        <nav className="nav_items">
           <NavLink to="/dashboard" className="nav_text">Dashboard</NavLink>
           <NavLink to="/orders" className="nav_text">Total Order</NavLink>
           <NavLink to="/revenue" className="nav_text">Revenue</NavLink>
@@ -61,7 +57,7 @@ function Sidebar() {
           <button className="nav_text logout_button" onClick={handleLogout}>
             Logout
           </button>
-        </div>
+        </nav>
       </div>
     </>
   );

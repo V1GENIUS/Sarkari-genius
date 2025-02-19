@@ -177,7 +177,7 @@ function Dashboard() {
                   <th>Post Name</th>
                   <th>Dates</th>
                   <th>Organization</th>
-                  <th>Fees</th>
+                  {/* <th>Fees</th> */}
                   <th>Age Limit</th>
                   <th>Actions</th>
                 </tr>
@@ -186,22 +186,22 @@ function Dashboard() {
                 {jobData.map((job, index) => (
                   <tr key={index}>
                     <td>{job.postName}</td>
-                    <td>
+                    <td style={{}}>
                       {job.importantDates.map((dates, i) => (
                         <div key={i}>
-                          Start: {formatDate(dates.startDate)} <br />
-                          Last: {formatDate(dates.lastDate)}
+                          {formatDate(dates.startDate)} 
+                         <br/><b style={{color:'red'}}>{formatDate(dates.lastDate)}</b>
                         </div>
                       ))}
                     </td>
                     <td>{job.organization}</td>
-                    <td>
+                    {/* <td>
                       {job.fees.map((fee, i) => (
                         <div key={i}>
                           {fee.category}: <br /> ₹{fee.amount}
                         </div>
                       ))}
-                    </td>
+                    </td> */}
                     <td>
                       {job.ageLimit.min} - {job.ageLimit.max} years
                     </td>

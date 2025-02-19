@@ -1,295 +1,325 @@
+/* ================================
+   Base Styles (Desktop Default)
+   ================================ */
 
-
-   /* General styles for the dashboard */
-.dashboard {
-  display: flex;
-  background-color: #f5f7fa;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  min-height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-/* Sidebar styling */
-.sidebar {
-  width: 250px;
-  background: #1e293b;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Dashboard heading */
-.dashboard_head {
-  margin-bottom: 20px;
-}
-
-.dashboard_head h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #1e293b;
-  text-align: center;
-}
-
-/* Button styles */
-.job-create {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.job-create:hover {
-  background-color: #45a049;
-}
-
-.job-create:active {
-  background-color: #388e3c;
-}
-
-/* Table styling */
-.job-details-container {
-  margin-top: 30px;
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.job-details-container h1 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  color: #1e293b;
-  text-align: center;
-}
-
-.job-details-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-.job-details-table th,
-.job-details-table td {
-  padding: 15px;
-  border: 1px solid #ddd;
-}
-
-.job-details-table th {
-  background-color: #4caf50;
-  color: white;
-  font-size: 1rem;
-}
-
-.job-details-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.job-details-table tr:hover {
-  background-color: #f1f1f1;
-}
-
-.job-details-table td button {
-  padding: 8px 15px;
-  margin: 5px;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.job-details-table td button:first-child {
-  background-color: #2196f3;
-  color: white;
-}
-
-.job-details-table td button:first-child:hover {
-  background-color: #1e88e5;
-}
-
-.job-details-table td button:last-child {
-  background-color: #f44336;
-  color: white;
-}
-
-.job-details-table td button:last-child:hover {
-  background-color: #e53935;
-}
-
-/* Popup styles */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.popup-container {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.popup-container h1 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.close-button {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #999;
-}
-
-.close-button:hover {
-  color: #555;
-}
-
-.form-btn {
-  min-width: 80px;  /* Minimum width for better visibility */
-  min-height: 35px; /* Minimum height for easy tapping */
-  padding: 8px 16px; 
-  background-color: #4caf50; /* Professional button color */
-  color: white; 
-  border: none; 
-  border-radius: 5px; 
-  text-decoration: none; 
-  font-size: 1rem; 
-  cursor: pointer; 
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: inline-flex; 
-  justify-content: center; 
-  align-items: center;
-}
-
-.form-btn:hover {
-  background-color: #45a049; 
-  transform: scale(1.05); 
-}
-
-.form-btn:active {
-  background-color: #388e3c; 
-  transform: scale(0.98); 
-}
-.submit-button {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 30px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.submit-button:hover {
-  background-color: #45a049;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .dashboard {
-    /* flex-direction: column; */
-    padding: 10px;
-  }
-
-  .sidebar {
-    /* width: 100%; */
-    margin-bottom: 20px;
-    /* position: absolute; */
+   .dashboard {
+    display: flex;
+    background-color: #f5f7fa;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
   }
   
-
+  .sidebar {
+    width: 250px;
+    background: #1e293b;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dashboard_head {
+    margin-bottom: 20px;
+  }
+  
+  .dashboard_head h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e293b;
+    text-align: center;
+  }
+  
+  /* Button styles */
+  .job-create {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .job-create:hover {
+    background-color: #45a049;
+  }
+  
+  .job-create:active {
+    background-color: #388e3c;
+  }
+  
+  /* Table styling */
+  .job-details-container {
+    margin-top: 30px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .job-details-container h1 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #1e293b;
+    text-align: center;
+  }
+  
+  .job-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  
   .job-details-table th,
   .job-details-table td {
-    font-size: 0.7rem;
+    /* padding: 5px; */
+    border: 1px solid #ddd;
   }
-
-  .job-create {
-    font-size: 0.9rem;
-    padding: 8px 15px;
+  
+  .job-details-table th {
+    background-color: #4caf50;
+    color: white;
+    font-size: 0.8rem;
   }
-}
-
-@media (max-width: 480px) {
-  .job-details-container {
-    padding: 15px;
+  
+  .job-details-table tr:nth-child(even) {
+    background-color: #f9f9f9;
   }
-  .form-btn {
-    min-width: 70px; 
-    padding: 6px 12px; 
+  
+  .job-details-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Base button style in table cells */
+  .job-details-table td button {
+    padding: 6px 10px;
+    margin: 5px;
     font-size: 0.9rem; 
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
   }
-
-  .job-details-table th,
-  .job-details-table td {
-    font-size: 0.7rem;
-    /* padding: 8px; */
+  
+  .job-details-table td button:first-child {
+    background-color: #2196f3;
+    color: white;
   }
-  .sidebar {
+  
+  .job-details-table td button:first-child:hover {
+    background-color: #1e88e5;
+  }
+  
+  .job-details-table td button:last-child {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .job-details-table td button:last-child:hover {
+    background-color: #e53935;
+  }
+  
+  /* Popup styles */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .popup-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .close-button {
     position: absolute;
-   }
-
-  .job-create {
-    font-size: 0.8rem;
-    padding: 6px 10px;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
   }
-
-  .popup-container {
-    padding: 20px;
+  
+  .close-button:hover {
+    color: #555;
   }
-}
-@media (max-width: 320px) {
-  .job-details-container {
-    padding: 15px;
-  }
-
-  .job-details-table th,
-  .job-details-table td {
-    font-size: 0.5rem;
-    /* padding: 8px; */
-  }
-
+  
+  /* form-btn base styles */
   .form-btn {
-    min-width: 60px; 
-    padding: 4px 10px; 
-    font-size: 0.8rem; 
+    min-width: 60px;
+    min-height: 30px;
+    padding: 8px 16px;
+    background-color: #21c727;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
-
-  .sidebar {
-   position: absolute;
+  
+  .form-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
   }
-
-  .job-create {
-    font-size: 0.8rem;
-    padding: 6px 10px;
+  
+  .form-btn:active {
+    background-color: #388e3c;
+    transform: scale(0.98);
   }
-
-  .popup-container {
-    padding: 20px;
+  
+  .submit-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 30px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
   }
-}
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* ================================
+     Big Screen Styles (min-width: 1200px)
+     ================================ */
+  @media (min-width: 1200px) {
+    .dashboard_head h1 {
+      font-size: 2.5rem;
+    }
+    .job-create {
+      font-size: 1.2rem;
+      padding: 12px 25px;
+    }
+    .job-details-table th,
+    .job-details-table td {
+      font-size: 1rem;
+      padding: 5px;
+    }
+    .popup-container {
+      padding: 40px;
+    }
+  }
+  
+  /* ================================
+     Tablet Styles (max-width: 768px)
+     ================================ */
+  @media (max-width: 768px) {
+    .dashboard {
+      padding: 15px;
+    }
+    .sidebar {
+      margin-bottom: 20px;
+    }
+    .job-details-table th,
+    .job-details-table td {
+      font-size: 0.7rem;
+      padding: 5px;
+    }
+    .job-create {
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+  }
+  
+  /* ================================
+     Mobile Styles (max-width: 480px)
+     ================================ */
+  @media (max-width: 480px) {
+    .job-details-container {
+      padding: 15px;
+    }
+    .job-details-table th,
+    .job-details-table td {
+      font-size: 0.6rem;
+      padding: 5px;
+    }
+    /* Make the table buttons smaller on mobile */
+    .job-details-table td button {
+      font-size: 0.65rem;
+      padding: 4px 6px;
+    }
+    .sidebar {
+      position: absolute;
+      width: 200px;
+      padding: 15px;
+    }
+    .job-create {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+    .popup-container {
+      padding: 20px;
+    }
+    .form-btn {
+      min-width: 40px;
+      min-height: 25px;
+      font-size: 0.6rem;
+      padding: 4px 6px;
+    }
+  }
+  
+  /* ================================
+     Very Small Mobile Styles (max-width: 320px)
+     ================================ */
+  @media (max-width: 320px) {
+    .job-details-container {
+      padding: 10px;
+    }
+    .job-details-table th,
+    .job-details-table td {
+      font-size: 0.5rem;
+      padding: 5px;
+    }
+    /* Further reduce table button size */
+    .job-details-table td button {
+      font-size: 0.55rem;
+      padding: 3px 4px;
+    }
+    .job-create {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+    }
+    .popup-container {
+      padding: 15px;
+    }
+    .form-btn {
+      min-width: 35px;
+      min-height: 20px;
+      font-size: 0.5rem;
+      padding: 2px 5px;
+    }
+  }
+  

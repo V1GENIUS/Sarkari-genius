@@ -12,11 +12,11 @@
   }
   
   .sidebar.closed {
-    transform: translateX(-100%); /* Sidebar hidden */
+    transform: translateX(-100%); 
   }
   
   .sidebar.open {
-    transform: translateX(0); /* Sidebar visible */
+    transform: translateX(0); 
   }
   
   .admin_profile {

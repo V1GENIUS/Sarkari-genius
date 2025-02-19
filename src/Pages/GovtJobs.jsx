@@ -11,7 +11,7 @@ function GovtJobs() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(APIGovtJobs.getAllJobs) 
+    fetch(APIGovtJobs.getAllJobs)
       .then((response) => response.json())
       .then((data) => setJobs(data))
       .catch((error) => console.error('Error fetching jobs:', error));

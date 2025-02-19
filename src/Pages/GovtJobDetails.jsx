@@ -208,7 +208,7 @@ function GovtJobDetails() {
                       <tr key={index}>
                         <div style={{display:'flex', textAlign:'center',color:'green'}}>
                         <b>{fee.category || "General"}
-                        -: {fee.amount ? `${fee.amount}/-` : "N/A"}</b>
+                        -: {fee.amount ? `${fee.amount}/-` : "0/-"}</b>
                         </div>
                       </tr>
                       ))}

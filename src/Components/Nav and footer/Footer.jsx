@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css';
 import { NavLink } from 'react-router-dom';
 import whatsapp from '../Images/whatsapp.png';
-import facebook from '../Images/whatsapp.png';
+import facebook from '../Images/facebook.png';
 import twitter from '../Images/whatsapp.png';
 import linkedin from '../Images/whatsapp.png';
 
@@ -48,7 +48,7 @@ function Footer() {
             <a href="https://wa.me/yourwhatsapplink" target="_blank" rel="noopener noreferrer">
               <img src={whatsapp} alt="WhatsApp" className="social-icon" />
             </a>
-            <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/share/12FJ6yEsHtN/" target="_blank" rel="noopener noreferrer">
               <img src={facebook} alt="Facebook" className="social-icon" />
             </a>
             <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
