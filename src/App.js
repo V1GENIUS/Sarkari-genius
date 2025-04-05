@@ -1,8 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from './Pages/Homepage';
-import ITJobs from './Pages/ITJobs';
+
 import GovtJobs from './Pages/GovtJobs';
+import PrivateJobs from './Pages/PrivateJobs.jsx';
 import Register from './Components/Nav and footer/Register';
 import Login from './Components/Nav and footer/Login';
 import Dashboard from './Components/Admin pannel/Dashboard';
@@ -11,6 +12,7 @@ import Revenue from './Components/Admin pannel/Revenue';
 import Orders from './Components/Admin pannel/Orders';
 import AboutUs from './Pages/AboutUs';
 import GovtJobDetails from './Pages/GovtJobDetails';
+import PrivateJobDetails from './Pages/PrivateJobDetails.jsx';
 import AdmitCard from './Pages/AdmitCard';
 
 import CreateJobPopup from './Components/Admin pannel/CreateJobPopup.jsx';
@@ -30,11 +32,14 @@ function App() {
 
        <Routes>
          <Route path="/" element={<Homepage />} />
-         <Route path="/it-jobs" element={<ITJobs />} />
          <Route path="/admit-card" element={<AdmitCard />} />
          
          <Route path="/govt-jobs" element={<GovtJobs />} />
          <Route path="/job-detail/:id" element={<GovtJobDetails />} />
+
+         <Route path="/private-jobs" element={<PrivateJobs />} />
+         <Route path="/pri-detail/:id" element={<PrivateJobDetails />} />
+
          <Route path="/about" element={<AboutUs />} />
         
 {/* ///////////////////////////////////////////////// */}
@@ -62,7 +67,7 @@ function App() {
               <ProtectedRoute isAdmin={true}>
                 <Analytics />
               </ProtectedRoute>
-            } 
+            }   
           />
             <Route 
             path="/edit-job/:id"  element={

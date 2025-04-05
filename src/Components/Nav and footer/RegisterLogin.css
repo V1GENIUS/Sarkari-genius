@@ -87,8 +87,8 @@ body {
   /* ///////////Register Page CSS/////////// */
   
   .register_page {
-    width: 90%; /* Default to 90% of screen width */
-    max-width: 450px; /* Limit max width */
+    width: 90%; 
+    max-width: 450px;
     padding: 20px;
     border: 1px solid rgb(6, 252, 23);
     border-radius: 20px;
@@ -113,7 +113,7 @@ body {
   
   
   .register_input input {
-    width: 80%; /* Flexible width for small devices */
+    width: 80%; 
     max-width: 300px;
     height: 50px;
     border-radius: 30px;
@@ -124,7 +124,7 @@ body {
     color: black;
   }
   
-  .registers_btn {
+  .logins_btn {
     width: 120px;
     height: 40px;
     margin: 20px auto;
@@ -134,12 +134,12 @@ body {
     background-color: rgb(112, 232, 69);
   }
   
-  .registers_btn:hover {
+  .logins_btn:hover {
     color: white;
     background-color: rgb(13, 145, 9);
   }
   
-  .logins_btn {
+  .registers_btn {
     background: none;
     border: none;
     text-decoration: none;
@@ -147,8 +147,13 @@ body {
     cursor: pointer;
   }
   
-  .logins_btn:hover {
+  .registers_btn:hover {
     color: blue;
+  }
+
+  .error-message{
+    color:red;
+    font-style: bold;
   }
   
   /* ///////////Responsive Design/////////// */
@@ -161,14 +166,14 @@ body {
   
     .login_page,
     .register_page {
-      width: 95%; /* Use full width for small screens */
+      width: 95%; 
       margin: 10px auto;
       padding: 15px;
     }
   
     .login_input input,
     .register_input input {
-      width: 90%; /* Use most of the screen width */
+      width: 90%;
       max-width: none;
       font-size: 14px;
     }

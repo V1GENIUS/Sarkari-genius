@@ -23,6 +23,11 @@ function Footer() {
                 Govt Jobs
               </NavLink>
             </li>
+            <li className="foot__item">
+              <NavLink to="/private-jobs" className="foot__link">
+                Private Jobs
+              </NavLink>
+            </li>
           </ul>
         </div>
 

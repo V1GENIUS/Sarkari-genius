@@ -1,5 +1,5 @@
-import React,{ useEffect, useState }  from 'react'
-import { useNavigate } from 'react-router-dom';
+
+import {React ,useEffect, useState ,useNavigate} from '../Utils/import.js'
 import Navbar from '../Components/Nav and footer/Navbar'
 import Footer from '../Components/Nav and footer/Footer'
 import './Homepage.css'
@@ -12,6 +12,9 @@ function Homepage() {
   const [jobs, setJobs] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
+  const [user, setUser] = useState(null);
+ 
+
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -28,7 +31,23 @@ function Homepage() {
     fetchJobs();
   }, [id]);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const name = localStorage.getItem("name");
+    const role = localStorage.getItem("role");
 
+    if (token && name) {
+      setUser({ name, role });
+    } else {
+      setUser(null);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setUser(null);
+    navigate("/login");
+  };
 
   const handleHeadClick = (job) => {
     navigate(`/job-detail/${job._id}`, { state: { job } });
@@ -36,8 +55,9 @@ function Homepage() {
   return (
   <>
   <div>
-    <Navbar/>
+    <Navbar  user={user} handleLogout={handleLogout} />
     <Analytics/>
+   
     <div className='homeSection_1'>
 
       <div className='First_content'>
@@ -60,22 +80,13 @@ function Homepage() {
             </button>
           ))}
       </div>
-
-       
-
-
-
         </div>
 
         <div  className='HomeImage'>
           <img src={HomeImage} alt='homeImage' height={500} width={500} ></img>
         </div>
-      
       </div>
-
-      
     </div>
-
 
 
       {/* ////////////////////////////////////////////////////////////// */}

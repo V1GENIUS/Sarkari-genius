@@ -1,0 +1,190 @@
+/* Base Styles */
+.privateSection_1 {
+    text-align: center;
+    margin: 80px 20px;
+    margin-top: 500px;
+    padding: 20px;
+    background-color: #d8b053;
+    border-radius: 10px;
+  }
+  
+  .privateSection_1 h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .privateSection_1 h3 {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .private_cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .private-section {
+    padding: 40px 20px;
+    background: #f8f9fa;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 100px;
+  }
+  
+  .private-section h1 {
+    font-size: 36px;
+    color: #003366;
+    margin-bottom: 10px;
+  }
+  
+  .private-section h3 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  
+  .private-section .highlight {
+    color: #cc00ad;
+    font-weight: 600;
+  }
+  
+  .private-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* You can style the PrivateJobCard like this */
+  .private-job-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .private-job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .private-job-card h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .private-job-card p {
+    margin: 4px 0;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .private-job-card button {
+    margin-top: 10px;
+    background-color: #007acc;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .private-job-card button:hover {
+    background-color: #005f99;
+  }
+  
+  /* Responsive Design */
+  
+  /* Large Tablets and Small Desktops */
+  @media (max-width: 1024px) {
+    .private_cards {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+  }
+  
+  /* Tablets and Medium Screens */
+  @media (max-width: 768px) {
+    .privateSection_1 {
+      margin: 60px 15px;
+      padding: 15px;
+    }
+  
+    .privateSection_1 h1 {
+      font-size: 1.8rem;
+    }
+  
+    .privateSection_1 h3 {
+      font-size: 1.1rem;
+    }
+  
+    .private_cards {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+    }
+  }
+  
+  /* Mobile Phones */
+  @media (max-width: 480px) {
+    .privateSection_1 {
+      margin: 90px 10px;
+      padding: 10px;
+    }
+  
+    .privateSection_1 h1 {
+      font-size: 1.5rem;
+    }
+  
+    .privateSection_1 h3 {
+      font-size: 1rem;
+    }
+  
+    .private_cards {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+  
+  /* Extra Small Devices */
+  @media (max-width: 375px) {
+    .privateSection_1 h1 {
+      font-size: 1.4rem;
+    }
+  
+    .privateSection_1 h3 {
+      font-size: 0.9rem;
+    }
+  
+    .private_cards {
+      padding: 10px;
+    }
+  }
+  
+  /* Very Small Phones */
+  @media (max-width: 320px) {
+    .privateSection_1 {
+      margin: 30px 5px;
+      padding: 8px;
+    }
+  
+    .privateSection_1 h1 {
+      font-size: 1.2rem;
+    }
+  
+    .privateSection_1 h3 {
+      font-size: 0.8rem;
+    }
+  
+    .private_cards {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+  

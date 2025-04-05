@@ -10,6 +10,9 @@ import APIGovtCards from '../Api/ApiGovtCard';
 import LoadingSpinner from '../LoadingSpinner';
 import CreateCard from './CreateCard';
 import EditJob from './EditJob';
+import CreatePrivateJobs from './CreatePrivateJobs';
+import APIPrivateJobs from '../Api/ApiPrivateJobs';
+import EditPrivateJob from './EditPrivateJob';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -17,9 +20,13 @@ function Dashboard() {
   const [isJobPopupVisible, setJobPopupVisible] = useState(false);
   const [isJobEditVisible, setJobEditVisible] = useState(false);
   const [isCardPopupVisible, setCardPopupVisible] = useState(false);
+  const [isPrivateJobPopupVisible, setPrivateJobPopupVisible] = useState(false);
+  const [isPrivateJobEditVisible, setPrivateJobEditVisible] = useState(false);
   const [jobData, setJobData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editJob, setEditJob] = useState(null);
+  const [privateJobData, setPrivateJobData] = useState([]);
+  const [editPrivateJob, setEditPrivateJob] = useState(null);
   const [cardData, setCardData] = useState([]);
   const [editCard, setEditCard] = useState(null);
 
@@ -52,6 +59,21 @@ function Dashboard() {
     fetchCards();
   }, []);
 
+  useEffect(() => {
+    const fetchPrivateJobs = async () => {
+      try {
+        const response = await axios.get(APIPrivateJobs.getAllPrivateJobs);
+        console.log(response.data);
+        setPrivateJobData(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError("Error fetching job data");
+        setLoading(false);
+      }
+    };
+    fetchPrivateJobs();
+  }, []);
+
   const handleDeleteJob = async (jobId) => {
     try {
       await axios.delete(APIGovtJobs.deleteJob(jobId));
@@ -61,8 +83,20 @@ function Dashboard() {
     }
   };
 
+  const handleDeletePrivateJob = async (jobId) => {
+    try {
+      await axios.delete(APIPrivateJobs.deletePrivateJob(jobId));
+      setPrivateJobData(privateJobData.filter(job => job._id !== jobId));
+    } catch (err) {
+      setError("Error deleting job");
+    }
+  };
+
   const handleViewClick = (job) => {
     navigate(`/job-detail/${job._id}`);
+  };
+  const handlePrivateJobClick = (job) => {
+    navigate(`/pri-detail/${job._id}`);
   };
 
   const handleUpdateJob = async (updatedJob) => {
@@ -80,11 +114,35 @@ function Dashboard() {
     }
   };
 
+  const handleUpdatePrivateJob = async (updatePrivateJob) => {
+    try {
+      // Assuming updatedJob contains _id and other fields to update
+      const response = await axios.put(
+        `${APIPrivateJobs.updatePrivateJob}/${updatePrivateJob._id}`,
+        updatePrivateJob
+      );
+      setPrivateJobData(privateJobData.map(job => (job._id === updatePrivateJob._id ? response.data.job : job)));
+      setPrivateJobEditVisible(false);
+      setEditPrivateJob(null);
+
+    } catch (err) {
+      setError("Error updating job");
+    }
+  };
+
   // Updated: Now this function opens the EditJob modal
   const handleEditJob = (job) => {
     setEditJob(job);
     setJobEditVisible(true);
   };
+
+  const handleEditPrivateJob = (job) => {
+    setEditPrivateJob(job);
+    // setPrivateJobPopupVisible(true);
+    setPrivateJobEditVisible(true);
+
+  };
+
 
   const handleEditCard = (card) => {
     setEditCard(card);
@@ -120,9 +178,7 @@ function Dashboard() {
     }
   };
 
-  const CreateJobLink = () => {
-    navigate('/job-create');
-  };
+ 
 
   return (
     <>
@@ -154,10 +210,17 @@ function Dashboard() {
               />
             </div>
             <div>
-              <button className="job-create" onClick={CreateJobLink}>
-                Create Job Link
+              <button className="job-create" onClick={() => setPrivateJobPopupVisible(true)}>
+                + Create Private Job
               </button>
+              <CreatePrivateJobs
+                isVisible={isPrivateJobPopupVisible}
+                onClose={() => setPrivateJobPopupVisible(false)}
+                job={editCard}
+              />
             </div>
+            
+            
           </div>
 
           {isJobEditVisible && (
@@ -169,6 +232,23 @@ function Dashboard() {
             />
           )}
 
+          {/* {isPrivateJobEditVisible && (
+                      <EditPrivateJob
+                        job={editPrivateJob}
+                        isVisible={isPrivateJobEditVisible}
+                        onClose={() => setPrivateJobEditVisible(false)}
+                        onSave={handleUpdatePrivateJob}
+                      />
+                    )}   */}
+
+<EditPrivateJob
+  job={editPrivateJob}
+  isVisible={isPrivateJobEditVisible}
+  onClose={() => setPrivateJobEditVisible(false)}
+  onSave={handleUpdatePrivateJob}
+/>
+
+
           <div className="job-details-container">
             <h1>Job Details</h1>
             <table className="job-details-table">
@@ -177,7 +257,7 @@ function Dashboard() {
                   <th>Post Name</th>
                   <th>Dates</th>
                   <th>Organization</th>
-                  {/* <th>Fees</th> */}
+                 
                   <th>Age Limit</th>
                   <th>Actions</th>
                 </tr>
@@ -213,6 +293,41 @@ function Dashboard() {
                         Edit
                       </button>
                       <button className="form-btn" onClick={() => handleDeleteJob(job._id)}>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+
+          <div className="job-details-container">
+            <h1>Private Job Details</h1>
+            <table className="job-details-table">
+              <thead>
+                <tr>
+                  <th>Job Designation</th>
+                  <th>Organization</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {privateJobData.map((job, index) => (
+                  <tr key={index}>
+                    <td>{job.JobDegination}</td>
+                    
+                    <td>{job.organization}</td>
+                  
+                    <td>
+                      <button className="form-btn" onClick={() => handlePrivateJobClick(job)}>
+                        View
+                      </button>
+                      <button className="form-btn" onClick={() => handleEditPrivateJob(job)}>
+                        Edit
+                      </button>
+                      <button className="form-btn" onClick={() => handleDeletePrivateJob(job._id)}>
                         Delete
                       </button>
                     </td>

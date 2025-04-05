@@ -3,6 +3,7 @@ import "./GovtJobDetails.css";
 import Navbar from "../Components/Nav and footer/Navbar";
 import Footer from "../Components/Nav and footer/Footer";
 import axios from "axios"; 
+import { useNavigate} from '../Utils/import.js'
 import { useParams } from "react-router-dom"; 
 import APIGovtJobs from '../Components/Api/ApiGovtJobs.js'
 import LoadingSpinner from "../Components/LoadingSpinner.jsx";
@@ -15,9 +16,25 @@ function GovtJobDetails() {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const { id } = useParams();
+   const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+    const handleLogout = () => {
+      localStorage.clear();
+      setUser(null);
+      navigate("/login");
+    };
  
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const name = localStorage.getItem("name");
+    const role = localStorage.getItem("role");
+
+    if (token && name) {
+      setUser({ name, role });
+    } else {
+      setUser(null);
+    }
   
     axios
       .get(APIGovtJobs.getJobDetails(id))
@@ -109,7 +126,7 @@ function GovtJobDetails() {
   return (
     <>
 <div>
-      <Navbar />
+<Navbar  user={user} handleLogout={handleLogout} />
       <div className="job_details">
         <div className="job_page">
           <SpeedInsights/>

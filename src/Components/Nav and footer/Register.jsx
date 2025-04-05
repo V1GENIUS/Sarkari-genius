@@ -51,6 +51,7 @@ function Register() {
             placeholder="Name"
             value={formData.name}
             onChange={handleChange}
+            required
           />
           <input
             type="text"
@@ -58,6 +59,7 @@ function Register() {
             placeholder="Username"
             value={formData.username}
             onChange={handleChange}
+            required
           />
           <input
             type="email"
@@ -65,6 +67,7 @@ function Register() {
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
           <input
             type="password"
@@ -72,6 +75,7 @@ function Register() {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            required
           />
           <button className="registers_btn" onClick={handleRegister}>
             Register

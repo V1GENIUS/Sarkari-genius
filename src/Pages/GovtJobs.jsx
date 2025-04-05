@@ -4,13 +4,29 @@ import './GovtJobs.css';
 import Navbar from '../Components/Nav and footer/Navbar';
 import Footer from '../Components/Nav and footer/Footer';
 import GovtJobCard from '../Components/GovtJobCard';
-import APIGovtJobs from "../Components/Api/ApiGovtJobs.js";
+import APIGovtJobs from "../Components/Api/ApiGovtJobs";
 
 function GovtJobs() {
   const [jobs, setJobs] = useState([]);
-  const navigate = useNavigate();
+  
+   const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+    const handleLogout = () => {
+      localStorage.clear();
+      setUser(null);
+      navigate("/login");
+    };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const name = localStorage.getItem("name");
+    const role = localStorage.getItem("role");
+
+    if (token && name) {
+      setUser({ name, role });
+    } else {
+      setUser(null);
+    }
     fetch(APIGovtJobs.getAllJobs)
       .then((response) => response.json())
       .then((data) => setJobs(data))
@@ -23,7 +39,7 @@ function GovtJobs() {
 
   return (
     <>
-      <Navbar />
+      <Navbar  user={user} handleLogout={handleLogout} />
       <div className="govtSection_1">
         <h1>Sarkari Job Vacancy</h1>
         <h3>

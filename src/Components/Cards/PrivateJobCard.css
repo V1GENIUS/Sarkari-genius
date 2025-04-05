@@ -1,0 +1,151 @@
+/* Updated PrivateJobCard Styles */
+.PrivateJobCard {
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    /* Create a gradient border effect */
+    background-image: linear-gradient(white, white), linear-gradient(to right, #00ff40, #0056b3);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .PrivateJobCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .PrivateJobHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .PrivateJobHeading h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .PrivateJobHeading h6 {
+    font-size: 1rem;
+    color: #777;
+    margin: 0;
+  }
+  
+  .PrivateJobName {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 15px;
+  }
+  
+  .PrivateJobName h3 {
+    font-size: 1.4rem;
+    color: #555;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  
+  .PrivateJobName button {
+    background: linear-gradient(45deg, #00ff40, #0056b3);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .PrivateJobName button:hover {
+    background: linear-gradient(45deg, #0056b3, #00ff40);
+  }
+  
+  /* Responsive Design */
+  
+  /* Tablets and Small Screens */
+  @media (max-width: 768px) {
+    .PrivateJobCard {
+      padding: 15px;
+      margin: 15px;
+    }
+  
+    .PrivateJobHeading h1 {
+      font-size: 1.5rem;
+    }
+  
+    .PrivateJobHeading h6 {
+      font-size: 0.9rem;
+    }
+  
+    .PrivateJobName h3 {
+      font-size: 1.2rem;
+    }
+  
+    .PrivateJobName button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+  
+  /* Mobile Phones (Portrait) */
+  @media (max-width: 480px) {
+    .PrivateJobCard {
+      padding: 10px;
+      margin: 10px;
+      width: 100%;
+    }
+  
+    .PrivateJobHeading h1 {
+      font-size: 1.3rem;
+    }
+  
+    .PrivateJobHeading h6 {
+      font-size: 0.8rem;
+    }
+  
+    .PrivateJobName h3 {
+      font-size: 1rem;
+    }
+  
+    .PrivateJobName button {
+      font-size: 0.85rem;
+      padding: 7px 14px;
+    }
+  }
+  
+  /* Extra Small Devices (Very Small Phones) */
+  @media (max-width: 320px) {
+    .PrivateJobCard {
+      padding: 8px;
+      margin: 8px;
+    }
+  
+    .PrivateJobHeading h1 {
+      font-size: 1rem;
+    }
+  
+    .PrivateJobHeading h6 {
+      font-size: 0.7rem;
+    }
+  
+    .PrivateJobName h3 {
+      font-size: 0.9rem;
+    }
+  
+    .PrivateJobName button {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+  }
+  

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import "./RegisterLogin.css";
 import APILoginRegister from "../Api/ApiLoginRegister";
 import { GoogleLogin } from "@react-oauth/google";
-// import { jwtDecode } from "jwt-decode";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -11,30 +11,27 @@ function Login() {
     password: "",
   });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Redirect if the user is already logged in
+  // Redirect if already logged in
   useEffect(() => {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
-
     if (token) {
-      if (role === "admin") {
-        navigate("/dashboard"); // Redirect to admin dashboard
-      } else {
-        navigate("/"); // Redirect to home page for normal users
-      }
+      navigate(role === "admin" ? "/dashboard" : "/");
     }
   }, [navigate]);
-
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
   const handleLogin = async () => {
+    setError("");
+    setLoading(true);
     try {
       const response = await fetch(APILoginRegister.login, {
         method: "POST",
@@ -43,52 +40,50 @@ function Login() {
       });
       const result = await response.json();
       if (response.ok) {
-        localStorage.setItem("token", result.token);
-        localStorage.setItem("role", result.user.role);
-
-        if (result.user.role === "admin") {
-          navigate("/dashboard");
-        } else {
-          navigate("/");
-        }
+        const { token, user } = result;
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", user.role);
+        localStorage.setItem("name", user.name); // Save name for navbar
+        navigate(user.role === "admin" ? "/dashboard" : "/");
       } else {
-        setError(result.message || "Login failed.");
+        setError(result.message || "Login failed");
       }
     } catch (err) {
       setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleGoogleSuccess = async (credentialResponse) => {
+    setError("");
+    setLoading(true);
     try {
-      // const decoded = jwtDecode(credentialResponse.credential);
-      // const googleUserData = {
-      //   email: decoded.email,
-      //   name: decoded.name,
-      //   googleId: decoded.sub,
-      // };
-
+      const decoded = jwtDecode(credentialResponse.credential);
+      const googleUser = {
+        email: decoded.email,
+        name: decoded.name,
+      };
       const response = await fetch(APILoginRegister.googleLogin, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: credentialResponse.credential }),
+        body: JSON.stringify(googleUser),
       });
 
       const result = await response.json();
       if (response.ok) {
-        localStorage.setItem("token", result.token);
-        localStorage.setItem("role", result.user.role);
-
-        if (result.user.role === "admin") {
-          navigate("/dashboard");
-        } else {
-          navigate("/");
-        }
+        const { token, user } = result;
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", user.role);
+        localStorage.setItem("name", user.name);
+        navigate(user.role === "admin" ? "/dashboard" : "/");
       } else {
         setError(result.message || "Google login failed.");
       }
     } catch (err) {
-      setError("Something went wrong with Google login. Please try again.");
+      setError("Something went wrong with Google login.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -109,6 +104,7 @@ function Login() {
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
           <input
             type="password"
@@ -116,11 +112,18 @@ function Login() {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            required
           />
-          <button className="logins_btn" onClick={handleLogin}>
-            Login
+          <button
+            className="logins_btn"
+            onClick={handleLogin}
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
           </button>
+
           {error && <p className="error-message">{error}</p>}
+
           <h5 style={{ marginTop: "10px" }}>
             Don't have an account?{" "}
             <button
@@ -130,7 +133,11 @@ function Login() {
               Register
             </button>
           </h5>
-          <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleError} />
+
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+          />
         </div>
       </div>
     </div>

@@ -95,7 +95,7 @@ function EditJob({ job, isVisible, onClose }) {
     }));
   };
 
-  // For updating array items in nested fields
+ 
   const updateArrayField = (field, index, key, value) => {
     setJobDetails((prev) => {
       const newArray = [...prev[field]];
