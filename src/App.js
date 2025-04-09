@@ -9,7 +9,7 @@ import Login from './Components/Nav and footer/Login';
 import Dashboard from './Components/Admin pannel/Dashboard';
 import Sidebar from './Components/Admin pannel/Sidebar';
 import Revenue from './Components/Admin pannel/Revenue';
-import Orders from './Components/Admin pannel/Orders';
+import GovtFormRequest from './Components/Admin pannel/GovtFormRequest.jsx';
 import AboutUs from './Pages/AboutUs';
 import GovtJobDetails from './Pages/GovtJobDetails';
 import PrivateJobDetails from './Pages/PrivateJobDetails.jsx';
@@ -84,9 +84,9 @@ function App() {
             } 
           />
           <Route 
-            path="/orders" element={ 
+            path="/GovtFormRequest" element={ 
             <ProtectedRoute isAdmin={true}>
-                <Orders />
+                <GovtFormRequest />
               </ProtectedRoute>
             } 
           />

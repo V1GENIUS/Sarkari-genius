@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useNavigate, useParams ,axios} from '../Utils/import.js';
 import "./PrivateJobDetails.css";
-import Navbar from "../Components/Nav and footer/Navbar.jsx";
-import Footer from "../Components/Nav and footer/Footer";
-import axios from "axios"; 
-import {useNavigate} from '../Utils/import.js'
-import { useParams } from "react-router-dom"; 
+import { Navbar ,Footer ,LoadingSpinner} from '../Utils/import.js';
 import APIPrivateJobs from '../Components/Api/ApiPrivateJobs.js'
-import LoadingSpinner from "../Components/LoadingSpinner.jsx";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react"
 import  Whatsappicon from '../Components/Images/whatsapp.png';

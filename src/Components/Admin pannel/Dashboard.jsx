@@ -275,13 +275,7 @@ function Dashboard() {
                       ))}
                     </td>
                     <td>{job.organization}</td>
-                    {/* <td>
-                      {job.fees.map((fee, i) => (
-                        <div key={i}>
-                          {fee.category}: <br /> ₹{fee.amount}
-                        </div>
-                      ))}
-                    </td> */}
+                  
                     <td>
                       {job.ageLimit.min} - {job.ageLimit.max} years
                     </td>

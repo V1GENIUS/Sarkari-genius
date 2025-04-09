@@ -1,0 +1,195 @@
+
+.dashboard {
+    display: flex;
+    background-color: #f5f7fa;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background: #1e293b;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dashboard_head {
+    margin-bottom: 20px;
+  }
+  
+  .dashboard_head h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e293b;
+    text-align: center;
+  }
+
+
+   
+  /* Table styling */
+  .job-details-container {
+    margin-top: 30px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .job-details-container h1 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #1e293b;
+    text-align: center;
+  }
+  
+  .job-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  
+  .job-details-table th,
+  .job-details-table td {
+    /* padding: 5px; */
+    border: 1px solid #ddd;
+  }
+  
+  .job-details-table th {
+    background-color: #4caf50;
+    color: white;
+    font-size: 0.8rem;
+  }
+  
+  .job-details-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .job-details-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Base button style in table cells */
+  .job-details-table td button {
+    padding: 6px 10px;
+    margin: 5px;
+    font-size: 0.9rem; 
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .job-details-table td button:first-child {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  .job-details-table td button:first-child:hover {
+    background-color: #1e88e5;
+  }
+  
+  .job-details-table td button:last-child {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .job-details-table td button:last-child:hover {
+    background-color: #e53935;
+  }
+
+
+
+
+  /* ================================
+     Big Screen Styles (min-width: 1200px)
+     ================================ */
+     @media (min-width: 1200px) {
+        .dashboard_head h1 {
+          font-size: 2.5rem;
+        }
+        
+        .job-details-table th,
+        .job-details-table td {
+          font-size: 1rem;
+          padding: 5px;
+        }
+        .popup-container {
+          padding: 40px;
+        }
+      }
+      
+      /* ================================
+         Tablet Styles (max-width: 768px)
+         ================================ */
+      @media (max-width: 768px) {
+        .dashboard {
+          padding: 15px;
+        }
+        .sidebar {
+          margin-bottom: 20px;
+        }
+        .job-details-table th,
+        .job-details-table td {
+          font-size: 0.7rem;
+          padding: 5px;
+        }
+        
+      }
+      
+      /* ================================
+         Mobile Styles (max-width: 480px)
+         ================================ */
+      @media (max-width: 480px) {
+        .job-details-container {
+          padding: 12px;
+        }
+        .job-details-table th,
+        .job-details-table td {
+          font-size: 0.5rem;
+          padding: 5px;
+        }
+        /* Make the table buttons smaller on mobile */
+        .job-details-table td button {
+          font-size: 0.65rem;
+          padding: 2px 4px;
+        }
+        .sidebar {
+          position: absolute;
+          width: 200px;
+          padding: 15px;
+        }
+       
+        .popup-container {
+          padding: 20px;
+        }
+        
+      }
+      
+      /* ================================
+         Very Small Mobile Styles (max-width: 320px)
+         ================================ */
+      @media (max-width: 320px) {
+        .job-details-container {
+          padding: 5px;
+        }
+        .job-details-table th,
+        .job-details-table td {
+          font-size: 0.5rem;
+          padding: 2px;
+        }
+        /* Further reduce table button size */
+        .job-details-table td button {
+          font-size: 0.4rem;
+          padding: 1px 2px;
+        }
+      
+        .popup-container {
+          padding: 15px;
+        }
+      
+      }
+      

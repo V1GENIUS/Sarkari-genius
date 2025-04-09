@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useNavigate, useParams ,axios} from '../Utils/import.js';
 import "./GovtJobDetails.css";
-import Navbar from "../Components/Nav and footer/Navbar";
-import Footer from "../Components/Nav and footer/Footer";
-import axios from "axios"; 
-import { useNavigate} from '../Utils/import.js'
-import { useParams } from "react-router-dom"; 
+import { Navbar ,Footer ,LoadingSpinner} from '../Utils/import.js';
 import APIGovtJobs from '../Components/Api/ApiGovtJobs.js'
-import LoadingSpinner from "../Components/LoadingSpinner.jsx";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react"
 import  Whatsappicon from '../Components/Images/whatsapp.png';
@@ -14,8 +9,20 @@ import  Whatsappicon from '../Components/Images/whatsapp.png';
 function GovtJobDetails() {
   const [jobDetails, setJobDetails] = useState(null); 
   const [loading, setLoading] = useState(true); 
+  const [submitMessage, setSubmitMessage] = useState('');
   const [error, setError] = useState(null); 
   const { id } = useParams();
+  const [showForm, setShowForm] = useState(false); // ✅ Modal control
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    mobile: '',
+    whatsapp: '',
+    address: '',
+    jobDetails: '',
+    agree: false
+  });
+  
    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const handleLogout = () => {
@@ -40,6 +47,7 @@ function GovtJobDetails() {
       .get(APIGovtJobs.getJobDetails(id))
       .then((response) => {
         setJobDetails(response.data); 
+        setFormData(prev => ({ ...prev, jobDetails: response.data.postName })); // ✅ Auto-fill job title
         setLoading(false);
       })
       .catch((err) => {
@@ -47,8 +55,35 @@ function GovtJobDetails() {
         setError("Failed to load job details");
         setLoading(false);
       });
+
+
+
   }, [id]);
 
+
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await axios.post(APIGovtJobs.submitGovtRequestForm, formData);
+      console.log("Form submitted:", response.data);
+      setSubmitMessage("Form submitted successfully.");
+      setShowForm(false); // close modal
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitMessage("Something went wrong. Please try again.");
+    }
+  };
+  
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
 
   
   
@@ -66,6 +101,22 @@ function GovtJobDetails() {
     }
   };
   
+
+  // const handleChangeInquiry = (e) => {
+  //   const { name, value, type, checked } = e.target;
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     [name]: type === "checkbox" ? checked : value
+  //   }));
+  // };
+
+  // const handleInquirySubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Form Submitted:", formData);
+  //   alert("Form submitted successfully!");
+  //   setShowForm(false);
+  //   // Optionally send formData to an API here
+  // };
 
 
 
@@ -260,17 +311,17 @@ function GovtJobDetails() {
                   <td>{jobDetails?.jobLocation?.location || "N/A"}</td>
             </tr>
             <tr>
-  <td>Qualification</td>
-  <td>
-    {Array.isArray(jobDetails?.Qualification) ? (
-      jobDetails.Qualification.map((docs, index) => (
-        <li key={index}>{docs}</li>
-      ))
-    ) : (
-      <li>{jobDetails?.Qualification || 'N/A'}</li>  // Fallback if it's not an array
-    )}
-  </td>
-</tr>
+              <td>Qualification</td>
+              <td>
+                {Array.isArray(jobDetails?.Qualification) ? (
+                  jobDetails.Qualification.map((docs, index) => (
+                    <li key={index}>{docs}</li>
+                  ))
+                ) : (
+                  <li>{jobDetails?.Qualification || 'N/A'}</li>  // Fallback if it's not an array
+                )}
+              </td>
+            </tr>
 
             <tr>
             <td>Documents</td>
@@ -283,110 +334,23 @@ function GovtJobDetails() {
               
             </td>
           </tr>
-{/* 
-            <tr>
-              <td>Apply Online</td>
-              <td> <button className="apply-button" onClick={() => setShowForm(true)}>Open Form</button></td>
 
-              {showForm && (
-              <div className="modal-overlay">
-                <div className="modal-content">
-                  <h2>Fill Out the Request For Form Filling</h2>
-                  <form onSubmit={ handleInquirySubmit}>
-                    <div>
-                      <label>
-                        Name:
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChangeInquiry}
-                          required
-                        />
-                      </label>
-                    </div>
-                  
-                    <div>
-                      <label>
-                        Mobile Number:
-                        <input
-                          type="tel"
-                          name="mobile"
-                          value={formData.mobile}
-                          onChange={handleChangeInquiry}
-                          required
-                        />
-                      </label>
-                    </div>
-
-                    
-                    <div>
-                      <label>
-                        Job Details:
-                        <input
-                          type="text"
-                          name="jobDetails"
-                          value={formData.jobDetails}
-                          onChange={handleChangeInquiry}
-                          required
-                        />
-                      </label>
-                    </div>
-                    <h2>Are you located in Indore?</h2>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="location"
-                  value="Yes"
-                  // checked={response === "Yes"}
-                  // onChange={handleChange}
-                />
-                Yes
-              </label>
-            </div>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="location"
-                  value="No"
-                  // checked={response === "No"}u
-                  // onChange={handleChange}
-                />
-                No
-              </label>
-            </div>
-
-                    <div>
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="agree"
-                          checked={formData.agree}
-                          onChange={handleChangeInquiry}
-                        />
-                        I agree to the terms and conditions
-                      </label>
-                    </div>
-                    <div>
-                      <button type="submit">Submit</button>
-                      <button type="button" onClick={() => setShowForm(false)}>
-                        Cancel
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            )}
-                  
-            </tr> */}
-            <tr>
+        
+            {/* <tr>
             <td>Apply Online</td>
             <td>  <a className="apply-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdpNooX5zIUvk2YdFglC79ufFaOUkIwXfqZmdSqX1ZRt6K4qw/alreadyresponded" target="_blank" rel="noopener noreferrer">
       Open  Form
     </a></td>
 
+            </tr> */}
+
+            <tr>
+              <td>Apply Online</td>
+              <td>
+                <button className="apply-button" onClick={() => setShowForm(true)}>
+                  Open Form
+                </button>
+              </td>
             </tr>
             <tr>
               <td>official Notification Details</td>
@@ -429,6 +393,142 @@ function GovtJobDetails() {
         <button className="whatsapp-share-button" onClick={handleShareOnWhatsApp}>
             Share on WhatsApp
           </button>
+
+
+          
+
+{showForm && (
+  <div className="modal-overlay">
+    <div className="modal-content" style={{ position: 'relative' }}>
+      {/* Close Button */}
+      <button
+        className="modal-close-button"
+        onClick={() => setShowForm(false)}
+        style={{
+          position: 'absolute',
+          top: '10px',
+          right: '10px',
+          fontSize: '20px',
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          color: '#888'
+        }}
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+      <h2>Fill Out the Request Form</h2>
+
+      <p className="text-warning" style={{ color: "red", fontWeight: "bold" }}>
+        Are you sure you want to fill this form? A minimum charge of ₹70 will apply.
+      </p>
+
+      <form onSubmit={handleFormSubmit}>
+        <div>
+          <label>
+            Full Name:
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Email Address:
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Mobile Number:
+            <input
+              type="tel"
+              name="mobile"
+              value={formData.mobile}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+
+        <div>
+          <label>
+            WhatsApp Number:
+            <input
+              type="tel"
+              name="whatsapp"
+              value={formData.whatsapp}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Address:
+            <textarea
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              rows="3"
+              required
+            />
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Job Details:
+            <input
+              type="text"
+              name="jobDetails"
+              value={formData.jobDetails}
+              readOnly
+            />
+          </label>
+        </div>
+
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              name="agree"
+              checked={formData.agree}
+              onChange={handleChange}
+              required
+            />
+            I accept the terms and conditions
+          </label>
+        </div>
+
+        <div style={{ marginTop: "1rem" }}>
+          <button type="submit">Submit</button>
+          <button type="button" onClick={() => setShowForm(false)} style={{ marginLeft: "10px" }}>
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
+
+   
       </div>
 
      
