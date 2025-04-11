@@ -57,7 +57,7 @@ function PrivatePrijobDetails() {
   
   *${PrijobDetails.organization }* is *Hiring*
   --------------------------------
-  {}
+
   *Organization* : ${PrijobDetails.organization }
   *Role* : ${PrijobDetails.JobDegination }
   *Salary* : ${PrijobDetails.salary }
@@ -69,7 +69,7 @@ function PrivatePrijobDetails() {
 
   *ApplyLink* : ${jobLink}
   -------------------------------
-  *Join Link* : https://chat.whatsapp.com/EJAEtd9nOJZLAaVpbxuY61
+  *Join Link* : https://chat.whatsapp.com/EJAEtd9n0JZLAaVpbxuY61
   _______________________________
     `;
   };
@@ -98,7 +98,7 @@ function PrivatePrijobDetails() {
           <div className="group-card whatsapp-card">
             <a
               className="seoquake-nofollow"
-              href="https://chat.whatsapp.com/EJAEtd9nOJZLAaVpbxuY61"
+              href="https://chat.whatsapp.com/EJAEtd9n0JZLAaVpbxuY61"
               rel="nofollow noopener noreferrer"
               target="_blank"
             >
@@ -156,7 +156,7 @@ function PrivatePrijobDetails() {
                   <td>{PrijobDetails?.location|| "N/A"}</td>
             </tr>
             <tr>
-              <td>Apply Online</td>
+              <td>Apply Link</td>
             
               <td>
                 {PrijobDetails?.applyLink ? (
