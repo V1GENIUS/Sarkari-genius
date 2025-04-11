@@ -53,7 +53,7 @@ function Sidebar() {
           <NavLink to="/dashboard" className="nav_text">Dashboard</NavLink>
           <NavLink to="/GovtFormRequest" className="nav_text">Total Request</NavLink>
           <NavLink to="/revenue" className="nav_text">Revenue</NavLink>
-          <NavLink to="/analytics" className="nav_text">Analytics</NavLink>
+          {/* <NavLink to="/analytics" className="nav_text">Analytics</NavLink> */}
           <button className="nav_text logout_button" onClick={handleLogout}>
             Logout
           </button>
