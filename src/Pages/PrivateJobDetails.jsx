@@ -54,19 +54,22 @@ function PrivatePrijobDetails() {
     if (!PrijobDetails) return "";
     const jobLink = `${window.location.origin}/pri-detail/${id}`; 
     return `
-
-  --------------------------------
-  *Organization* : ${PrijobDetails.organization }
-  *Post Name* : ${PrijobDetails.JobDegination }
-  *Vacancies* : ${PrijobDetails.salary }
-  *Salary* : ${PrijobDetails.experience || "N/A"}
   
-  *Selection Process* : ${PrijobDetails?.batch || "N/A"}
-  *Job Location* : ${PrijobDetails.Qualification || "N/A"}
+  *${PrijobDetails.organization }* is *Hiring*
+  --------------------------------
+  {}
+  *Organization* : ${PrijobDetails.organization }
+  *Role* : ${PrijobDetails.JobDegination }
+  *Salary* : ${PrijobDetails.salary }
+  *experience* : ${PrijobDetails.experience || "N/A"}
+  
+  *Batch* : ${PrijobDetails?.batch || "N/A"}
+  *Qualification* : ${PrijobDetails.Qualification || "N/A"}
  *Job Location* : ${PrijobDetails.location || "N/A"}
 
-  *Job Details Link* : ${jobLink}
+  *ApplyLink* : ${jobLink}
   -------------------------------
+  *Join Link* : https://chat.whatsapp.com/EJAEtd9nOJZLAaVpbxuY61
   _______________________________
     `;
   };
@@ -95,7 +98,7 @@ function PrivatePrijobDetails() {
           <div className="group-card whatsapp-card">
             <a
               className="seoquake-nofollow"
-              href="https://chat.whatsapp.com/HzeBiz5nuqY6XJnSh89C1e"
+              href="https://chat.whatsapp.com/EJAEtd9nOJZLAaVpbxuY61"
               rel="nofollow noopener noreferrer"
               target="_blank"
             >
