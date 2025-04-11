@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "./RegisterLogin.css";
 import APILoginRegister from "../Api/ApiLoginRegister";
+import { GoogleLogin } from "@react-oauth/google";
 function Register() {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -37,6 +40,64 @@ function Register() {
       setError("Something went wrong. Please try again.");
     }
   };
+
+  const handleLogin = async () => {
+    setError("");
+    setLoading(true);
+    try {
+      const response = await fetch(APILoginRegister.login, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        const { token, user } = result;
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", user.role);
+        localStorage.setItem("name", user.name);
+        navigate(user.role === "admin" ? "/dashboard" : "/");
+      } else {
+        setError(result.message || "Login failed");
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    setError("");
+    setLoading(true);
+    try {
+      const response = await fetch(APILoginRegister.GoogleLogin, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tokenId: credentialResponse.credential }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        const { token, user } = result;
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", user.role);
+        localStorage.setItem("name", user.name);
+        navigate(user.role === "admin" ? "/dashboard" : "/");
+      } else {
+        setError(result.message || "Google login failed.");
+      }
+    } catch (err) {
+      setError("Something went wrong with Google login.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleError = () => {
+    setError("Google Login Failed. Please try again.");
+  };
+
 
   return (
     <div className="register">
@@ -87,7 +148,12 @@ function Register() {
               Login
             </button>
           </h5>
-          <button className="login_google">Register With Google</button>
+
+          <GoogleLogin className="login_google"
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+          />
+          {/* <button className="login_google">Register With Google</button> */}
         </div>
       </div>
     </div>

@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 import "./RegisterLogin.css";
 import APILoginRegister from "../Api/ApiLoginRegister";
 import { GoogleLogin } from "@react-oauth/google";
 
 function Login() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Redirect if already logged in
   useEffect(() => {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
@@ -22,6 +17,7 @@ function Login() {
       navigate(role === "admin" ? "/dashboard" : "/");
     }
   }, [navigate]);
+
   const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
@@ -43,7 +39,7 @@ function Login() {
         const { token, user } = result;
         localStorage.setItem("token", token);
         localStorage.setItem("role", user.role);
-        localStorage.setItem("name", user.name); // Save name for navbar
+        localStorage.setItem("name", user.name);
         navigate(user.role === "admin" ? "/dashboard" : "/");
       } else {
         setError(result.message || "Login failed");
@@ -59,15 +55,10 @@ function Login() {
     setError("");
     setLoading(true);
     try {
-      const decoded = jwtDecode(credentialResponse.credential);
-      const googleUser = {
-        email: decoded.email,
-        name: decoded.name,
-      };
-      const response = await fetch(APILoginRegister.googleLogin, {
+      const response = await fetch(APILoginRegister.GoogleLogin, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(googleUser),
+        body: JSON.stringify({ tokenId: credentialResponse.credential }),
       });
 
       const result = await response.json();
