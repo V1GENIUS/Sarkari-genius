@@ -8,14 +8,14 @@ import APIGovtJobs from "../Components/Api/ApiGovtJobs";
 
 function GovtJobs() {
   const [jobs, setJobs] = useState([]);
-  
-   const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-    const handleLogout = () => {
-      localStorage.clear();
-      setUser(null);
-      navigate("/login");
-    };
+
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const handleLogout = () => {
+    localStorage.clear();
+    setUser(null);
+    navigate("/login");
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -39,7 +39,7 @@ function GovtJobs() {
 
   return (
     <>
-      <Navbar  user={user} handleLogout={handleLogout} />
+      <Navbar user={user} handleLogout={handleLogout} />
       <div className="govtSection_1">
         <h1>Sarkari Job Vacancy</h1>
         <h3>
@@ -49,9 +49,10 @@ function GovtJobs() {
         </h3>
       </div>
       <div className="govt_cards">
-        {jobs.map((job) => (
+        {[...jobs].reverse().map((job) => (
           <GovtJobCard key={job.id} job={job} onClick={() => handleCardClick(job)} />
         ))}
+
       </div>
       <Footer />
     </>

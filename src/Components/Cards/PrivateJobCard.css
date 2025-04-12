@@ -4,7 +4,7 @@
     border: 2px solid transparent;
     border-radius: 12px;
     /* Create a gradient border effect */
-    background-image: linear-gradient(white, white), linear-gradient(to right, #00ff40, #0056b3);
+    background-image: linear-gradient(rgb(250, 233, 195), white), linear-gradient(to right, #00ff40, #0056b3);
     background-origin: border-box;
     background-clip: padding-box, border-box;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -32,7 +32,7 @@
   .PrivateJobHeading h1 {
     font-size: 1.8rem;
     color: #333;
-    margin: 0;
+    
     font-weight: bold;
   }
   
@@ -47,17 +47,18 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 15px;
+    
   }
   
   .PrivateJobName h3 {
     font-size: 1.4rem;
-    color: #555;
+    color: #ff00b7;
     margin-bottom: 12px;
-    font-weight: 500;
+    font-weight: 1000;
   }
   
   .PrivateJobName button {
-    background: linear-gradient(45deg, #00ff40, #0056b3);
+    background: linear-gradient(45deg, #ee00ff, #0056b3);
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -111,7 +112,7 @@
     }
   
     .PrivateJobHeading h6 {
-      font-size: 0.8rem;
+      font-size: 0.6rem;
     }
   
     .PrivateJobName h3 {
@@ -136,7 +137,7 @@
     }
   
     .PrivateJobHeading h6 {
-      font-size: 0.7rem;
+      font-size: 0.5rem;
     }
   
     .PrivateJobName h3 {

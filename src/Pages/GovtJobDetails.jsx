@@ -94,6 +94,7 @@ function GovtJobDetails() {
     return `
   *${jobDetails.postName} भर्ती एव आवेदन!*
   --------------------------------
+  
   *Organization* : ${jobDetails.organization}
   *Post Name* : ${jobDetails.postName}
   *Vacancies* : ${jobDetails.vacancy}
@@ -118,8 +119,7 @@ function GovtJobDetails() {
 
   *Job Details Link* : ${jobLink}
   -------------------------------
-  *Join Now* : http://bit.ly/4gFoloY 
-  _______________________________
+  ______________________________
     `;
   };
   const handleShareOnWhatsApp = () => {

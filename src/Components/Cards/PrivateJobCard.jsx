@@ -6,7 +6,7 @@ function PrivateJobCard({ job }) {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`/pri-detail/${job._id}`); // Use _id instead of id
+    navigate(`/pri-detail/${job._id}`); 
   };
 
   return (

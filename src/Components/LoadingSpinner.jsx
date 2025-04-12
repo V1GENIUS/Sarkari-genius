@@ -27,7 +27,7 @@ const styles = {
     width: '50px',
     
     height: '50px',
-    border: '4px solid rgba(255, 255, 255, 0.3)',
+    border: '4px solid rgba(60, 222, 19, 0.69)',
     borderTop: '4px solid white',
     borderRadius: '50%',
     animation: 'spin 1s linear infinite',

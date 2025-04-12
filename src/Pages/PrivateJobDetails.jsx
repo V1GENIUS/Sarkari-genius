@@ -54,7 +54,6 @@ function PrivatePrijobDetails() {
     if (!PrijobDetails) return "";
     const jobLink = `${window.location.origin}/pri-detail/${id}`; 
     return `
-  
   *${PrijobDetails.organization }* is *Hiring*
   --------------------------------
 
@@ -62,7 +61,6 @@ function PrivatePrijobDetails() {
   *Role* : ${PrijobDetails.JobDegination }
   *Salary* : ${PrijobDetails.salary }
   *experience* : ${PrijobDetails.experience || "N/A"}
-  
   *Batch* : ${PrijobDetails?.batch || "N/A"}
   *Qualification* : ${PrijobDetails.Qualification || "N/A"}
  *Job Location* : ${PrijobDetails.location || "N/A"}
@@ -70,8 +68,7 @@ function PrivatePrijobDetails() {
   *ApplyLink* : ${jobLink}
   -------------------------------
   *Join Link* : https://chat.whatsapp.com/EJAEtd9n0JZLAaVpbxuY61
-  _______________________________
-    `;
+  _____________________________`;
   };
   
   const handleShareOnWhatsApp = () => {
@@ -118,9 +115,9 @@ function PrivatePrijobDetails() {
             </span>
             </a>
           </div>
-          <div className="job_title">{PrijobDetails?.JobDegination}</div>
+        
           <div className="organization">{PrijobDetails?.organization }</div>
-          <div className="post_name">POST NAME: {PrijobDetails?.JobDegination || ""}</div>
+          <div className="post_name">JOB DESIGNATION: {PrijobDetails?.JobDegination || ""}</div>
 
 
 <div className="job-details-container">
@@ -129,7 +126,7 @@ function PrivatePrijobDetails() {
           <tbody>
             <tr>
               <td>Organization</td>
-              <td>{PrijobDetails?.organization || "N/A"}</td>
+              <td style={{color:'Green'}}>{PrijobDetails?.organization || "N/A"}</td>
             </tr>
             <tr>
               <td>Job Deginatation</td>

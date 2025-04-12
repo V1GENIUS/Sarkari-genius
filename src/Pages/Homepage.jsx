@@ -7,9 +7,11 @@ import HomeImage from '../Components/Images/HomeImage.svg'
 import { useParams } from "react-router-dom";
 import APIGovtJobs from "../Components/Api/ApiGovtJobs.js";
 import { Analytics } from "@vercel/analytics/react"
+import APIPrivateJobs from '../Components/Api/ApiPrivateJobs.js'
 
 function Homepage() {
   const [jobs, setJobs] = useState([]);
+  const [privateJobs, setPrivateJobs] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
   const [user, setUser] = useState(null);
@@ -27,8 +29,22 @@ function Homepage() {
         console.error('Error fetching jobs:', error);
       }
     };
+    fetchJobs()
+  }, [id]);
 
-    fetchJobs();
+  useEffect(() => {
+    const fetchPrivateJobs = async () => {
+      try {
+        const response = await fetch(APIPrivateJobs.getAllPrivateJobs);
+
+        const data = await response.json();
+        setPrivateJobs(data.slice(0, 14));
+
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      }
+    };
+    fetchPrivateJobs()
   }, [id]);
 
   useEffect(() => {
@@ -50,6 +66,10 @@ function Homepage() {
   };
 
   const handleHeadClick = (job) => {
+    navigate(`/job-detail/${job._id}`, { state: { job } });
+  };
+
+  const handleHeadClickPrivateJob = (job) => {
     navigate(`/job-detail/${job._id}`, { state: { job } });
   };
   return (
@@ -93,7 +113,7 @@ function Homepage() {
 
         <div className='homeSection_3'>
           <div className='home_result'>
-            <h3>Latest Jobs</h3>
+            <h3>Latest Govt Jobs</h3>
             <div className="latest_job">
               {jobs
                 .slice()
@@ -108,12 +128,16 @@ function Homepage() {
 
           </div>
           <div className='home_result'>
-            <h3>Result</h3>
+            <h3>Latest Private jobs</h3>
             <div className='result_link'>
-              {/* {jobs.map((job) => (
-            <li key={job._id} onClick={() => handleHeadClick(job)}>{job.postName}
-            </li>
-          ))} */}
+            {privateJobs
+                .slice()
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                .map((job) => (
+                  <li key={job._id} onClick={() => handleHeadClickPrivateJob(job)}>
+                    {job.JobDegination}-<b style={{color:'red'}}>{job.organization}</b>
+                  </li>
+                ))}
             </div>
 
           </div>

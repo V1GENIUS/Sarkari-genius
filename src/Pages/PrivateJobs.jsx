@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import './PrivateJobs.css';
-import {useNavigate} from '../Utils/import.js'
-import Navbar from '../Components/Nav and footer/Navbar';
-import Footer from '../Components/Nav and footer/Footer';
+import { React,useNavigate ,useEffect, useState } from '../Utils/import.js'
+import { Footer,Navbar } from '../Utils/import.js'
 import PrivateJobCard from '../Components/Cards/PrivateJobCard.jsx';
 import APIPrivateJobs from "../Components/Api/ApiPrivateJobs.js";
 
@@ -31,13 +29,13 @@ function PrivateJobs() {
       .then((data) => setpriJobs(data))
       .catch((error) => console.error('Error fetching jobs:', error));
   }, []);
- 
+
 
   return (
     <>
-      <Navbar  user={user} handleLogout={handleLogout} />
+      <Navbar user={user} handleLogout={handleLogout} />
       <div className="private-section">
-       
+
         <h3>
           We provide <span className="highlight">Technical</span> and <span className="highlight">Non-Tech</span> jobs
           <br /><br />
@@ -45,10 +43,11 @@ function PrivateJobs() {
         </h3>
 
         <div className="private-cards">
-          {prijobs.map((job) => (
+          {[...prijobs].reverse().map((job) => (
             <PrivateJobCard key={job._id} job={job} />
           ))}
         </div>
+
       </div>
 
       <Footer />
