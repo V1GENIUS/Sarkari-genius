@@ -1,6 +1,6 @@
 import './PrivateJobs.css';
-import { React,useNavigate ,useEffect, useState } from '../Utils/import.js'
-import { Footer,Navbar } from '../Utils/import.js'
+import { React,useNavigate ,useEffect, useState } from '../import.js'
+import { Footer,Navbar } from '../import.js'
 import PrivateJobCard from '../Components/Cards/PrivateJobCard.jsx';
 import APIPrivateJobs from "../Components/Api/ApiPrivateJobs.js";
 

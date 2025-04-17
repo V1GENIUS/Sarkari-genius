@@ -3,7 +3,7 @@ import './Footer.css';
 import { NavLink } from 'react-router-dom';
 import whatsapp from '../Images/whatsapp.png';
 import facebook from '../Images/facebook.png';
-import twitter from '../Images/whatsapp.png';
+import telegram from '../Images/telegram.png';
 import linkedin from '../Images/whatsapp.png';
 
 function Footer() {
@@ -40,8 +40,18 @@ function Footer() {
               </NavLink>
             </li>
             <li className="overview_item">
-              <NavLink to="#ContactUs" className="over__link">
+              <NavLink to="/privacy_policy" className="over__link">
+                Privacy Policy
+              </NavLink>
+            </li>
+            <li className="overview_item">
+              <NavLink to="/contact-us" className="over__link">
                 Contact Us
+              </NavLink>
+            </li>
+            <li className="overview_item">
+              <NavLink to="/disclaimer" className="over__link">
+              Disclaimer
               </NavLink>
             </li>
           </ul>
@@ -56,8 +66,8 @@ function Footer() {
             <a href="https://www.facebook.com/share/12FJ6yEsHtN/" target="_blank" rel="noopener noreferrer">
               <img src={facebook} alt="Facebook" className="social-icon" />
             </a>
-            <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
-              <img src={twitter} alt="Twitter" className="social-icon" />
+            <a href="https://t.me/sarkarigeniusfresher" target="_blank" rel="noopener noreferrer">
+              <img src={telegram} alt="Twitter" className="social-icon" />
             </a>
             <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
               <img src={linkedin} alt="LinkedIn" className="social-icon" />

@@ -1,6 +1,6 @@
-import React, { useEffect, useState ,useNavigate, useParams ,axios} from '../Utils/import.js';
+import React, { useEffect, useState ,useNavigate, useParams ,axios} from '../import.js';
 import "./PrivateJobDetails.css";
-import { Navbar ,Footer ,LoadingSpinner} from '../Utils/import.js';
+import { Navbar ,Footer ,LoadingSpinner} from '../import.js';
 import APIPrivateJobs from '../Components/Api/ApiPrivateJobs.js'
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react"
@@ -34,7 +34,7 @@ function PrivatePrijobDetails() {
     axios
   .get(APIPrivateJobs.getPrivateJobDetails(id))
   .then((response) => {
-    console.log("API Response:", response.data);
+    // console.log("API Response:", response.data);
 
     if (response.data?.job) {  
       setPriJobDetails(response.data.job);
@@ -53,8 +53,7 @@ function PrivatePrijobDetails() {
   const generateWhatsAppMessage = () => {
     if (!PrijobDetails) return "";
     const jobLink = `${window.location.origin}/pri-detail/${id}`; 
-    return `
-  *${PrijobDetails.organization }* is *Hiring*
+    return `*${PrijobDetails.organization }* is *Hiring*
   --------------------------------
 
   *Organization* : ${PrijobDetails.organization }
@@ -68,7 +67,8 @@ function PrivatePrijobDetails() {
   *ApplyLink* : ${jobLink}
   -------------------------------
   *Join Link* : https://chat.whatsapp.com/EJAEtd9n0JZLAaVpbxuY61
-  _____________________________`;
+  _____________________________
+  *Telegram Link* : https://t.me/sarkarigeniusfresher`;
   };
   
   const handleShareOnWhatsApp = () => {

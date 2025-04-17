@@ -14,12 +14,14 @@ import AboutUs from './Pages/AboutUs';
 import GovtJobDetails from './Pages/GovtJobDetails';
 import PrivateJobDetails from './Pages/PrivateJobDetails.jsx';
 import AdmitCard from './Pages/AdmitCard';
-
 import CreateJobPopup from './Components/Admin pannel/CreateJobPopup.jsx';
 import CreateCard from './Components/Admin pannel/CreateCard';
 import ProtectedRoute from './Components/ProtectedRoute';
 import Analytics from './Components/Admin pannel/AnalyticsPage.jsx';
 import EditJob from './Components/Admin pannel/EditJob.jsx';
+import PrivacyPolicy from './Pages/Privacy_policy.jsx';
+import ContactUs from './Pages/ContactUs.jsx';
+import Disclaimer from './Pages/Disclaimer.jsx';
 
 
 
@@ -41,6 +43,9 @@ function App() {
          <Route path="/pri-detail/:id" element={<PrivateJobDetails />} />
 
          <Route path="/about" element={<AboutUs />} />
+         <Route path="/privacy_policy" element={<PrivacyPolicy />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/disclaimer" element={<Disclaimer/>} />
         
 {/* ///////////////////////////////////////////////// */}
          <Route path="/register" element={<Register />} />

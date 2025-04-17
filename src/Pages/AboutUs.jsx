@@ -1,33 +1,34 @@
 import React from 'react'
 import Footer from '../Components/Nav and footer/Footer'
-import Navbar from '../Components/Nav and footer/Navbar'
-import {useNavigate ,useState} from '../Utils/import'
 import './AboutUs.css'
 
 function AboutUs() {
-   const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-    const handleLogout = () => {
-      localStorage.clear();
-      setUser(null);
-      navigate("/login");
-    };
     
   
   return (
     <>
     <div>
-    <Navbar  user={user} handleLogout={handleLogout} />
-      <div className='about-page'>
-        <h1>Sarkari genius </h1>
-
-      </div>
-      <div >
+    <div className="about-container">
+      <h1>About SarkariGenius</h1>
+      <p>
+        Welcome to <strong>SarkariGenius</strong> – India’s trusted source for the latest government and private job updates.
+      </p>
+      <p>
+        Our mission is simple: to help job seekers stay updated with real-time, verified job notifications without any confusion or spam.
+      </p>
+      <p>
+        Whether you're looking for Sarkari Naukri, Admit Cards, Results, Private Job Openings, or Government Schemes – we've got you covered!
+      </p>
+      <p>
+        Stay informed. Stay ahead. And build a career that matters.
+      </p>
+    </div>
         <Footer/>
       </div>
-    </div>
+   
     </>
   )
 }
 
 export default AboutUs
+

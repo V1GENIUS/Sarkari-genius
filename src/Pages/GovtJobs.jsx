@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState,useNavigate } from '../import';
 import './GovtJobs.css';
-import Navbar from '../Components/Nav and footer/Navbar';
-import Footer from '../Components/Nav and footer/Footer';
+import  { Navbar, Footer} from '../import';
 import GovtJobCard from '../Components/GovtJobCard';
 import APIGovtJobs from "../Components/Api/ApiGovtJobs";
 

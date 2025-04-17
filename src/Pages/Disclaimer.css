@@ -1,5 +1,5 @@
-.about-container {
-    max-width: 800px;
+.disclaimer-container {
+    max-width: 700px;
     margin: auto;
     padding: 2rem;
     font-family: 'Segoe UI', sans-serif;
@@ -7,9 +7,9 @@
     line-height: 1.7;
   }
   
-  .about-container h1 {
+  .disclaimer-container h1 {
     font-size: 2rem;
-    color: #0d47a1;
+    color: #c62828;
     margin-bottom: 1rem;
   }
   
