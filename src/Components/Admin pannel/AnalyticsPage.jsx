@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import APIGovtJobs from "../Api/ApiGovtJobs";
+
+import All_api from '../Components/Api/All_api.js';
 
 function AnalyticsPage() {
   const [analytics, setAnalytics] = useState([]);

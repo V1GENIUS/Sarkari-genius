@@ -1,7 +1,8 @@
 import React, { useState , useEffect } from 'react';
  import axios from 'axios';
 import './CreateJobPopup.css';
-import APIGovtCards from "../Api/ApiGovtCard.js";
+
+import All_api from '../Components/Api/All_api.js';
 
 // function CreateCard({ cardData,isVisible, onClose,isEditMode ,cardId }) {
 

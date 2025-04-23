@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import APIGovtJobs from "../Api/ApiGovtJobs";
+import All_api from '../Components/Api/All_api.js';
 import "./CreateJobPopup.css"; // Reuse the same CSS if applicable
 
 function EditJob({ job, isVisible, onClose }) {

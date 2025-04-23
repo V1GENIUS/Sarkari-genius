@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CreateJobPopup.css";
-import APIPrivateJobs from "../Api/ApiPrivateJobs";
+import All_api from '../Components/Api/All_api.js';
 
 function CreatePrivateJobs({ PrivateJobData, isVisible, onClose, isEditMode }) {
   const [PrivateJobDetails, setPrivateJobDetails] = useState({

@@ -22,6 +22,8 @@ import EditJob from './Components/Admin pannel/EditJob.jsx';
 import PrivacyPolicy from './Pages/Privacy_policy.jsx';
 import ContactUs from './Pages/ContactUs.jsx';
 import Disclaimer from './Pages/Disclaimer.jsx';
+import ScrollToTop from './Components/ScrollToTop.jsx';
+import ResetPassword from './Components/Nav and footer/ResetPassword.jsx';
 
 
 
@@ -31,8 +33,9 @@ function App() {
    <Router>
      
      <main className="main-content">
-
+     <ScrollToTop/>
        <Routes>
+      
          <Route path="/" element={<Homepage />} />
          <Route path="/admit-card" element={<AdmitCard />} />
          
@@ -50,6 +53,7 @@ function App() {
 {/* ///////////////////////////////////////////////// */}
          <Route path="/register" element={<Register />} />
          <Route path="/login" element={<Login />} />
+         <Route path="/reset-password/:token" element={<ResetPassword />} />
 
         
           {/* Protected Routes */}

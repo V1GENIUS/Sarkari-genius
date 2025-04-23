@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './GovtFormRequest.css'
 import Sidebar from './Sidebar';
-import APIGovtJobs from "../Api/ApiGovtJobs";
+import All_api from '../Components/Api/All_api.js';
 import LoadingSpinner from '../LoadingSpinner';
 
 function GovtFormRequest() {

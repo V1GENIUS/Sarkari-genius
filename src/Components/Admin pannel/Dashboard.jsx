@@ -5,13 +5,12 @@ import './Dashboard.css';
 import Sidebar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
 import CreateJobPopup from './CreateJobPopup';
-import APIGovtJobs from "../Api/ApiGovtJobs";
-import APIGovtCards from '../Api/ApiGovtCard';
+import All_api from '../Components/Api/All_api.js';
 import LoadingSpinner from '../LoadingSpinner';
 import CreateCard from './CreateCard';
 import EditJob from './EditJob';
 import CreatePrivateJobs from './CreatePrivateJobs';
-import APIPrivateJobs from '../Api/ApiPrivateJobs';
+
 import EditPrivateJob from './EditPrivateJob';
 
 function Dashboard() {

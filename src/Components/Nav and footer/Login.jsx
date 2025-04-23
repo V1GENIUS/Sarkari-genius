@@ -8,6 +8,10 @@ function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotMode, setForgotMode] = useState(false);
+  const [message, setMessage] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,7 +23,7 @@ function Login() {
   }, [navigate]);
 
   const handleChange = (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
@@ -27,6 +31,7 @@ function Login() {
 
   const handleLogin = async () => {
     setError("");
+    setMessage("");
     setLoading(true);
     try {
       const response = await fetch(APILoginRegister.login, {
@@ -82,53 +87,133 @@ function Login() {
     setError("Google Login Failed. Please try again.");
   };
 
+  const handleForgotPassword = async () => {
+    setError("");
+    setMessage("");
+    if (!forgotEmail) {
+      setError("Please enter your email.");
+      return;
+    }
+
+    try {
+      const response = await fetch(APILoginRegister.forgotPassword, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: forgotEmail }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setMessage(result.message || "Reset link sent to your email.");
+      } else {
+        setError(result.message || "Failed to send reset link.");
+      }
+    } catch (err) {
+      setError("Error sending reset link.");
+    }
+  };
+
   return (
     <div className="login">
       <div style={{ textAlign: "center", marginTop: "100px" }}>
         <h1>Login Page</h1>
       </div>
+
       <div className="login_page">
         <div className="login_input">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          <button
-            className="logins_btn"
-            onClick={handleLogin}
-            disabled={loading}
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
+          {!forgotMode ? (
+            <>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <button
+                className="logins_btn"
+                onClick={handleLogin}
+                disabled={loading}
+              >
+                {loading ? "Logging in..." : "Login"}
+              </button>
+
+              <button
+                type="button"
+                className="forgot_btn"
+                onClick={() => {
+                  setForgotMode(true);
+                  setMessage("");
+                  setError("");
+                }}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#007bff",
+                  cursor: "pointer",
+                  marginTop: "8px",
+                  textDecoration: "underline"
+                }}
+              >
+                Forgot Password?
+              </button>
+
+              <h5 style={{ marginTop: "10px" }}>
+                Don't have an account?{" "}
+                <button
+                  onClick={() => navigate("/register")}
+                  className="registers_btn"
+                >
+                  Register
+                </button>
+              </h5>
+
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={handleGoogleError}
+              />
+            </>
+          ) : (
+            <>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={forgotEmail}
+                onChange={(e) => setForgotEmail(e.target.value)}
+              />
+              <button
+                className="logins_btn"
+                onClick={handleForgotPassword}
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Send Reset Link"}
+              </button>
+              <button
+                className="registers_btn"
+                onClick={() => {
+                  setForgotMode(false);
+                  setForgotEmail("");
+                  setError("");
+                  setMessage("");
+                }}
+              >
+                Back to Login
+              </button>
+            </>
+          )}
 
           {error && <p className="error-message">{error}</p>}
-
-          <h5 style={{ marginTop: "10px" }}>
-            Don't have an account?{" "}
-            <button
-              onClick={() => navigate("/register")}
-              className="registers_btn"
-            >
-              Register
-            </button>
-          </h5>
-
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={handleGoogleError}
-          />
+          {message && <p className="success-message">{message}</p>}
         </div>
       </div>
     </div>
