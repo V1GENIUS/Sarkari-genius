@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CreateJobPopup.css';
-import All_api from '../Components/Api/All_api.js';
+import All_api from '../Api/All_api';
 
 function CreateJobPopup({ jobData, isVisible, onClose, isEditMode }) {
   const [jobDetails, setJobDetails] = useState({
@@ -73,8 +73,8 @@ function CreateJobPopup({ jobData, isVisible, onClose, isEditMode }) {
     e.preventDefault();
     try {
       const apiCall = isEditMode
-        ? axios.put(APIGovtJobs.getJobDetails, jobDetails)
-        : axios.post(APIGovtJobs.createJob, jobDetails);
+        ? axios.put(All_api.APIGovtJobs.getJobDetails, jobDetails)
+        : axios.post(All_api.APIGovtJobs.createJob, jobDetails);
 
       await apiCall;
       setMessage({ type: 'success', text: isEditMode ? 'Job successfully updated!' : 'Job successfully created!' });

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './GovtFormRequest.css'
 import Sidebar from './Sidebar';
-import All_api from '../Components/Api/All_api.js';
+import All_api from '../Api/All_api';
 import LoadingSpinner from '../LoadingSpinner';
 
 function GovtFormRequest() {
@@ -13,7 +13,7 @@ function GovtFormRequest() {
   useEffect(() => {
     const fetchRequest = async () => {
       try {
-        const response = await axios.get(APIGovtJobs.getAllGovtRequest);
+        const response = await axios.get(All_api.APIGovtJobs.getAllGovtRequest);
         setRequestData(response.data.requests); // ✅ corrected to match actual response key
         setLoading(false);
       } catch (err) {

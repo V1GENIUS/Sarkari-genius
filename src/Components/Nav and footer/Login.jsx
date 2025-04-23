@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterLogin.css";
-import APILoginRegister from "../Api/ApiLoginRegister";
+
 import { GoogleLogin } from "@react-oauth/google";
+import All_api from "../Api/All_api";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -34,7 +35,7 @@ function Login() {
     setMessage("");
     setLoading(true);
     try {
-      const response = await fetch(APILoginRegister.login, {
+      const response = await fetch(All_api.APILoginRegister.login, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -60,7 +61,7 @@ function Login() {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch(APILoginRegister.GoogleLogin, {
+      const response = await fetch(All_api.APILoginRegister.GoogleLogin, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ tokenId: credentialResponse.credential }),
@@ -96,7 +97,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch(APILoginRegister.forgotPassword, {
+      const response = await fetch(All_api.APILoginRegister.forgotPassword, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: forgotEmail }),

@@ -2,7 +2,9 @@ import React, { useEffect, useState,useNavigate } from '../import';
 import './GovtJobs.css';
 import  { Navbar, Footer} from '../import';
 import GovtJobCard from '../Components/GovtJobCard';
-import APIGovtJobs from "../Components/Api/ApiGovtJobs";
+
+
+import All_api from '../Components/Api/All_api';
 
 function GovtJobs() {
   const [jobs, setJobs] = useState([]);
@@ -25,7 +27,7 @@ function GovtJobs() {
     } else {
       setUser(null);
     }
-    fetch(APIGovtJobs.getAllJobs)
+    fetch(All_api.APIGovtJobs.getAllJobs)
       .then((response) => response.json())
       .then((data) => setJobs(data))
       .catch((error) => console.error('Error fetching jobs:', error));

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from '../import.js';
 import { useNavigate, useParams, axios } from '../import.js';
 import "./GovtJobDetails.css";
-import { Navbar, Footer, LoadingSpinner } from '../import.js';
-import APIGovtJobs from '../Components/Api/ApiGovtJobs.js';
-import { SpeedInsights } from "@vercel/speed-insights/react";
-import { Analytics } from "@vercel/analytics/react";
+import { Navbar, Footer, LoadingSpinner ,SpeedInsights ,Analytics } from '../import.js';
 import Whatsappicon from '../Components/Images/whatsapp.png';
+import All_api from '../Components/Api/All_api.js';
 
 function GovtJobDetails() {
   const [jobDetails, setJobDetails] = useState(null);
@@ -35,7 +33,7 @@ function GovtJobDetails() {
 
     token && name ? setUser({ name, role }) : setUser(null);
 
-    axios.get(APIGovtJobs.getJobDetails(id))
+    axios.get(All_api.APIGovtJobs.getJobDetails(id))
       .then((res) => {
         const job = res.data;
         setJobDetails(job);
@@ -65,7 +63,7 @@ function GovtJobDetails() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(APIGovtJobs.submitGovtRequestForm, formData);
+      await axios.post(All_api.APIGovtJobs.submitGovtRequestForm, formData);
       setSubmitMessage("Form submitted successfully.");
       setShowForm(false);
     } catch (error) {

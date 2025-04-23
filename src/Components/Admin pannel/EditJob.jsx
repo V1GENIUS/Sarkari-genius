@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import All_api from '../Components/Api/All_api.js';
+import All_api from '../Api/All_api';
 import "./CreateJobPopup.css"; // Reuse the same CSS if applicable
 
 function EditJob({ job, isVisible, onClose }) {
@@ -111,7 +111,7 @@ function EditJob({ job, isVisible, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(APIGovtJobs.updateJob(job._id), jobDetails);
+      const response = await axios.put(All_api.APIGovtJobs.updateJob(job._id), jobDetails);
       console.log("Job updated successfully", response.data);
       alert("Job Updated Successfully!");
       onClose();

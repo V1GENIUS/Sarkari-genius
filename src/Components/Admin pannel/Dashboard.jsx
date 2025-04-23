@@ -5,7 +5,7 @@ import './Dashboard.css';
 import Sidebar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
 import CreateJobPopup from './CreateJobPopup';
-import All_api from '../Components/Api/All_api.js';
+import All_api from '../Api/All_api';
 import LoadingSpinner from '../LoadingSpinner';
 import CreateCard from './CreateCard';
 import EditJob from './EditJob';
@@ -32,7 +32,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get(APIGovtJobs.getAllJobs);
+        const response = await axios.get(All_api.APIGovtJobs.getAllJobs);
         setJobData(response.data);
         setLoading(false);
       } catch (err) {
@@ -46,8 +46,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get(APIGovtCards.getAllCards);
-        console.log(response.data);
+        const response = await axios.get(All_api.APIGovtCards.getAllCards);
+        // console.log(response.data);
         setCardData(response.data);
         setLoading(false);
       } catch (err) {
@@ -61,8 +61,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchPrivateJobs = async () => {
       try {
-        const response = await axios.get(APIPrivateJobs.getAllPrivateJobs);
-        console.log(response.data);
+        const response = await axios.get(All_api.APIPrivateJobs.getAllPrivateJobs);
+        // console.log(response.data);
         setPrivateJobData(response.data);
         setLoading(false);
       } catch (err) {
@@ -75,7 +75,7 @@ function Dashboard() {
 
   const handleDeleteJob = async (jobId) => {
     try {
-      await axios.delete(APIGovtJobs.deleteJob(jobId));
+      await axios.delete(All_api.APIGovtJobs.deleteJob(jobId));
       setJobData(jobData.filter(job => job._id !== jobId));
     } catch (err) {
       setError("Error deleting job");
@@ -84,7 +84,7 @@ function Dashboard() {
 
   const handleDeletePrivateJob = async (jobId) => {
     try {
-      await axios.delete(APIPrivateJobs.deletePrivateJob(jobId));
+      await axios.delete(All_api.APIPrivateJobs.deletePrivateJob(jobId));
       setPrivateJobData(privateJobData.filter(job => job._id !== jobId));
     } catch (err) {
       setError("Error deleting job");
@@ -102,7 +102,7 @@ function Dashboard() {
     try {
       // Assuming updatedJob contains _id and other fields to update
       const response = await axios.put(
-        `${APIGovtJobs.updateJob}/${updatedJob._id}`,
+        `${All_api.APIGovtJobs.updateJob}/${updatedJob._id}`,
         updatedJob
       );
       setJobData(jobData.map(job => (job._id === updatedJob._id ? response.data.job : job)));
@@ -117,7 +117,7 @@ function Dashboard() {
     try {
       // Assuming updatedJob contains _id and other fields to update
       const response = await axios.put(
-        `${APIPrivateJobs.updatePrivateJob}/${updatePrivateJob._id}`,
+        `${All_api.APIPrivateJobs.updatePrivateJob}/${updatePrivateJob._id}`,
         updatePrivateJob
       );
       setPrivateJobData(privateJobData.map(job => (job._id === updatePrivateJob._id ? response.data.job : job)));
@@ -150,7 +150,7 @@ function Dashboard() {
 
   const handleDeleteCard = async (cardId) => {
     try {
-      await axios.delete(APIGovtCards.deleteCard(cardId));
+      await axios.delete(All_api.APIGovtCards.deleteCard(cardId));
       setCardData(cardData.filter(card => card._id !== cardId));
     } catch (err) {
       setError("Error deleting card");

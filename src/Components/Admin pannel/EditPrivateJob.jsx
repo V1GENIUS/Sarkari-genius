@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CreateJobPopup.css"; 
-import All_api from '../Components/Api/All_api.js';
+import All_api from '../Api/All_api';
 
 function EditPrivateJob({ job, isVisible, onClose }) {
    const [PrivateJobDetails, setPrivateJobDetails] = useState({
@@ -46,7 +46,7 @@ useEffect(() => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(APIPrivateJobs.updatePrivateJob(job._id), PrivateJobDetails);
+      const response = await axios.put(All_api.APIPrivateJobs.updatePrivateJob(job._id), PrivateJobDetails);
       console.log("Job updated successfully", response.data);
       alert("Job Updated Successfully!");
       onClose();

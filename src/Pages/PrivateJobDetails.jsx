@@ -1,10 +1,10 @@
 import React, { useEffect, useState ,useNavigate, useParams ,axios} from '../import.js';
 import "./PrivateJobDetails.css";
 import { Navbar ,Footer ,LoadingSpinner} from '../import.js';
-import APIPrivateJobs from '../Components/Api/ApiPrivateJobs.js'
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react"
 import  Whatsappicon from '../Components/Images/whatsapp.png';
+import All_api from '../Components/Api/All_api.js';
 
 function PrivatePrijobDetails() {
   const [PrijobDetails, setPriJobDetails] = useState(null); 
@@ -32,7 +32,7 @@ function PrivatePrijobDetails() {
 
     
     axios
-  .get(APIPrivateJobs.getPrivateJobDetails(id))
+  .get(All_api.APIPrivateJobs.getPrivateJobDetails(id))
   .then((response) => {
     // console.log("API Response:", response.data);
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./RegisterLogin.css";
-import APILoginRegister from "../Api/ApiLoginRegister";
+import All_api from "../Api/All_api";
 
 function ResetPassword() {
   const { token } = useParams();
@@ -24,7 +24,7 @@ function ResetPassword() {
     }
 
     try {
-        const res = await fetch(`${APILoginRegister.ResetPassword}/${token}`, {
+        const res = await fetch(`${All_api.APILoginRegister.ResetPassword}/${token}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ newPassword }),

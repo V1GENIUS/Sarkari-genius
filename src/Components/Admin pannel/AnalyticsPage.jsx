@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import All_api from '../Components/Api/All_api.js';
+import All_api from '../Api/All_api';
 
 function AnalyticsPage() {
   const [analytics, setAnalytics] = useState([]);
@@ -10,7 +10,7 @@ function AnalyticsPage() {
   useEffect(() => {
     const fetchAnalyticsData = async () => {
       try {
-        const response = await axios.get(APIGovtJobs.Analytics);
+        const response = await axios.get(All_api.APIGovtJobs.Analytics);
         setAnalytics(response.data);
         setLoading(false);
       } catch (error) {

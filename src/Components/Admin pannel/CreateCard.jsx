@@ -2,7 +2,7 @@ import React, { useState , useEffect } from 'react';
  import axios from 'axios';
 import './CreateJobPopup.css';
 
-import All_api from '../Components/Api/All_api.js';
+import All_api from '../Api/All_api';
 
 // function CreateCard({ cardData,isVisible, onClose,isEditMode ,cardId }) {
 
@@ -212,12 +212,12 @@ function CreateCard({ cardData, isVisible, onClose, isEditMode, cardId }) {
     }
     try {
       if (isEditMode) {
-        await axios.put(`${APIGovtCards.getCardDetails}`, cardDetails, {
+        await axios.put(`${All_api.APIGovtCards.getCardDetails}`, cardDetails, {
           headers: { 'Content-Type': 'application/json' },
         });
         setMessage({ type: 'success', text: 'Card successfully updated!' });
       } else {
-        await axios.post(APIGovtCards.createCard, cardDetails, {
+        await axios.post(All_api.APIGovtCards.createCard, cardDetails, {
           headers: { 'Content-Type': 'application/json' },
         });
         setMessage({ type: 'success', text: 'Card successfully created!' });

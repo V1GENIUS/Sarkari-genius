@@ -2,7 +2,7 @@ import './PrivateJobs.css';
 import { React,useNavigate ,useEffect, useState } from '../import.js'
 import { Footer,Navbar } from '../import.js'
 import PrivateJobCard from '../Components/Cards/PrivateJobCard.jsx';
-import APIPrivateJobs from "../Components/Api/ApiPrivateJobs.js";
+import All_api from '../Components/Api/All_api.js';
 
 function PrivateJobs() {
   const [prijobs, setpriJobs] = useState([]);
@@ -24,7 +24,7 @@ function PrivateJobs() {
     } else {
       setUser(null);
     }
-    fetch(APIPrivateJobs.getAllPrivateJobs)
+    fetch(All_api.APIPrivateJobs.getAllPrivateJobs)
       .then((response) => response.json())
       .then((data) => setpriJobs(data))
       .catch((error) => console.error('Error fetching jobs:', error));

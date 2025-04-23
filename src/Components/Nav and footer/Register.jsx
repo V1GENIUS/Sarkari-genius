@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./RegisterLogin.css";
-import APILoginRegister from "../Api/ApiLoginRegister";
+import All_api from "../Api/All_api";
 import { GoogleLogin } from "@react-oauth/google";
 function Register() {
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ function Register() {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch(APILoginRegister.register, {
+      const response = await fetch(All_api.APILoginRegister.register, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -45,7 +45,7 @@ function Register() {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch(APILoginRegister.login, {
+      const response = await fetch(All_api.APILoginRegister.login, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -71,7 +71,7 @@ function Register() {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch(APILoginRegister.GoogleLogin, {
+      const response = await fetch(All_api.APILoginRegister.GoogleLogin, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ tokenId: credentialResponse.credential }),

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CreateJobPopup.css";
-import All_api from '../Components/Api/All_api.js';
+import All_api from '../Api/All_api';
 
 function CreatePrivateJobs({ PrivateJobData, isVisible, onClose, isEditMode }) {
   const [PrivateJobDetails, setPrivateJobDetails] = useState({
@@ -36,10 +36,10 @@ function CreatePrivateJobs({ PrivateJobData, isVisible, onClose, isEditMode }) {
     e.preventDefault();
     try {
       const apiCall = isEditMode
-        ? axios.put(APIPrivateJobs.getPrivateJobDetails, PrivateJobDetails, {
+        ? axios.put(All_api.APIPrivateJobs.getPrivateJobDetails, PrivateJobDetails, {
             headers: { "Content-Type": "application/json" },
           })
-        : axios.post(APIPrivateJobs.createPrivateJob, PrivateJobDetails, {
+        : axios.post(All_api.APIPrivateJobs.createPrivateJob, PrivateJobDetails, {
             headers: { "Content-Type": "application/json" },
           });
 
