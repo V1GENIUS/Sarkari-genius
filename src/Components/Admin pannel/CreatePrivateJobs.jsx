@@ -35,21 +35,21 @@ function CreatePrivateJobs({ PrivateJobData, isVisible, onClose, isEditMode }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const apiCall = isEditMode
-        ? axios.put(All_api.APIPrivateJobs.getPrivateJobDetails, PrivateJobDetails, {
-            headers: { "Content-Type": "application/json" },
-          })
-        : axios.post(All_api.APIPrivateJobs.createPrivateJob, PrivateJobDetails, {
-            headers: { "Content-Type": "application/json" },
-          });
-
-      await apiCall;
+      const url = isEditMode
+        ? All_api.APIPrivateJobs.getPrivateJobDetails
+        : All_api.APIPrivateJobs.createPrivateJob;
+  
+      await axios[isEditMode ? "put" : "post"](url, PrivateJobDetails, {
+        headers: { "Content-Type": "application/json" },
+      });
+  
       setMessage({
         type: "success",
         text: isEditMode
           ? "Private Job successfully updated!"
           : "Private Job successfully created!",
       });
+  
       setTimeout(() => onClose(), 1000);
     } catch (error) {
       setMessage({
@@ -58,6 +58,7 @@ function CreatePrivateJobs({ PrivateJobData, isVisible, onClose, isEditMode }) {
       });
     }
   };
+  
 
   if (!isVisible) return null;
 
