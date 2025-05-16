@@ -188,6 +188,7 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
+  border-color: #22b358;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -249,7 +250,7 @@ body {
   padding: 10px 18px;
   margin: 8px 5px 0 0;
   border: none;
-  background-color: #007bff;
+  background-color: #19cc3a;
   color: white;
   border-radius: 6px;
   font-weight: bold;
@@ -258,7 +259,7 @@ body {
 }
 
 .modal-content button:hover {
-  background-color: #0056b3;
+  background-color: #2c9a20;
 }
 
 .modal-content button[type="button"] {

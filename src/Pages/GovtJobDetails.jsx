@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from '../import.js';
 import { useNavigate, useParams, axios } from '../import.js';
 import "./GovtJobDetails.css";
-import { Navbar, Footer, LoadingSpinner ,SpeedInsights ,Analytics } from '../import.js';
+import { Navbar, Footer, LoadingSpinner, SpeedInsights, Analytics } from '../import.js';
 import Whatsappicon from '../Components/Images/whatsapp.png';
 import All_api from '../Components/Api/All_api.js';
 
@@ -12,6 +12,7 @@ function GovtJobDetails() {
   const [error, setError] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [user, setUser] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -66,6 +67,13 @@ function GovtJobDetails() {
       await axios.post(All_api.APIGovtJobs.submitGovtRequestForm, formData);
       setSubmitMessage("Form submitted successfully.");
       setShowForm(false);
+
+      setShowConfirmation(true);
+
+      // Close the confirmation modal after 2 seconds
+      setTimeout(() => {
+        setShowConfirmation(false);
+      }, 2000);
     } catch (error) {
       console.error("Form submission error:", error);
       setSubmitMessage("Something went wrong. Please try again.");
@@ -226,24 +234,22 @@ ______________________________
                 </tr>
 
                 <tr>
-  <td>Admit Card</td>
-  <td>
-    {isValidUrl(jobDetails.admitcard) ? (
-      <a
-        href={jobDetails.admitcard}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="table-link"
-      >
-        Click Here
-      </a>
-    ) : (
-      "Soon Activate Link"
-    )}
-  </td>
-</tr>
-
-
+                  <td>Admit Card</td>
+                  <td>
+                    {isValidUrl(jobDetails.admitcard) ? (
+                      <a
+                        href={jobDetails.admitcard}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="table-link"
+                      >
+                        Click Here
+                      </a>
+                    ) : (
+                      "Soon Activate Link"
+                    )}
+                  </td>
+                </tr>
               </tbody>
             </table>
 
@@ -301,6 +307,16 @@ ______________________________
                       </button>
                     </div>
                   </form>
+                </div>
+              </div>
+            )}
+
+            {/* Confirmation Modal */}
+            {showConfirmation && (
+              <div className="modal-overlay">
+                <div className="modal-content" style={{ textAlign: 'center' }}>
+                  <h2>{submitMessage}</h2>
+                  <p>{submitMessage === "Form submitted successfully." ? "We will contact you shortly." : "Please try again later."}</p>
                 </div>
               </div>
             )}

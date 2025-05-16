@@ -163,11 +163,11 @@
   }
   
   .nav__username {
-    font-size: 0.4rem;
+    font-size: 0.6rem;
   }
 
   .nav__logout {
-    font-size: 1.1rem;
+    font-size: 0.6rem;
   }
 
 }

@@ -138,13 +138,14 @@ function Register() {
             onChange={handleChange}
             required
           />
-          <button className="registers_btn" onClick={handleRegister}>
+          <button className="login_btn" onClick={handleRegister}>
             Register
           </button>
+
           {error && <p className="error-message">{error}</p>}
           <h5 style={{ marginTop: "10px" }}>
             Already registered?{" "}
-            <button onClick={() => navigate("/login")} className="logins_btn">
+            <button onClick={() => navigate("/login")} className="register_btn">
               Login
             </button>
           </h5>

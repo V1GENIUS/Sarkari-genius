@@ -15,7 +15,6 @@ function Homepage() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     const fetchJobsData = async () => {
       try {
@@ -23,19 +22,33 @@ function Homepage() {
           fetch(All_api.APIGovtJobs.getAllJobs),
           fetch(All_api.APIPrivateJobs.getAllPrivateJobs)
         ]);
+        // Check if the response was successful
+        if (!govtRes.ok || !privateRes.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        // Parse the responses
         const [govtData, privateData] = await Promise.all([
           govtRes.json(),
           privateRes.json()
         ]);
-        setJobs(govtData.slice(0, 14));
-        setPrivateJobs(privateData.slice(0, 14));
+        if (Array.isArray(govtData.jobs)) {
+          setJobs(govtData.jobs.slice(0, 14)); 
+        } else {
+          console.error('Expected govtData.jobs to be an array, but got:', govtData.jobs);
+        }
+        if (Array.isArray(privateData.jobs)) {
+          setPrivateJobs(privateData.jobs.slice(0, 14));
+        } else {
+          console.error('Expected privateData.jobs to be an array, but got:', privateData.jobs);
+        }
       } catch (error) {
         console.error('Error fetching job data:', error);
       }
     };
-
+  
     fetchJobsData();
   }, []);
+  
 
   useEffect(() => {
     const token = localStorage.getItem("token");

@@ -83,6 +83,40 @@ body {
   .register_btn:hover {
     color: blue;
   }
+
+  .password-sh {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+  }
+  
+  .password-sh input[type="password"],
+  .password-sh input[type="text"] {
+   
+    max-width: 300px;
+    height: 50px;
+    padding: 10px 40px 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgb(50, 233, 41);
+    font-size: 15px;
+    font-family: inherit;
+    color: black;
+    background-color: white;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  .password-icon {
+    position: absolute;
+    top: 53.5%;
+    right: 16%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.3rem;
+    z-index: 1;
+  }
   
   /* ///////////Register Page CSS/////////// */
   
@@ -124,37 +158,14 @@ body {
     color: black;
   }
   
-  .logins_btn {
-    width: 120px;
-    height: 40px;
-    margin: 20px auto;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    background-color: rgb(112, 232, 69);
-  }
-  
-  .logins_btn:hover {
-    color: white;
-    background-color: rgb(13, 145, 9);
-  }
-  
-  .registers_btn {
-    background: none;
-    border: none;
-    text-decoration: none;
-    color: rgb(19, 135, 23);
-    cursor: pointer;
-  }
-  
-  .registers_btn:hover {
-    color: blue;
-  }
+
 
   .error-message{
     color:red;
     font-style: bold;
   }
+
+  
   
   /* ///////////Responsive Design/////////// */
   
@@ -190,6 +201,7 @@ body {
       height: 35px;
       font-size: 14px;
     }
+   
   }
   
   /* Tablets (481px to 768px) */

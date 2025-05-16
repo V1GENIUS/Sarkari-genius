@@ -23,7 +23,7 @@
   }
   
   .dashboard_head h1 {
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #1e293b;
     text-align: center;
@@ -42,7 +42,7 @@
   
   .job-details-container h1 {
     margin-bottom: 20px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #1e293b;
     text-align: center;
   }
@@ -76,7 +76,7 @@
   /* Base button style in table cells */
   .job-details-table td button {
     padding: 6px 10px;
-    margin: 5px;
+    /* margin: 5px; */
     font-size: 0.9rem; 
     border: none;
     cursor: pointer;
@@ -100,8 +100,6 @@
   .job-details-table td button:last-child:hover {
     background-color: #e53935;
   }
-
-
 
 
   /* ================================
@@ -134,8 +132,8 @@
         }
         .job-details-table th,
         .job-details-table td {
-          font-size: 0.7rem;
-          padding: 5px;
+          font-size: 0.6rem;
+          /* padding: 5px; */
         }
         
       }
@@ -150,12 +148,12 @@
         .job-details-table th,
         .job-details-table td {
           font-size: 0.5rem;
-          padding: 5px;
+          /* padding: px; */
         }
-        /* Make the table buttons smaller on mobile */
+      
         .job-details-table td button {
-          font-size: 0.65rem;
-          padding: 2px 4px;
+          font-size: 0.3rem;
+          /* padding: 2px 4px; */
         }
         .sidebar {
           position: absolute;
@@ -178,8 +176,8 @@
         }
         .job-details-table th,
         .job-details-table td {
-          font-size: 0.5rem;
-          padding: 2px;
+          font-size: 0.3rem;
+          padding: 1px;
         }
         /* Further reduce table button size */
         .job-details-table td button {

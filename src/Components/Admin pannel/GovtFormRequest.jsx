@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './GovtFormRequest.css'
+import './GovtFormRequest.css';
 import Sidebar from './Sidebar';
 import All_api from '../Api/All_api';
 import LoadingSpinner from '../LoadingSpinner';
@@ -10,37 +10,59 @@ function GovtFormRequest() {
   const [requestData, setRequestData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchRequest = async () => {
+    try {
+      const response = await axios.get(All_api.APIGovtJobs.getAllGovtRequest);
+      const validData = Array.isArray(response.data.requests) ? response.data.requests : [];
+      setRequestData(validData);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+      setError("Error fetching job data");
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchRequest = async () => {
-      try {
-        const response = await axios.get(All_api.APIGovtJobs.getAllGovtRequest);
-        setRequestData(response.data.requests); // ✅ corrected to match actual response key
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-        setError("Error fetching job data");
-        setLoading(false);
-      }
-    };
-  
     fetchRequest();
+    const intervalId = setInterval(fetchRequest, 10000);
+    return () => clearInterval(intervalId);
   }, []);
-  
 
-  if (loading) {
-    return <LoadingSpinner loading={loading} />;
-  }
+  const deleteRequest = async (id) => {
+    try {
+      await axios.delete(All_api.APIGovtJobs.deleteGovtRequest(id));
+      setRequestData((prev = []) => Array.isArray(prev) ? prev.filter(req => req._id !== id) : []);
+    } catch (err) {
+      console.error("Error deleting request:", err);
+      setError("Could not delete request");
+    }
+  };
 
-  if (error) {
-    return <div className="error">{error}</div>;
-  }
+  const updateStatus = async (id, newStatus) => {
+    try {
+      await axios.patch(All_api.APIGovtJobs.updateGovtRequestStatus(id), {
+        status: newStatus,
+      });
+      setRequestData((prev = []) => Array.isArray(prev)
+        ? prev.map(req => req._id === id ? { ...req, status: newStatus } : req)
+        : []
+      );
+    } catch (err) {
+      console.error("Error updating status:", err);
+      setError("Could not update status");
+    }
+  };
+
+  if (loading) return <LoadingSpinner loading={loading} />;
+  if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="dashboard">
       <Sidebar />
       <div className="dashboard_content">
         <div className="dashboard_head">
-          <h1>Total Requests</h1>
+          <h1>Total Requests ({requestData.length})</h1>
         </div>
 
         <div className="job-details-container">
@@ -55,6 +77,8 @@ function GovtFormRequest() {
                 <th>WhatsApp</th>
                 <th>Address</th>
                 <th>Job Details</th>
+                <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -67,8 +91,35 @@ function GovtFormRequest() {
                   <td>{request.whatsapp}</td>
                   <td>{request.address}</td>
                   <td>{request.jobDetails}</td>
+                  <td>
+                    <select
+                      value={request.status || 'Request Received'}
+                      onChange={(e) => updateStatus(request._id, e.target.value)}
+                    >
+                      <option value="Request Received">Request Received</option>
+                      <option value="Viewed">Viewed</option>
+                      <option value="Waiting for Platform">Waiting for Platform</option>
+                      <option value="Completed">Completed</option>
+                      <option value="Cancelled">Cancelled</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button
+                      className="delete-button"
+                      onClick={() => deleteRequest(request._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
+              {requestData.length === 0 && (
+                <tr>
+                  <td colSpan="9" style={{ textAlign: 'center', padding: '20px' }}>
+                    No requests found.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

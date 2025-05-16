@@ -24,102 +24,120 @@ import ContactUs from './Pages/ContactUs.jsx';
 import Disclaimer from './Pages/Disclaimer.jsx';
 import ScrollToTop from './Components/ScrollToTop.jsx';
 import ResetPassword from './Components/Nav and footer/ResetPassword.jsx';
+import ProfilePage from './Pages/ProfilePage.jsx';
+import JobDetailPage from './Components/Admin pannel/JobDetailPage.jsx';
 
 
 
 function App() {
   return (
     <>
-   <Router>
-     
-     <main className="main-content">
-     <ScrollToTop/>
-       <Routes>
-      
-         <Route path="/" element={<Homepage />} />
-         <Route path="/admit-card" element={<AdmitCard />} />
-         
-         <Route path="/govt-jobs" element={<GovtJobs />} />
-         <Route path="/job-detail/:id" element={<GovtJobDetails />} />
+      <Router>
 
-         <Route path="/private-jobs" element={<PrivateJobs />} />
-         <Route path="/pri-detail/:id" element={<PrivateJobDetails />} />
+        <main className="main-content">
+          <ScrollToTop />
+          <Routes>
 
-         <Route path="/about" element={<AboutUs />} />
-         <Route path="/privacy_policy" element={<PrivacyPolicy />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/disclaimer" element={<Disclaimer/>} />
-        
-{/* ///////////////////////////////////////////////// */}
-         <Route path="/register" element={<Register />} />
-         <Route path="/login" element={<Login />} />
-         <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/" element={<Homepage />} />
+            <Route path="/admit-card" element={<AdmitCard />} />
 
-        
-          {/* Protected Routes */}
-          <Route 
-            path="/dashboard"  element={
-              <ProtectedRoute isAdmin={true}>
-                <Dashboard />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/sidebar"  element={
-              <ProtectedRoute isAdmin={true}>
-                <Sidebar />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/analytics"  element={
-              <ProtectedRoute isAdmin={true}>
-                <Analytics />
-              </ProtectedRoute>
-            }   
-          />
-            <Route 
-            path="/edit-job/:id"  element={
-              <ProtectedRoute isAdmin={true}>
-                <EditJob />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/revenue"  element={
-              <ProtectedRoute isAdmin={true}>
-                <Revenue />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/GovtFormRequest" element={ 
-            <ProtectedRoute isAdmin={true}>
-                <GovtFormRequest />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/job-create"  element={
-              <ProtectedRoute isAdmin={true}>
-                <CreateJobPopup />
-              </ProtectedRoute>
-            } 
-          />
-           <Route 
-            path="/card-create"  element={
-              <ProtectedRoute isAdmin={true}>
-                 <CreateCard/>
-              </ProtectedRoute>
-            } 
-          />
+            <Route path="/govt-jobs" element={<GovtJobs />} />
+            <Route path="/job-detail/:id" element={<GovtJobDetails />} />
+
+            <Route path="/private-jobs" element={<PrivateJobs />} />
+            <Route path="/pri-detail/:id" element={<PrivateJobDetails />} />
+
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/privacy_policy" element={<PrivacyPolicy />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
+
+            {/* ///////////////////////////////////////////////// */}
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/profile" element={<ProfilePage />} />
 
 
-       </Routes>
+            {/* Protected Routes */}
+            <Route
+              path="/dashboard" element={
+                <ProtectedRoute isAdmin={true}>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/job-detail-page" element={
+                <ProtectedRoute isAdmin={true}>
+                  <JobDetailPage />
+                </ProtectedRoute>
+              }
+            />
 
-    
-     </main>
-   </Router>
+            <Route
+              path="/profile" element={
+                <ProtectedRoute isAdmin={true}>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/sidebar" element={
+                <ProtectedRoute isAdmin={true}>
+                  <Sidebar />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/analytics" element={
+                <ProtectedRoute isAdmin={true}>
+                  <Analytics />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit-job/:id" element={
+                <ProtectedRoute isAdmin={true}>
+                  <EditJob />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/revenue" element={
+                <ProtectedRoute isAdmin={true}>
+                  <Revenue />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/GovtFormRequest" element={
+                <ProtectedRoute isAdmin={true}>
+                  <GovtFormRequest />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/job-create" element={
+                <ProtectedRoute isAdmin={true}>
+                  <CreateJobPopup />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/card-create" element={
+                <ProtectedRoute isAdmin={true}>
+                  <CreateCard />
+                </ProtectedRoute>
+              }
+            />
+
+
+          </Routes>
+
+
+        </main>
+      </Router>
     </>
   );
 }

@@ -13,6 +13,10 @@ const BASE_URL = "https://sarkari-genius.onrender.com";
     getAllJobs: `${BASE_URL}/api/jobs` ,
     submitGovtRequestForm : `${BASE_URL}/api/jobs/govt-request`,
     getAllGovtRequest :`${BASE_URL}/api/jobs/request` ,
+    deleteGovtRequest :(id) => `${BASE_URL}/api/jobs/govt-request/${id}`,
+    updateGovtRequestStatus :(id) => `${BASE_URL}/api/jobs/govt-request/${id}/status`,
+  
+
    
   };
 
@@ -32,7 +36,8 @@ const APILoginRegister = {
     register: `${BASE_URL}/api/user/register`,
     GoogleLogin: `${BASE_URL}/api/user/google-login`,
     forgotPassword: `${BASE_URL}/api/user/forgot-password`,
-    ResetPassword:  `${BASE_URL}/api/user/reset-password`
+    ResetPassword:  `${BASE_URL}/api/user/reset-password`,
+    profile: `${BASE_URL}/api/user/profile`
   };
 
 
@@ -45,6 +50,10 @@ const APIPrivateJobs = {
  
 };
 
-export default {APIPrivateJobs,APILoginRegister,APIGovtCards,APIGovtJobs};
+const APIDashboardData = {
+  TotalCount:  `${BASE_URL}/api/dashboard`,
+};
+
+export default {APIPrivateJobs,APILoginRegister,APIGovtCards,APIGovtJobs ,APIDashboardData};
 
 

@@ -50,7 +50,9 @@ function Sidebar() {
         </div>
 
         <nav className="nav_items">
+      
           <NavLink to="/dashboard" className="nav_text">Dashboard</NavLink>
+          <NavLink to="/job-detail-page" className="nav_text">Job page</NavLink>
           <NavLink to="/GovtFormRequest" className="nav_text">Total Request</NavLink>
           <NavLink to="/revenue" className="nav_text">Revenue</NavLink>
           {/* <NavLink to="/analytics" className="nav_text">Analytics</NavLink> */}

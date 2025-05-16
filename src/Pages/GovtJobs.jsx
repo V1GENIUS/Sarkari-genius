@@ -8,6 +8,7 @@ import All_api from '../Components/Api/All_api';
 
 function GovtJobs() {
   const [jobs, setJobs] = useState([]);
+  
 
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -27,9 +28,17 @@ function GovtJobs() {
     } else {
       setUser(null);
     }
+
+    // Fetch jobs from the API
     fetch(All_api.APIGovtJobs.getAllJobs)
       .then((response) => response.json())
-      .then((data) => setJobs(data))
+      .then((data) => {
+        if (data && Array.isArray(data.jobs)) {
+          setJobs(data.jobs); 
+        } else {
+          console.error('Fetched data does not contain an array of jobs:', data);
+        }
+      })
       .catch((error) => console.error('Error fetching jobs:', error));
   }, []);
 
@@ -49,9 +58,13 @@ function GovtJobs() {
         </h3>
       </div>
       <div className="govt_cards">
-        {[...jobs].reverse().map((job) => (
-          <GovtJobCard key={job.id} job={job} onClick={() => handleCardClick(job)} />
-        ))}
+      {Array.isArray(jobs) && jobs.length > 0 ? (
+          jobs.reverse().map((job) => (
+            <GovtJobCard key={job.id} job={job} onClick={() => handleCardClick(job)} />
+          ))
+        ) : (
+          <p>No jobs available at the moment.</p>
+        )}
 
       </div>
       <Footer />

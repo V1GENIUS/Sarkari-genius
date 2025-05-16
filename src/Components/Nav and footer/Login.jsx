@@ -4,6 +4,7 @@ import "./RegisterLogin.css";
 
 import { GoogleLogin } from "@react-oauth/google";
 import All_api from "../Api/All_api";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -12,6 +13,7 @@ function Login() {
   const [forgotEmail, setForgotEmail] = useState("");
   const [forgotMode, setForgotMode] = useState(false);
   const [message, setMessage] = useState("");
+  const[showPasswordicon,setShowPasswordicon]=useState(false);
 
   const navigate = useNavigate();
 
@@ -133,16 +135,29 @@ function Login() {
                 onChange={handleChange}
                 required
               />
-              <input
-                type="password"
+              
+              <div className="password-sh">              
+               <input
+               type={showPasswordicon ?"text" : "password"}
                 name="password"
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                required
-              />
+                required />
+                
+                {/* ICON ADD */}
+
+               <span className="password-icon" onClick={()=>{setShowPasswordicon(!showPasswordicon)
+                   console.log("Show Password:", !showPasswordicon)
+               }}>
+                   
+                  {showPasswordicon ?<FaEyeSlash /> : <FaEye />
+                  }
+
+                </span>
+                </div>
               <button
-                className="logins_btn"
+                className="login_btn"
                 onClick={handleLogin}
                 disabled={loading}
               >
@@ -173,7 +188,7 @@ function Login() {
                 Don't have an account?{" "}
                 <button
                   onClick={() => navigate("/register")}
-                  className="registers_btn"
+                  className="register_btn"
                 >
                   Register
                 </button>
@@ -222,3 +237,4 @@ function Login() {
 }
 
 export default Login;
+
